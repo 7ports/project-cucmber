@@ -13,3 +13,36 @@
 .dolt/
 *.db
 .beads-credential-key
+
+# ---- Unity (added by Voltron) ----
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+MemoryCaptures/
+Recordings/
+.vs/
+.vscode/
+# Unity-generated project files
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+.DS_Store
+# Asset meta files for ignored folders are unnecessary
+/[Aa]ssets/AssetStoreTools*
+crashlytics-build.properties
+sysinfo.txt

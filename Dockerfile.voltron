@@ -1,0 +1,111 @@
+FROM node:20-slim
+
+# System tools for multi-language development
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    curl \
+    wget \
+    python3 \
+    python3-pip \
+    python3-venv \
+    ruby \
+    ruby-dev \
+    build-essential \
+    zip \
+    unzip \
+    jq \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Claude Code globally
+RUN npm install -g @anthropic-ai/claude-code
+
+# v3.8.0: docker-ce-cli (CLI only, no daemon) for nested-dispatch via Docker-out-of-Docker.
+# S1 Phase B: agents no longer get a raw docker.sock bind. Dispatch-capable agents
+# reach the daemon through the filtering socket-proxy via DOCKER_HOST=tcp://voltron-socket-proxy:2375.
+# The in-container `docker` CLI reads DOCKER_HOST from the environment directly, so it
+# talks to the proxy with no socket present. Installed from Docker's official debian repo
+# because the distro-shipped `docker.io` package pulls in the full daemon.
+RUN install -m 0755 -d /etc/apt/keyrings && \
+    curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc && \
+    chmod a+r /etc/apt/keyrings/docker.asc && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian $(. /etc/os-release && echo \"$VERSION_CODENAME\") stable" > /etc/apt/sources.list.d/docker.list && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends docker-ce-cli && \
+    rm -rf /var/lib/apt/lists/*
+
+# v3.13.0: GitHub CLI (gh) for publish agents (pr-opener, committer, branch-manager,
+# deploy-trigger, changelog-updater). Token is supplied at `docker run` time via
+# -e GH_TOKEN; the dispatch wrapper then runs `gh auth setup-git` so both `gh` and
+# `git push` authenticate. The token is NEVER baked into the image (no ENV/ARG).
+# See docs/voltron-git-credentials-plan.md.
+RUN install -m 0755 -d /etc/apt/keyrings && \
+    curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg -o /etc/apt/keyrings/githubcli-archive-keyring.gpg && \
+    chmod a+r /etc/apt/keyrings/githubcli-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli.list && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends gh && \
+    rm -rf /var/lib/apt/lists/*
+
+# S1 Phase B: the v3.8.1 privileged-re-exec + /usr/local/bin/docker wrapper shim
+# was REMOVED. Rationale: the shim re-exec'd the real CLI as root via a NOPASSWD
+# helper whose env_reset STRIPS DOCKER_HOST. With the socket-proxy reroute the
+# agent's docker CLI MUST read DOCKER_HOST=tcp://voltron-socket-proxy:2375 from
+# its environment, so the real /usr/bin/docker is invoked directly (no privileged
+# re-exec, no wrapper). No raw socket bind means there is no host-GID
+# group-permission problem for the shim to solve.
+
+# v3.4.0: mandatory voltron dependencies
+# beads (gastownhall/beads) — dependency-aware task tracking; required by scrum-master
+RUN BEADS_VERSION=1.0.4 && \
+    curl -fsSL https://github.com/gastownhall/beads/releases/download/v${BEADS_VERSION}/beads_${BEADS_VERSION}_linux_amd64.tar.gz -o /tmp/beads.tgz && \
+    mkdir -p /tmp/beads-extract && \
+    tar -xzf /tmp/beads.tgz -C /tmp/beads-extract && \
+    find /tmp/beads-extract -name bd -type f -exec mv {} /usr/local/bin/ \; && \
+    chmod +x /usr/local/bin/bd && \
+    rm -rf /tmp/beads.tgz /tmp/beads-extract
+
+# stringer (davetashner/stringer v1.7.0) — codebase baseline analysis; required by code-analyst
+RUN STRINGER_VERSION=1.7.0 && \
+    curl -fsSL https://github.com/davetashner/stringer/releases/download/v${STRINGER_VERSION}/stringer_${STRINGER_VERSION}_linux_amd64.tar.gz -o /tmp/stringer.tgz && \
+    mkdir -p /tmp/stringer-extract && \
+    tar -xzf /tmp/stringer.tgz -C /tmp/stringer-extract && \
+    find /tmp/stringer-extract -name stringer -type f -executable -exec mv {} /usr/local/bin/ \; && \
+    chmod +x /usr/local/bin/stringer && \
+    rm -rf /tmp/stringer.tgz /tmp/stringer-extract
+
+# Non-root user for security
+# Create .claude dir as voltron owner BEFORE any bind-mount lands on it.
+# Without this, Docker creates the dir as root when mounting credentials.json,
+# blocking Claude Code from writing session-env/ inside it (EACCES).
+RUN useradd -m -s /bin/bash voltron && \
+    mkdir -p /home/voltron/.claude && \
+    chown -R voltron:voltron /home/voltron/.claude
+
+# v3.17.0: Headless browser toolchain (Playwright + Chromium) so web/front-end
+# agents can actually render and test pages. Previously the image had no browser,
+# so browser-based verification was impossible and web fixes were missed or
+# falsely believed fixed.
+#
+# PLAYWRIGHT_BROWSERS_PATH points at a shared location (NOT the per-user default
+# ~/.cache/ms-playwright) so the Chromium binary installed here as root is usable
+# by the non-root voltron user at runtime. We chown it to voltron afterwards so
+# the agent can also install additional/matching browser versions at runtime.
+# `--with-deps` pulls the OS shared libraries Chromium needs via apt (root-only,
+# hence done at build time). Playwright is pinned for reproducible builds.
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+RUN mkdir -p /ms-playwright && \
+    npm install -g playwright@1.49.1 && \
+    playwright install --with-deps chromium && \
+    chown -R voltron:voltron /ms-playwright && \
+    rm -rf /var/lib/apt/lists/*
+
+# v3.6.5: Mark /workspace as a safe directory at the system level so git accepts
+# the bind-mounted repo even though the host UID owning it differs from the
+# voltron container UID. System config (/etc/gitconfig) is preferred over
+# global because $HOME/.gitconfig may be bind-mounted read-only from the host
+# (see scripts/voltron-run.sh) and would shadow any per-user fix.
+RUN git config --system --add safe.directory /workspace
+USER voltron
+WORKDIR /workspace
+ENTRYPOINT ["claude"]
