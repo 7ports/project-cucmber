@@ -182,3 +182,5 @@ MonoBehaviour:
   maxHp: 2
   xpPrefab: {fileID: 2084821060898178022, guid: b31ccd7fc04b9b74d8123d6165057dba, type: 3}
   xpDropCount: 1
+  enemyDamage: 5
+  bloodPrefab: {fileID: 5194919893134547747, guid: 33b7c54ff1c6f25408e61beff8f5cda7, type: 3}

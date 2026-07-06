@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class levelUpManager : MonoBehaviour
@@ -8,8 +9,10 @@ public class levelUpManager : MonoBehaviour
     [SerializeField] private GameObject floatingTextPrefab;
     [SerializeField] private ParticleSystem playerLevelUpParticles;
     [SerializeField] private Vector3 textOffset = new Vector3(0f, 1.2f, 0f);
+    [SerializeField] private float menuOpenDelay = 1f;
 
     private int pendingLevelUps;
+    private bool menuScheduled;
 
     private void Awake()
     {
@@ -30,8 +33,18 @@ public class levelUpManager : MonoBehaviour
     {
         pendingLevelUps++;
         PlayJuice();
-        if (menuPanel != null && !menuPanel.activeSelf)
-            OpenMenu();
+        if (menuPanel != null && !menuPanel.activeSelf && !menuScheduled)
+        {
+            menuScheduled = true;
+            StartCoroutine(OpenMenuAfterDelay());
+        }
+    }
+
+    private IEnumerator OpenMenuAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(menuOpenDelay);
+        menuScheduled = false;
+        OpenMenu();
     }
 
     private void PlayJuice()
