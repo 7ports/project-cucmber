@@ -6,6 +6,10 @@ public class enemyHealth : MonoBehaviour
     private int currentHp;
     [SerializeField] private GameObject xpPrefab;
     [SerializeField] private int xpDropCount = 1;
+    [SerializeField] private int enemyDamage = 5;
+    [SerializeField] private GameObject bloodPrefab;
+
+    public int EnemyDamage => enemyDamage;
 
     void OnEnable()
     {
@@ -26,6 +30,9 @@ public class enemyHealth : MonoBehaviour
             if (objectPool.instance != null && xpPrefab != null)
                 objectPool.instance.get(xpPrefab, transform.position, Quaternion.identity);
         }
+
+        if (bloodPrefab != null && objectPool.instance != null)
+            objectPool.instance.get(bloodPrefab, transform.position, Quaternion.identity);
 
         if (objectPool.instance != null)
             objectPool.instance.ret(gameObject);
