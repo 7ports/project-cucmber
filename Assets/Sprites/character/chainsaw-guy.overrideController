@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: chainsaw-guy
+  m_Controller: {fileID: 9100000, guid: 0c0b926381103d54881b822b554293fd, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 8a948fb4b071bee4dbd2afb3d024597c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c4a45fc7a3a6cba4a82e0e11954c14b2, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e645e3cf0e7f4cb4c97939b1eff62db5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7a994d0dc8f20734182dfce6656e8778, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a8e9936e312940c419c49b50ed890b90, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 125d8578b8aa4354cadf08e1ee7060cc, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 1cb66e68ccf502e4d9f0502d7279e3cb, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fa6a3d14ba045f94cb13e3d4f803a596, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 68ba7fd8c291236408d17e7559c1bc8c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9668379ca9d3c154fb988d6fe1418a67, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0e3991631c20ea74595fc941fe576eff, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6a80c5b38f1d34a49a420cb2a70961e5, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d609c67a49a47d24e935d1db96ea80c4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: bd205b0b8fe6a6b4aac24e914b35aed1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b7d629902ab3f064eb1aa922bba45738, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: eccc15eb5db20cd4c8a4374d5a04ecb8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 84034abf31f0fc042a571c6aeecfbdf1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9a18c4837d493cf41b3e654c96e57bf4, type: 2}

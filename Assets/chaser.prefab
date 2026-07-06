@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: chaser
       objectReference: {fileID: 0}
+    - target: {fileID: 3976880873792520215, guid: a3f0c52240fc14f4fbcb9e1d3c7451b1, type: 3}
+      propertyPath: maxHp
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8234927922015957673, guid: a3f0c52240fc14f4fbcb9e1d3c7451b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.5
@@ -52,6 +56,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8412323053929955870, guid: a3f0c52240fc14f4fbcb9e1d3c7451b1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8971424190427120489, guid: a3f0c52240fc14f4fbcb9e1d3c7451b1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6183053230388368892, guid: a3f0c52240fc14f4fbcb9e1d3c7451b1, type: 3}
     m_RemovedGameObjects: []
@@ -78,4 +90,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df4896f45e69feb499c829d636a04b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::chaserBehaviour
-  chaseSpeed: 1.5
+  chaseSpeed: 1

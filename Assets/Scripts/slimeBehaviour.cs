@@ -7,30 +7,42 @@ public class slimeBehaviour : MonoBehaviour
 
     float movementTimer = 0;
     public float movementDelay = 1.5f;
+    [SerializeField] private float hopDistance = 1f;
+
+    private bool isHopping = false;
 
     // Update is called once per frame
     void Update()
     {
+        if (worldState.instance == null || worldState.instance.player == null) return;
+
         movementTimer += Time.deltaTime;
-        if(movementTimer >= movementDelay)
+        if (movementTimer >= movementDelay && !isHopping)
         {
             StartCoroutine(jump());
-        }     
+        }
     }
 
 
 
     IEnumerator jump()
     {
-        Vector3 moveVector = worldState.instance.player.position - transform.position.normalized;
+        isHopping = true;
+
+        // Parenthesize the subtraction, THEN normalize — a fixed direction toward the player.
+        Vector3 dir = (worldState.instance.player.position - transform.position).normalized;
         Vector3 initPosition = transform.position;
-        for (float t = 0; t<=1; t+= 0.1f)
+        // Fixed-length hop target — NOT the player's absolute position (which caused overshoot).
+        Vector3 targetPosition = initPosition + dir * hopDistance;
+
+        for (float t = 0; t <= 1; t += 0.1f)
         {
-            transform.Translate(-transform.position + Vector3.Lerp(initPosition, moveVector, t));
+            transform.position = Vector3.Lerp(initPosition, targetPosition, t);
             yield return new WaitForEndOfFrame();
         }
-        movementTimer = 0;
-        yield return null;
 
+        transform.position = targetPosition;
+        movementTimer = 0;
+        isHopping = false;
     }
 }

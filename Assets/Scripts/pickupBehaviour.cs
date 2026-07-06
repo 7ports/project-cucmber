@@ -23,7 +23,7 @@ public class pickupBehaviour : MonoBehaviour
         if (worldState.instance == null) return;
         if (other.transform == worldState.instance.player || other.transform.root == worldState.instance.player)
         {
-            worldState.instance.currentXP += xpValue;
+            worldState.instance.addXP(xpValue);
             objectPool.instance.ret(gameObject);
         }
     }

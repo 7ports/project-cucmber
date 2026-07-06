@@ -83,7 +83,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: 5982524358045147723, guid: 89c82521c4bab2b48afae00032d9d15a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -129,7 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e777f88f47e4ea43b82b2a995cbbffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  movementDelay: 2
+  movementDelay: 3
+  hopDistance: 0.5
 --- !u!58 &8412323053929955870
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -146,7 +147,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -178,6 +179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2bffd5d7da66646b06b1a2d8e5af89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  maxHp: 3
+  maxHp: 2
   xpPrefab: {fileID: 2084821060898178022, guid: b31ccd7fc04b9b74d8123d6165057dba, type: 3}
   xpDropCount: 1
