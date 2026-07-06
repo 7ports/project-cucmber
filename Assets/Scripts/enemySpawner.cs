@@ -16,7 +16,8 @@ public class enemySpawner : MonoBehaviour
         if (cam == null) return;
 
         spawnTimer += Time.deltaTime;
-        if (spawnTimer >= spawnInterval)
+        float interval = (worldState.instance != null) ? worldState.instance.currentSpawnInterval : spawnInterval;
+        if (spawnTimer >= interval)
         {
             spawnTimer = 0f;
             GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
