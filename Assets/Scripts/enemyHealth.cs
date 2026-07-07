@@ -4,6 +4,7 @@ public class enemyHealth : MonoBehaviour
 {
     [SerializeField] private int maxHp = 3;
     private int currentHp;
+    private int scaledMaxHp;   // ADDED: base maxHp * time multiplier, recomputed each (re)spawn
     [SerializeField] private GameObject xpPrefab;
     [SerializeField] private int xpDropCount = 1;
     [SerializeField] private int enemyDamage = 5;
@@ -16,7 +17,7 @@ public class enemyHealth : MonoBehaviour
     private bool _isBoss;   // ADDED: true only for the boss (has bossBehaviour); gates blood-on-hit
 
     public int EnemyDamage => enemyDamage;
-    public int MaxHp => maxHp;
+    public int MaxHp => scaledMaxHp;   // CHANGED: bars read the scaled max so fill proportions stay correct
     public int CurrentHp => currentHp;
 
     void Awake()
@@ -27,7 +28,9 @@ public class enemyHealth : MonoBehaviour
 
     void OnEnable()
     {
-        currentHp = maxHp;
+        float mult = (worldState.instance != null) ? worldState.instance.EnemyHpTimeMultiplier() : 1f;
+        scaledMaxHp = Mathf.Max(1, Mathf.RoundToInt(maxHp * mult));   // never mutate serialized maxHp
+        currentHp = scaledMaxHp;
     }
 
     public void takeDamage(int amount)

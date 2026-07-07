@@ -79,6 +79,24 @@ public class worldState
     public float bossFirstTime = 300f;   // first boss at 5:00
     public float bossInterval  = 300f;   // then every 5:00
 
+    // --- Time-based ENEMY HP scaling (seconds of elapsed run time) ---
+    // Every hpScaleInterval seconds, NEWLY-spawned enemies (and bosses) get
+    // +hpScalePerTier of their BASE hp. ADDITIVE: mult = 1 + perTier * tier.
+    public float hpScaleInterval = 420f;   // 7 minutes per tier
+    public float hpScalePerTier  = 0.5f;   // +50% of base per tier
+
+    // Multiplier for HP applied AT SPAWN, from elapsed run time.
+    // Uses Time.timeSinceLevelLoad — the run-time source already adopted by
+    // enemySpawner/bossSpawner — so all time-based systems agree.
+    public float EnemyHpTimeMultiplier()
+    {
+        if (hpScaleInterval <= 0f) return 1f;   // guard: no divide-by-zero / disable
+        int tier = Mathf.FloorToInt(Time.timeSinceLevelLoad / hpScaleInterval);
+        if (tier < 0) tier = 0;
+        return 1f + hpScalePerTier * tier;
+        // COMPOUNDING alternative (retune): return Mathf.Pow(1f + hpScalePerTier, tier);
+    }
+
     public static event System.Action OnLevelUp;
 
     public void addXP(int amount)
