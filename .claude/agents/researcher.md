@@ -152,11 +152,17 @@ Tell the requester where the output was saved.
 
 ## Alexandria Integration
 
-After completing research on any tool, library, API, or platform:
+**Recall before acting** — call `mcp__alexandria__search_guides` FIRST, before researching any tool, library, API, or platform. Use what Alexandria already knows as your starting point instead of re-deriving it.
 
-1. Check if Alexandria already has a guide: `mcp__alexandria__search_guides`
-2. If a guide exists and you found new information: `mcp__alexandria__update_guide`
-3. If no guide exists and the research produced reusable setup/integration knowledge: create one
+**Write-back triggers** — after ANY of these, call `mcp__alexandria__update_guide` (or create a guide if none exists) before moving on:
+1. You set up / installed / configured a tool, MCP server, or integration.
+2. You resolved a non-obvious error (the fix wasn't in the first doc you read).
+3. You discovered a version-compatibility fact or a platform quirk.
+4. You got a tricky config / command / API right after more than one try.
+5. Session close — sweep the session for anything above not yet recorded.
+Recording is the DEFAULT, not an afterthought. If a trigger fired and you are not writing back, that is the exception — you should be able to say why.
+
+**Genericise, don't discard** — strip host / path / secret / client / project specifics and record the general lesson rather than skipping. Positive test before every write: "Would this help an unrelated project?" Use placeholders like `<your-project>`, `<API_KEY>`, `<path/to/repo>`. Purely project-specific content belongs in the project docs, not Alexandria.
 
 **Alexandria content boundary:** Alexandria is for non-project-specific, reusable knowledge — tool setup steps, API patterns, platform quirks, version compatibility notes. Project-specific research findings (competitor analysis, product decisions, business logic) belong in the project docs, not Alexandria.
 

@@ -32,5 +32,30 @@
         ]
       }
     ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(bd ready*)",
+      "Bash(bd stats*)",
+      "Bash(bd list*)",
+      "Bash(bd dolt status*)",
+      "Bash(bd dep tree*)",
+      "Bash(docker --version)",
+      "Bash(npm view *)",
+      "mcp__coplay-mcp__get_game_object_info",
+      "mcp__coplay-mcp__read_file",
+      "mcp__coplay-mcp__check_compile_errors",
+      "mcp__coplay-mcp__get_unity_editor_state",
+      "mcp__coplay-mcp__list_game_objects_in_hierarchy",
+      "mcp__coplay-mcp__get_unity_logs",
+      "mcp__coplay-mcp__list_files",
+      "mcp__coplay-mcp__search_files",
+      "mcp__coplay-mcp__list_unity_project_roots",
+      "mcp__coplay-mcp__capture_ui_canvas",
+      "mcp__coplay-mcp__capture_scene_object",
+      "mcp__project-voltron__get_template",
+      "mcp__alexandria__search_guides",
+      "mcp__alexandria__recall_context"
+    ]
   }
 }

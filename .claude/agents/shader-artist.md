@@ -123,7 +123,17 @@ Shader "Custom/MyShader"
 
 ## Alexandria Reference
 
-**Mandatory:** Before working with any render pipeline features, post-processing packages, or shader compilation tools, you MUST call `mcp__alexandria__quick_setup` first. Use `mcp__alexandria__search_guides` to check for known compatibility issues if no exact guide exists. Never skip this step.
+**Recall before acting** — before working with any render pipeline features, post-processing packages, or shader compilation tools, you MUST call `mcp__alexandria__quick_setup` FIRST. Use `mcp__alexandria__search_guides` to check for known compatibility issues if no exact guide exists. Use what Alexandria already knows as your starting point instead of re-deriving it — never skip this step.
+
+**Write-back triggers** — after ANY of these, call `mcp__alexandria__update_guide` before moving on:
+1. You set up / installed / configured a tool, package, pipeline, or integration.
+2. You resolved a non-obvious error (the fix wasn't in the first doc you read).
+3. You discovered a version-compatibility fact or a platform quirk.
+4. You got a tricky config / command / API right after more than one try.
+5. Session close — sweep the session for anything above not yet recorded.
+Recording is the DEFAULT, not an afterthought. If a trigger fired and you are not writing back, that is the exception — you should be able to say why.
+
+**Genericise, don't discard** — strip host / path / secret / client / project specifics and record the general lesson rather than skipping. Positive test before every write: "Would this help an unrelated project?" Use placeholders like `<your-project>`, `<API_KEY>`, `<path/to/repo>`. Purely project-specific content belongs in CLAUDE.md, not Alexandria.
 
 **Alexandria content boundary:** Alexandria is for non-project-specific, reusable documentation only — render pipeline setup, known shader compatibility issues, post-processing package quirks. Never record project-specific content (project-specific material setups, game visual effect designs) in Alexandria. That belongs in CLAUDE.md.
 

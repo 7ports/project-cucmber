@@ -201,7 +201,17 @@ Prefix group objects with `---` and use PascalCase for all GameObjects.
 
 ## Alexandria Reference
 
-**Mandatory:** Before setting up any Unity package, plugin, or external tool, you MUST call `mcp__alexandria__quick_setup` first. Use `mcp__alexandria__search_guides` if no exact guide exists or you encounter an unfamiliar error. Never proceed with a package or plugin installation without checking Alexandria first.
+**Recall before acting** — before setting up any Unity package, plugin, or external tool, you MUST call `mcp__alexandria__quick_setup` FIRST. Use `mcp__alexandria__search_guides` if no exact guide exists or you encounter an unfamiliar error. Use what Alexandria already knows as your starting point instead of re-deriving it — never proceed with a package or plugin installation without checking Alexandria first.
+
+**Write-back triggers** — after ANY of these, call `mcp__alexandria__update_guide` before moving on:
+1. You set up / installed / configured a tool, package, plugin, or integration.
+2. You resolved a non-obvious error (the fix wasn't in the first doc you read).
+3. You discovered a version-compatibility fact or a platform quirk.
+4. You got a tricky config / command / API right after more than one try.
+5. Session close — sweep the session for anything above not yet recorded.
+Recording is the DEFAULT, not an afterthought. If a trigger fired and you are not writing back, that is the exception — you should be able to say why.
+
+**Genericise, don't discard** — strip host / path / secret / client / project specifics and record the general lesson rather than skipping. Positive test before every write: "Would this help an unrelated project?" Use placeholders like `<your-project>`, `<API_KEY>`, `<path/to/repo>`. Purely project-specific content belongs in CLAUDE.md, not Alexandria.
 
 **Alexandria content boundary:** Alexandria is for non-project-specific, reusable documentation only — Unity package setup, plugin configuration, known workflow issues. Never record project-specific content (scene hierarchies, project-specific prefab layouts, game design decisions) in Alexandria. That belongs in CLAUDE.md.
 

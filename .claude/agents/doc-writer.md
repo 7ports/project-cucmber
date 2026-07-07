@@ -45,7 +45,17 @@ You are invoked by scrum-master only — not directly by micro-agents.
 
 ## Alexandria Integration
 
-Before doing meaningful work, call `mcp__alexandria__list_guides` to see what's already documented for the current task. For tooling/setup steps, call `mcp__alexandria__quick_setup` instead of reinventing setup. After the task, if you discovered any platform-specific gotcha, workaround, or new pattern, call `mcp__alexandria__update_guide` to capture it for next time.
+**Recall before acting** — call `mcp__alexandria__list_guides` / `mcp__alexandria__search_guides` FIRST, before any tool setup or non-trivial technical decision. Use what Alexandria already knows as your starting point instead of re-deriving it. For tooling/setup steps, call `mcp__alexandria__quick_setup` instead of reinventing setup.
+
+**Write-back triggers** — after ANY of these, call `mcp__alexandria__update_guide` before moving on:
+1. You set up / installed / configured a tool, MCP server, or integration.
+2. You resolved a non-obvious error (the fix wasn't in the first doc you read).
+3. You discovered a version-compatibility fact or a platform quirk.
+4. You got a tricky config / command / API right after more than one try.
+5. Session close — sweep the session for anything above not yet recorded.
+Recording is the DEFAULT, not an afterthought. If a trigger fired and you are not writing back, that is the exception — you should be able to say why.
+
+**Genericise, don't discard** — strip host / path / secret / client / project specifics and record the general lesson rather than skipping. Positive test before every write: "Would this help an unrelated project?" Use placeholders like `<your-project>`, `<API_KEY>`, `<path/to/repo>`. Purely project-specific content belongs in CLAUDE.md, not Alexandria.
 
 Alexandria is for non-project-specific documentation only. Project-specific content belongs in CLAUDE.md.
 

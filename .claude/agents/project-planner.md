@@ -178,17 +178,21 @@ Do **not** attempt task decomposition yourself — that is the scrum-master's re
 
 ## Alexandria Integration
 
-**Mandatory:** Consult Alexandria at the start of research, not just at the end. Before researching any tool or technology:
+**Recall before acting** — consult Alexandria at the START of research, not just at the end. FIRST, before researching any tool or technology:
 
 1. Call `mcp__alexandria__get_project_setup_recommendations` with the project type
 2. Call `mcp__alexandria__search_guides` for each major tool or framework in the stack
-3. Read existing guides — they contain hard-won knowledge from prior sessions that directly informs architecture decisions
+3. Read existing guides — they contain hard-won knowledge from prior sessions that directly informs architecture decisions. Use what Alexandria already knows as your starting point instead of re-deriving it.
 
-After completing research, call `mcp__alexandria__update_guide` for any tool-specific findings:
-- Version compatibility notes
-- Configuration gotchas discovered during research
-- API patterns and integration approaches
-- Links to authoritative documentation
+**Write-back triggers** — after ANY of these, call `mcp__alexandria__update_guide` before moving on:
+1. You set up / installed / configured a tool, MCP server, or integration.
+2. You resolved a non-obvious error (the fix wasn't in the first doc you read).
+3. You discovered a version-compatibility fact or a platform quirk.
+4. You got a tricky config / command / API right after more than one try.
+5. Session close — sweep the session for anything above not yet recorded.
+Recording is the DEFAULT, not an afterthought. If a trigger fired and you are not writing back, that is the exception — you should be able to say why.
+
+**Genericise, don't discard** — strip host / path / secret / client / project specifics and record the general lesson rather than skipping. Positive test before every write: "Would this help an unrelated project?" Use placeholders like `<your-project>`, `<API_KEY>`, `<path/to/repo>`. Purely project-specific content belongs in CLAUDE.md, not Alexandria.
 
 **Alexandria content boundary:** Alexandria is for non-project-specific, reusable documentation only. Record only knowledge that applies to a tool or framework in general — not project-specific decisions (custom data models, feature requirements, client-specific architecture). Project-specific documentation belongs in the plan document and CLAUDE.md, not Alexandria.
 

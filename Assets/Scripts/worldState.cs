@@ -20,7 +20,7 @@ public class worldState
     public float defenseMult = 1f;
     public float regenBase = 0f;
     public float regenMult = 1f;
-    public float pickupRadiusBase = 4f;   // = current playerPickupRadius default -> behavior unchanged
+    public float pickupRadiusBase = 2f;   // = current playerPickupRadius default -> behavior unchanged
     public float pickupRadiusMult = 1f;
 
     public float AttackDamage() => attackDamageBase * attackDamageMult;

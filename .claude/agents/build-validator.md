@@ -148,9 +148,17 @@ NOT READY TO COMMIT — fix NullReferenceException first.
 
 ## Alexandria Reference
 
-If build validation uncovers an unfamiliar error or platform-specific issue, you MUST call `mcp__alexandria__search_guides` to check for known solutions before attempting any fix. Do not guess at solutions when Alexandria may have documented the answer.
+**Recall before acting** — if build validation uncovers an unfamiliar error or platform-specific issue, you MUST call `mcp__alexandria__search_guides` FIRST to check for known solutions before attempting any fix. Use what Alexandria already knows as your starting point instead of re-deriving it — do not guess at solutions when Alexandria may have documented the answer.
 
-If you discover a new fix or workaround, call `mcp__alexandria__update_guide` to record it immediately.
+**Write-back triggers** — after ANY of these, call `mcp__alexandria__update_guide` before moving on:
+1. You set up / installed / configured a tool, toolchain, or integration.
+2. You resolved a non-obvious error (the fix wasn't in the first doc you read).
+3. You discovered a version-compatibility fact or a platform quirk.
+4. You got a tricky config / command / API right after more than one try.
+5. Session close — sweep the session for anything above not yet recorded.
+Recording is the DEFAULT, not an afterthought. If a trigger fired and you are not writing back, that is the exception — you should be able to say why.
+
+**Genericise, don't discard** — strip host / path / secret / client / project specifics and record the general lesson rather than skipping. Positive test before every write: "Would this help an unrelated project?" Use placeholders like `<your-project>`, `<API_KEY>`, `<path/to/repo>`. Purely project-specific content belongs in CLAUDE.md, not Alexandria.
 
 **Alexandria content boundary:** Alexandria is for non-project-specific, reusable documentation only — known build errors and fixes, platform-specific compiler quirks, toolchain issues. Never record project-specific content (project-specific compile errors from custom game code) in Alexandria. That belongs in CLAUDE.md.
 

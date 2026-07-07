@@ -314,7 +314,17 @@ This prevents the consistent failure mode where edit tasks exhaust their turn bu
 
 ## Alexandria Integration
 
-Before creating any work plan, call `mcp__alexandria__get_project_setup_recommendations` and `mcp__alexandria__list_guides`. For every task involving tool setup, include in the task description: "**Check Alexandria first** — call `mcp__alexandria__quick_setup` before any setup step."
+**Recall before acting** — before creating any work plan, call `mcp__alexandria__get_project_setup_recommendations` and `mcp__alexandria__list_guides` FIRST. Use what Alexandria already knows as your starting point instead of re-deriving it. For every task involving tool setup, include in the task description: "**Check Alexandria first** — call `mcp__alexandria__quick_setup` before any setup step."
+
+**Write-back triggers** — after ANY of these, call `mcp__alexandria__update_guide` before moving on:
+1. You set up / installed / configured a tool, MCP server, or integration.
+2. You resolved a non-obvious error (the fix wasn't in the first doc you read).
+3. You discovered a version-compatibility fact or a platform quirk.
+4. You got a tricky config / command / API right after more than one try.
+5. Session close — sweep the session for anything above not yet recorded.
+Recording is the DEFAULT, not an afterthought. If a trigger fired and you are not writing back, that is the exception — you should be able to say why.
+
+**Genericise, don't discard** — strip host / path / secret / client / project specifics and record the general lesson rather than skipping. Positive test before every write: "Would this help an unrelated project?" Use placeholders like `<your-project>`, `<API_KEY>`, `<path/to/repo>`. Purely project-specific content belongs in CLAUDE.md, not Alexandria.
 
 Alexandria is for non-project-specific documentation only. Project-specific content belongs in CLAUDE.md.
 
@@ -564,6 +574,8 @@ if (Get-Command stringer -ErrorAction SilentlyContinue) { "stringer OK" } else {
 
 ### Beads Recovery
 
+**Known-benign warning (no action needed):** A `bd dolt` auto-push error like `Error 1105 ... unknown push error; no common ancestor` on bead close is EXPECTED and harmless when `.beads/config.yaml` has `dolt.shared-server: true` + `backup.git-push: false`. The dolt remote legitimately has divergent histories under that config; local bd state is authoritative and the close still succeeded. Do not attempt to reconcile it — this is not the host↔Docker git divergence covered above.
+
 **Why this happens:** `.beads/config.yaml` sets `dolt.shared-server: true` so multiple Voltron projects share a single dolt-server on port 3308 for cross-project persistence. Windows does not auto-restart user-level processes after reboot, so the shared server is orphaned and bd refuses to auto-spawn it (auto-start is suppressed by design when a shared server is configured). The fix is to restart it manually — or schedule it to start at logon.
 
 **Manual recovery — Bash / WSL / macOS:**
@@ -639,7 +651,31 @@ Stop when `bd ready --json` returns empty. Run `bd stats` to surface any blocked
 **On task failure:** leave bead blocked, show downstream cascade with `bd dep tree`, ask user: retry / reassign / skip.
 **No beads:** use `update_progress` only and manually reason from the work plan table.
 **Live tail:** `tail -f .voltron/logs/<logfile>` for terminal visibility.
-**Git divergence:** after Docker agents commit, run `git pull --no-rebase -X ours` before pushing.
+
+### Handling host↔Docker git divergence
+
+**Why it happens:** Docker specialist agents (committer, etc.) commit on the *same branch* of the bind-mounted repo (`-v $(pwd):/workspace`) that this host scrum-master session also commits to. Sequential or parallel container commits — combined with any commits the host makes — produce two commit graphs on the one branch. When the host later tries to push, the histories have diverged and the push fails non-fast-forward, forcing a manual reconcile every session. This is the single most common recurring failure in Voltron sessions.
+
+**When to run the recovery:** After ANY dispatch wave in which a container agent committed (watch for "committed" in agent output, or the presence of new commits you did not author), and ALWAYS *before* the host pushes. Reconcile first, verify, then push.
+
+**Recovery sequence (run on the host):**
+```bash
+git fetch origin
+git pull --no-rebase -X ours          # merge remote in; on conflicting hunks keep OUR (host/container) side
+git status                            # MUST show a clean tree and "ahead of origin" (no conflict markers)
+git push
+```
+
+If plain `pull` does not apply because a *feature branch* diverged from its base (the branch itself needs reconciling), merge the branch explicitly with the same strategy, then verify and push:
+```bash
+git merge -X ours <branch>
+git status
+git push
+```
+
+**Caveat — `-X ours` silently discards the remote side of any conflicting hunk.** It resolves conflicts by keeping our side without prompting, so always review the merge result with `git status` (and `git diff` on touched files if unsure) before pushing — a clean-looking merge can still have dropped a remote change.
+
+**Only ONE actor pushes a given branch — the host session.** Docker containers must NOT be relied on to push; treat container work as commit-only and let this host session perform the single reconcile-and-push. That ordering is what avoids the race in the first place.
 
 ## Platform-Specific Planning Notes
 
