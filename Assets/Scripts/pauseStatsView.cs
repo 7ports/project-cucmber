@@ -16,7 +16,8 @@ public class pauseStatsView : MonoBehaviour
                        "Damage: " + worldState.instance.AttackDamage().ToString("0.0") + "\n" +
                        "Move Speed: " + worldState.instance.MoveSpeed().ToString("0.0") + "\n" +
                        "Fire Rate: " + fireRate.ToString("0.0") + "/s" + "\n" +
-                       "Range: " + worldState.instance.Range().ToString("0.0");
+                       "Range: " + worldState.instance.Range().ToString("0.0") + "\n" +
+                       "Pickup Radius: " + worldState.instance.PickupRadius().ToString("0.0");
 
             statsText.text = s;
         }

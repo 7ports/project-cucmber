@@ -14,6 +14,8 @@ public class enemyHealth : MonoBehaviour
     private damageFlash flash;
 
     public int EnemyDamage => enemyDamage;
+    public int MaxHp => maxHp;
+    public int CurrentHp => currentHp;
 
     void Awake()
     {

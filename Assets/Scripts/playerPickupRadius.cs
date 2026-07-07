@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class playerPickupRadius : MonoBehaviour
 {
-    [SerializeField] private float radius = 4f;
     [SerializeField] private LayerMask xpLayer;
     [SerializeField] private float scanInterval = 0.1f;
     private float scanTimer;
@@ -19,6 +18,7 @@ public class playerPickupRadius : MonoBehaviour
 
     void scan()
     {
+        float radius = worldState.instance != null ? worldState.instance.PickupRadius() : 4f;
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius, xpLayer);
         foreach (Collider2D hit in hits)
         {
@@ -30,6 +30,7 @@ public class playerPickupRadius : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
+        float radius = (Application.isPlaying && worldState.instance != null) ? worldState.instance.PickupRadius() : 4f;
         Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

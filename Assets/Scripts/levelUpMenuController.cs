@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class levelUpMenuController : MonoBehaviour
 {
-    private enum StatKind { MaxHP, FireRate, AttackDamage, MoveSpeed, Range, Defense, Regen }
+    private enum StatKind { MaxHP, FireRate, AttackDamage, MoveSpeed, Range, Defense, Regen, PickupRadius }
     private enum Mode { Flat, Percent }
 
     private struct Upgrade
@@ -55,7 +55,8 @@ public class levelUpMenuController : MonoBehaviour
             StatKind.MoveSpeed,
             StatKind.Range,
             StatKind.Defense,
-            StatKind.Regen
+            StatKind.Regen,
+            StatKind.PickupRadius
         };
 
         bool defenseHasBase = worldState.instance != null && worldState.instance.defenseBase > 0f;
@@ -90,6 +91,7 @@ public class levelUpMenuController : MonoBehaviour
                 case StatKind.MaxHP: return "+15 Max HP";
                 case StatKind.Defense: return "+2 Defense";
                 case StatKind.Regen: return "+0.1 HP/s Regen";
+                case StatKind.PickupRadius: return "+0.5 Pickup Radius";
                 default: return "";
             }
         }
@@ -103,6 +105,7 @@ public class levelUpMenuController : MonoBehaviour
             case StatKind.MaxHP: return "+10% Max HP";
             case StatKind.Defense: return "+10% Defense";
             case StatKind.Regen: return "+10% Regen";
+            case StatKind.PickupRadius: return "+10% Pickup Radius";
             default: return "";
         }
     }
@@ -140,6 +143,9 @@ public class levelUpMenuController : MonoBehaviour
                 case StatKind.Regen:
                     worldState.instance.regenBase += 0.1f;
                     break;
+                case StatKind.PickupRadius:
+                    worldState.instance.pickupRadiusBase += 0.5f;
+                    break;
             }
         }
         else // Percent
@@ -170,6 +176,9 @@ public class levelUpMenuController : MonoBehaviour
                     break;
                 case StatKind.Regen:
                     worldState.instance.regenMult *= 1.1f;
+                    break;
+                case StatKind.PickupRadius:
+                    worldState.instance.pickupRadiusMult *= 1.1f;
                     break;
             }
         }

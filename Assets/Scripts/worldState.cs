@@ -20,6 +20,8 @@ public class worldState
     public float defenseMult = 1f;
     public float regenBase = 0f;
     public float regenMult = 1f;
+    public float pickupRadiusBase = 4f;   // = current playerPickupRadius default -> behavior unchanged
+    public float pickupRadiusMult = 1f;
 
     public float AttackDamage() => attackDamageBase * attackDamageMult;
     public float MoveSpeed() => moveSpeedBase * moveSpeedMult;
@@ -29,16 +31,17 @@ public class worldState
     public int MaxHP() => Mathf.RoundToInt(maxHPBase * maxHPMult);
     public float Defense() => defenseBase * defenseMult;
     public float Regen() => regenBase * regenMult;
+    public float PickupRadius() => pickupRadiusBase * pickupRadiusMult;
 
-    public int lvlUpXP = 16, currentXP = 0;
+    public int lvlUpXP = 4, currentXP = 0;
     public int level = 1;
 
     public int currentHP = 100;
 
-    public float baseSpawnInterval = 2.5f;
+    public float baseSpawnInterval = 1.75f;
     public float spawnIntervalCoefficient = 0.3f;
     public float minSpawnInterval = 0.6f;
-    public float currentSpawnInterval = 2f;
+    public float currentSpawnInterval = 1.75f;
 
     public static event System.Action OnLevelUp;
 
