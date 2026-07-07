@@ -6,6 +6,12 @@ public class playerHealth : MonoBehaviour
     [SerializeField] private float damageInterval = 2f;
     private float tickTimer;
     private readonly HashSet<Collider2D> touchingEnemies = new HashSet<Collider2D>();
+    private damageFlash flash;
+
+    void Awake()
+    {
+        flash = GetComponent<damageFlash>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -35,6 +41,9 @@ public class playerHealth : MonoBehaviour
             if (eh != null) dmg += eh.EnemyDamage;
         }
         worldState.instance.currentHP -= dmg;
+        if (flash != null) flash.Flash();
+        if (cameraShake.instance != null) cameraShake.instance.Shake();
+        if (screenFlash.instance != null) screenFlash.instance.Flash();
         if (worldState.instance.currentHP <= 0)
         {
             worldState.instance.currentHP = 0;

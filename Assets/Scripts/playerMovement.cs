@@ -4,13 +4,15 @@ using UnityEngine.InputSystem;
 public class playerMovement : MonoBehaviour
 {
     Animator playerAnimator;
+    [SerializeField] private float animThreshold = 0.1f;
     float x, y;
-
+    float oldX, oldY;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerAnimator = GetComponent<Animator>();   
+        oldX = oldY = float.NaN;
+        playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -19,8 +21,18 @@ public class playerMovement : MonoBehaviour
         
         x = Input.GetAxisRaw("Horizontal");
         y = Input.GetAxisRaw("Vertical");
-        playerAnimator.SetFloat("x", x);
-        playerAnimator.SetFloat("y", y);
+
+
+        if (float.IsNaN(oldX) || Mathf.Abs(x - oldX) > animThreshold)
+        {
+            playerAnimator.SetFloat("x", x);
+            oldX = x;
+        }
+        if (float.IsNaN(oldY) || Mathf.Abs(y - oldY) > animThreshold)
+        {
+            playerAnimator.SetFloat("y", y);
+            oldY = y;
+        }
 
     }
 

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8412323053929955870}
   - component: {fileID: 3976880873792520215}
   - component: {fileID: 6749534946415184356}
+  - component: {fileID: 5230700352407148290}
   m_Layer: 0
   m_Name: slime
   m_TagString: Enemy
@@ -180,11 +181,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2bffd5d7da66646b06b1a2d8e5af89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  maxHp: 2
+  maxHp: 40
   xpPrefab: {fileID: 2084821060898178022, guid: b31ccd7fc04b9b74d8123d6165057dba, type: 3}
   xpDropCount: 1
   enemyDamage: 5
   bloodPrefab: {fileID: 5194919893134547747, guid: 33b7c54ff1c6f25408e61beff8f5cda7, type: 3}
+  damageNumberPrefab: {fileID: 5950328191150159265, guid: 4a7e29744b29c7240ad5f3ee34ccc98b, type: 3}
+  dmgTextOffset: {x: 0, y: 0.5, z: 0}
 --- !u!50 &6749534946415184356
 Rigidbody2D:
   serializedVersion: 5
@@ -212,3 +215,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5230700352407148290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3772260505247715461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22423d5df90c8434589a1b2a3e0955b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::damageFlash
+  sr: {fileID: 8971424190427120489}
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.12

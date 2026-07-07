@@ -8,8 +8,17 @@ public class enemyHealth : MonoBehaviour
     [SerializeField] private int xpDropCount = 1;
     [SerializeField] private int enemyDamage = 5;
     [SerializeField] private GameObject bloodPrefab;
+    [SerializeField] private GameObject damageNumberPrefab;
+    [SerializeField] private Vector3 dmgTextOffset = new Vector3(0f, 0.5f, 0f);
+
+    private damageFlash flash;
 
     public int EnemyDamage => enemyDamage;
+
+    void Awake()
+    {
+        flash = GetComponent<damageFlash>();
+    }
 
     void OnEnable()
     {
@@ -19,6 +28,13 @@ public class enemyHealth : MonoBehaviour
     public void takeDamage(int amount)
     {
         currentHp -= amount;
+        if (flash != null) flash.Flash();
+        if (objectPool.instance != null && damageNumberPrefab != null)
+        {
+            GameObject dn = objectPool.instance.get(damageNumberPrefab, transform.position + dmgTextOffset, Quaternion.identity);
+            damageNumber num = dn.GetComponent<damageNumber>();
+            if (num != null) num.Set(amount);
+        }
         if (currentHp <= 0)
             die();
     }
