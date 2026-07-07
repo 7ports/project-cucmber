@@ -10,6 +10,7 @@ public class enemyHealth : MonoBehaviour
     [SerializeField] private GameObject bloodPrefab;
     [SerializeField] private GameObject damageNumberPrefab;
     [SerializeField] private Vector3 dmgTextOffset = new Vector3(0f, 0.5f, 0f);
+    [SerializeField] private GameObject deathDropPrefab;   // optional; only the boss sets this
 
     private damageFlash flash;
 
@@ -51,6 +52,9 @@ public class enemyHealth : MonoBehaviour
 
         if (bloodPrefab != null && objectPool.instance != null)
             objectPool.instance.get(bloodPrefab, transform.position, Quaternion.identity);
+
+        if (deathDropPrefab != null && objectPool.instance != null)
+            objectPool.instance.get(deathDropPrefab, transform.position, Quaternion.identity);
 
         if (objectPool.instance != null)
             objectPool.instance.ret(gameObject);

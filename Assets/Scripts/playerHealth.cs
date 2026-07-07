@@ -62,6 +62,8 @@ public class playerHealth : MonoBehaviour
 
     int Reduce(int raw) => Mathf.Max(1, raw - Mathf.RoundToInt(worldState.instance.Defense()));
 
+    public void TakeHit(int amount) => ApplyDamage(amount);
+
     void ApplyDamage(int raw)
     {
         if (worldState.instance == null) return;

@@ -7,15 +7,13 @@ public class bossSpawner : MonoBehaviour
     private GameObject activeBoss;
     private bool spawned;
 
-    void Start()
-    {
-        SpawnBoss();
-    }
+    void Start() { }
 
     void Update()
     {
         if (spawned) return;
         if (worldState.instance == null || worldState.instance.player == null) return;
+        if (worldState.instance.level < 5) return;   // NEW: boss only at level 5+
         SpawnBoss();
     }
 
@@ -42,6 +40,8 @@ public class bossSpawner : MonoBehaviour
         point.z = 0f;
 
         activeBoss = Instantiate(bossPrefab, point, Quaternion.identity);
+        bossShooter shooter = activeBoss.GetComponent<bossShooter>();
+        if (shooter != null) shooter.RandomizePattern();
         spawned = true;
     }
 }

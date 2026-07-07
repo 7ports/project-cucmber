@@ -13,15 +13,17 @@ public class levelUpMenuController : MonoBehaviour
         public Mode mode;
     }
 
+    private const int OfferCount = 5;
+
     [SerializeField] private Button[] buttons; // 3
     [SerializeField] private Text[] labels;    // 3, one per button
 
-    private readonly Upgrade[] rolled = new Upgrade[3];
+    private readonly Upgrade[] rolled = new Upgrade[OfferCount];
 
     private void OnEnable()
     {
-        if (buttons == null || buttons.Length < 3) return;
-        if (labels == null || labels.Length < 3) return;
+        if (buttons == null || buttons.Length < OfferCount) return;
+        if (labels == null || labels.Length < OfferCount) return;
 
         List<Upgrade> pool = BuildPool();
 
@@ -34,7 +36,7 @@ public class levelUpMenuController : MonoBehaviour
             pool[j] = tmp;
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < OfferCount; i++)
         {
             rolled[i] = pool[i];
             labels[i].text = LabelFor(rolled[i]);

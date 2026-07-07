@@ -1,0 +1,2366 @@
+fileFormatVersion: 2
+guid: 68e939d858e08004f920758d25fe604d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3795770139483879441
+    second: FoxShotSheet_0
+  - first:
+      213: -7867802673025645617
+    second: FoxShotSheet_1
+  - first:
+      213: 7448554238854615260
+    second: FoxShotSheet_2
+  - first:
+      213: -1478496347664284018
+    second: FoxShotSheet_3
+  - first:
+      213: -632267239641788197
+    second: FoxShotSheet_4
+  - first:
+      213: -3010919644987176403
+    second: FoxShotSheet_5
+  - first:
+      213: -1960041004030992332
+    second: FoxShotSheet_6
+  - first:
+      213: 929130748335721239
+    second: FoxShotSheet_7
+  - first:
+      213: 4539915805530833519
+    second: FoxShotSheet_8
+  - first:
+      213: 3274402512119106485
+    second: FoxShotSheet_9
+  - first:
+      213: 6904156757034374226
+    second: FoxShotSheet_10
+  - first:
+      213: 3357119011273648327
+    second: FoxShotSheet_11
+  - first:
+      213: -5805291058414067757
+    second: FoxShotSheet_12
+  - first:
+      213: 90754773549469886
+    second: FoxShotSheet_13
+  - first:
+      213: -6982254337981205018
+    second: FoxShotSheet_14
+  - first:
+      213: 3724542328142365838
+    second: FoxShotSheet_15
+  - first:
+      213: -1652177404450753123
+    second: FoxShotSheet_16
+  - first:
+      213: 1999166744168859708
+    second: FoxShotSheet_17
+  - first:
+      213: -6732397338260838833
+    second: FoxShotSheet_18
+  - first:
+      213: -4406060418163389384
+    second: FoxShotSheet_19
+  - first:
+      213: -2709386798121663529
+    second: FoxShotSheet_20
+  - first:
+      213: -5959598825679503986
+    second: FoxShotSheet_21
+  - first:
+      213: -3754261306774089682
+    second: FoxShotSheet_22
+  - first:
+      213: 7882855897297280451
+    second: FoxShotSheet_23
+  - first:
+      213: -9146139187000035010
+    second: FoxShotSheet_24
+  - first:
+      213: 6976402332246171889
+    second: FoxShotSheet_25
+  - first:
+      213: -1207728197588230875
+    second: FoxShotSheet_26
+  - first:
+      213: 4963672009460522313
+    second: FoxShotSheet_27
+  - first:
+      213: 6411084439435611318
+    second: FoxShotSheet_28
+  - first:
+      213: 4544492291805165567
+    second: FoxShotSheet_29
+  - first:
+      213: 7243142233432567363
+    second: FoxShotSheet_30
+  - first:
+      213: -8694417114542318968
+    second: FoxShotSheet_31
+  - first:
+      213: 2335528304478986959
+    second: FoxShotSheet_32
+  - first:
+      213: 1895624917051829270
+    second: FoxShotSheet_33
+  - first:
+      213: 5156134618618627322
+    second: FoxShotSheet_34
+  - first:
+      213: -2140609465509888002
+    second: FoxShotSheet_35
+  - first:
+      213: 8921272197689245061
+    second: FoxShotSheet_36
+  - first:
+      213: 8948580808277325418
+    second: FoxShotSheet_37
+  - first:
+      213: 7644994305645848858
+    second: FoxShotSheet_38
+  - first:
+      213: 902018373374440152
+    second: FoxShotSheet_39
+  - first:
+      213: 8422408100062398147
+    second: FoxShotSheet_40
+  - first:
+      213: 7728890162473397470
+    second: FoxShotSheet_41
+  - first:
+      213: 8242692529420302028
+    second: FoxShotSheet_42
+  - first:
+      213: 1712198657926201382
+    second: FoxShotSheet_43
+  - first:
+      213: -1016461010583380401
+    second: FoxShotSheet_44
+  - first:
+      213: -8017089129218342626
+    second: FoxShotSheet_45
+  - first:
+      213: 4034758720486590273
+    second: FoxShotSheet_46
+  - first:
+      213: 9175447158658565362
+    second: FoxShotSheet_47
+  - first:
+      213: -7273418864293391975
+    second: FoxShotSheet_48
+  - first:
+      213: 2288396013375839735
+    second: FoxShotSheet_49
+  - first:
+      213: 4379028688301266407
+    second: FoxShotSheet_50
+  - first:
+      213: -1780726518656024231
+    second: FoxShotSheet_51
+  - first:
+      213: -4554724131045519030
+    second: FoxShotSheet_52
+  - first:
+      213: 5347093912107982275
+    second: FoxShotSheet_53
+  - first:
+      213: 4668275841762227906
+    second: FoxShotSheet_54
+  - first:
+      213: -7114790588886783648
+    second: FoxShotSheet_55
+  - first:
+      213: -8016260633271631884
+    second: FoxShotSheet_56
+  - first:
+      213: -4480522503352861799
+    second: FoxShotSheet_57
+  - first:
+      213: -903242056362473792
+    second: FoxShotSheet_58
+  - first:
+      213: -4615010807243519849
+    second: FoxShotSheet_59
+  - first:
+      213: 1883483392500638824
+    second: FoxShotSheet_60
+  - first:
+      213: 2310116785345986357
+    second: FoxShotSheet_61
+  - first:
+      213: 4685555739984468065
+    second: FoxShotSheet_62
+  - first:
+      213: -6475072312720815223
+    second: FoxShotSheet_63
+  - first:
+      213: -2862288826265623986
+    second: FoxShotSheet_64
+  - first:
+      213: 3548140232369989628
+    second: FoxShotSheet_65
+  - first:
+      213: 3597273765023376013
+    second: FoxShotSheet_66
+  - first:
+      213: 7522800664141991159
+    second: FoxShotSheet_67
+  - first:
+      213: 6972121266212348588
+    second: FoxShotSheet_68
+  - first:
+      213: 3407009059265701242
+    second: FoxShotSheet_69
+  - first:
+      213: -5739579006070397217
+    second: FoxShotSheet_70
+  - first:
+      213: 7013749315703523595
+    second: FoxShotSheet_71
+  - first:
+      213: -6409103274025119429
+    second: FoxShotSheet_72
+  - first:
+      213: 4693407325237712749
+    second: FoxShotSheet_73
+  - first:
+      213: -1717652650575653538
+    second: FoxShotSheet_74
+  - first:
+      213: 152358145725933140
+    second: FoxShotSheet_75
+  - first:
+      213: -6230277223149837967
+    second: FoxShotSheet_76
+  - first:
+      213: -1038624777233438626
+    second: FoxShotSheet_77
+  - first:
+      213: 8628228452929445230
+    second: FoxShotSheet_78
+  - first:
+      213: 2727870539630879873
+    second: FoxShotSheet_79
+  - first:
+      213: 3809140619178149294
+    second: FoxShotSheet_80
+  - first:
+      213: -8549311426298069660
+    second: FoxShotSheet_81
+  - first:
+      213: 8825166883760615680
+    second: FoxShotSheet_82
+  - first:
+      213: -6520848196808913960
+    second: FoxShotSheet_83
+  - first:
+      213: -7973539859279466858
+    second: FoxShotSheet_84
+  - first:
+      213: 1934147128938219661
+    second: FoxShotSheet_85
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FoxShotSheet_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 499
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe747034b27b25bc0800000000000000
+      internalID: -3795770139483879441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_1
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 499
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc3007f7723ffc290800000000000000
+      internalID: -7867802673025645617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_2
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 499
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd0d829bd949e5760800000000000000
+      internalID: 7448554238854615260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_3
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 499
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8602cbb7635b7be0800000000000000
+      internalID: -1478496347664284018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_4
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 499
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd0d802ab4cb937f0800000000000000
+      internalID: -632267239641788197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_5
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 499
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2a4b4119801736d0800000000000000
+      internalID: -3010919644987176403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_6
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 499
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 430688177198cc4e0800000000000000
+      internalID: -1960041004030992332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_7
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 499
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71b817c2e7fe4ec00800000000000000
+      internalID: 929130748335721239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_8
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 498
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f62c8d22f55010f30800000000000000
+      internalID: 4539915805530833519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_9
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 383
+        width: 322
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bb818a7cb3017d20800000000000000
+      internalID: 3274402512119106485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 463
+        width: 129
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25495a0adfd70df50800000000000000
+      internalID: 6904156757034374226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_11
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 464
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c82da734f1e69e20800000000000000
+      internalID: 3357119011273648327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3df5a754a867f6fa0800000000000000
+      internalID: -5805291058414067757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 434
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb056175cfc624100800000000000000
+      internalID: 90754773549469886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_14
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 448
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e533355cac0a1f90800000000000000
+      internalID: -6982254337981205018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_15
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 434
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8405d3938b30b330800000000000000
+      internalID: 3724542328142365838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_16
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 448
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9539cd77694219e0800000000000000
+      internalID: -1652177404450753123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_17
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 434
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3885f0df877ebb10800000000000000
+      internalID: 1999166744168859708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_18
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 448
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f466d266a48b192a0800000000000000
+      internalID: -6732397338260838833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_19
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 434
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83c467cd4678ad2c0800000000000000
+      internalID: -4406060418163389384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_20
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 448
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d343d2ef03566ad0800000000000000
+      internalID: -2709386798121663529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_21
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 448
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8db98f71704b4da0800000000000000
+      internalID: -5959598825679503986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_22
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 434
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e209cbf7b3f26ebc0800000000000000
+      internalID: -3754261306774089682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_23
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 448
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cd5ff56ca7856d60800000000000000
+      internalID: 7882855897297280451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_24
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 434
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3935942ed2621180800000000000000
+      internalID: -9146139187000035010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_25
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 448
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f06db765f821d060800000000000000
+      internalID: 6976402332246171889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_26
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 434
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52dd7856a994d3fe0800000000000000
+      internalID: -1207728197588230875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_27
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 434
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94d9179d46182e440800000000000000
+      internalID: 4963672009460522313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 416
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bc089d845fb8f850800000000000000
+      internalID: 6411084439435611318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 399
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff73c8169a7411f30800000000000000
+      internalID: 4544492291805165567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_30
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 416
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34ea0694c7fc48460800000000000000
+      internalID: 7243142233432567363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_31
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 399
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88ad0a603b9375780800000000000000
+      internalID: -8694417114542318968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_32
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 416
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc227576e96796020800000000000000
+      internalID: 2335528304478986959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_33
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 399
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61ce04091dc9e4a10800000000000000
+      internalID: 1895624917051829270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_34
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 416
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af48bd40e154e8740800000000000000
+      internalID: 5156134618618627322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_35
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 399
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: effb17558070b42e0800000000000000
+      internalID: -2140609465509888002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_36
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 416
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58df5dffbc9becb70800000000000000
+      internalID: 8921272197689245061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_37
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 399
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a667f3165debf2c70800000000000000
+      internalID: 8948580808277325418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_38
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 416
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a19a7e9e0d9781a60800000000000000
+      internalID: 7644994305645848858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_39
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 399
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d2fbd57eec948c00800000000000000
+      internalID: 902018373374440152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_40
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 416
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c6879d0b8762e470800000000000000
+      internalID: 8422408100062398147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_41
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 399
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edcec3247a8824b60800000000000000
+      internalID: 7728890162473397470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_42
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 416
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc6fcd01f2de36270800000000000000
+      internalID: 8242692529420302028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_43
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 399
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62087969b93f2c710800000000000000
+      internalID: 1712198657926201382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_44
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 381
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4e9428a81ec4e1f0800000000000000
+      internalID: -1016461010583380401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_45
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 381
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e118b40d9e39db090800000000000000
+      internalID: -8017089129218342626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_46
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 381
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1474301eda75ef730800000000000000
+      internalID: 4034758720486590273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_47
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 381
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f40633c39cb55f70800000000000000
+      internalID: 9175447158658565362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_48
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 381
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 991da234410af0b90800000000000000
+      internalID: -7273418864293391975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_49
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 381
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fddfaabc0402cf10800000000000000
+      internalID: 2288396013375839735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_50
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 381
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e51173146f65cc30800000000000000
+      internalID: 4379028688301266407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_51
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 381
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 951c36d7aa69947e0800000000000000
+      internalID: -1780726518656024231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_52
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 340
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a41d127e88e5ac0c0800000000000000
+      internalID: -4554724131045519030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_53
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 351
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cd99db3591b43a40800000000000000
+      internalID: 5347093912107982275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_54
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 340
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c676cdf42c09c040800000000000000
+      internalID: 4668275841762227906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_55
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 340
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0696c1ab7af234d90800000000000000
+      internalID: -7114790588886783648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_56
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 351
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ff75ee0d6580c090800000000000000
+      internalID: -8016260633271631884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_57
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 340
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99b3283a58cf1d1c0800000000000000
+      internalID: -4480522503352861799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_58
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 340
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c64254a22a0773f0800000000000000
+      internalID: -903242056362473792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_59
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 351
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79849a74f1034ffb0800000000000000
+      internalID: -4615010807243519849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_60
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 340
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86429569a2a732a10800000000000000
+      internalID: 1883483392500638824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_61
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 340
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53ff63c0afe2f0020800000000000000
+      internalID: 2310116785345986357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_62
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 351
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1681111de10760140800000000000000
+      internalID: 4685555739984468065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_63
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 340
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98b0f49b90ce326a0800000000000000
+      internalID: -6475072312720815223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_64
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 351
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e422ed14a7b1748d0800000000000000
+      internalID: -2862288826265623986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_65
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 351
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf76fa31eb68d3130800000000000000
+      internalID: 3548140232369989628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_66
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 351
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d82ec0c1e651ce130800000000000000
+      internalID: 3597273765023376013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_67
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 351
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fc8146b85b566860800000000000000
+      internalID: 7522800664141991159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_68
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 351
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca2a88b0a53f1c060800000000000000
+      internalID: 6972121266212348588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_69
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 303
+        width: 257
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a75e11430b0284f20800000000000000
+      internalID: 3407009059265701242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_70
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 272
+        width: 13
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd662e6bd4be850b0800000000000000
+      internalID: -5739579006070397217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_71
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 272
+        width: 13
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b09c52a97d7d55160800000000000000
+      internalID: 7013749315703523595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_72
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 272
+        width: 13
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3190f6778a4e07a0800000000000000
+      internalID: -6409103274025119429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_73
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 272
+        width: 13
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6792077815522140800000000000000
+      internalID: 4693407325237712749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_74
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 272
+        width: 13
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e551eeac30ca928e0800000000000000
+      internalID: -1717652650575653538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_75
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 272
+        width: 13
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 456a1a22de84d1200800000000000000
+      internalID: 152358145725933140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_76
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 272
+        width: 13
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17162fdffdb9989a0800000000000000
+      internalID: -6230277223149837967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_77
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 272
+        width: 13
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e58e41a94401691f0800000000000000
+      internalID: -1038624777233438626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_78
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 255
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6d17c94010adb770800000000000000
+      internalID: 8628228452929445230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_79
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 255
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 184a3fb8dc75bd520800000000000000
+      internalID: 2727870539630879873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_80
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 255
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea500a12639ccd430800000000000000
+      internalID: 3809140619178149294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_81
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 255
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46db051dd8eba5980800000000000000
+      internalID: -8549311426298069660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_82
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 255
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 001b716e58a497a70800000000000000
+      internalID: 8825166883760615680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_83
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 255
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8db45fa2d1b4185a0800000000000000
+      internalID: -6520848196808913960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_84
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 255
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69eaa3d5ebb485190800000000000000
+      internalID: -7973539859279466858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FoxShotSheet_85
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 255
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8844b3f09877da10800000000000000
+      internalID: 1934147128938219661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FoxShotSheet_0: -3795770139483879441
+      FoxShotSheet_1: -7867802673025645617
+      FoxShotSheet_10: 6904156757034374226
+      FoxShotSheet_11: 3357119011273648327
+      FoxShotSheet_12: -5805291058414067757
+      FoxShotSheet_13: 90754773549469886
+      FoxShotSheet_14: -6982254337981205018
+      FoxShotSheet_15: 3724542328142365838
+      FoxShotSheet_16: -1652177404450753123
+      FoxShotSheet_17: 1999166744168859708
+      FoxShotSheet_18: -6732397338260838833
+      FoxShotSheet_19: -4406060418163389384
+      FoxShotSheet_2: 7448554238854615260
+      FoxShotSheet_20: -2709386798121663529
+      FoxShotSheet_21: -5959598825679503986
+      FoxShotSheet_22: -3754261306774089682
+      FoxShotSheet_23: 7882855897297280451
+      FoxShotSheet_24: -9146139187000035010
+      FoxShotSheet_25: 6976402332246171889
+      FoxShotSheet_26: -1207728197588230875
+      FoxShotSheet_27: 4963672009460522313
+      FoxShotSheet_28: 6411084439435611318
+      FoxShotSheet_29: 4544492291805165567
+      FoxShotSheet_3: -1478496347664284018
+      FoxShotSheet_30: 7243142233432567363
+      FoxShotSheet_31: -8694417114542318968
+      FoxShotSheet_32: 2335528304478986959
+      FoxShotSheet_33: 1895624917051829270
+      FoxShotSheet_34: 5156134618618627322
+      FoxShotSheet_35: -2140609465509888002
+      FoxShotSheet_36: 8921272197689245061
+      FoxShotSheet_37: 8948580808277325418
+      FoxShotSheet_38: 7644994305645848858
+      FoxShotSheet_39: 902018373374440152
+      FoxShotSheet_4: -632267239641788197
+      FoxShotSheet_40: 8422408100062398147
+      FoxShotSheet_41: 7728890162473397470
+      FoxShotSheet_42: 8242692529420302028
+      FoxShotSheet_43: 1712198657926201382
+      FoxShotSheet_44: -1016461010583380401
+      FoxShotSheet_45: -8017089129218342626
+      FoxShotSheet_46: 4034758720486590273
+      FoxShotSheet_47: 9175447158658565362
+      FoxShotSheet_48: -7273418864293391975
+      FoxShotSheet_49: 2288396013375839735
+      FoxShotSheet_5: -3010919644987176403
+      FoxShotSheet_50: 4379028688301266407
+      FoxShotSheet_51: -1780726518656024231
+      FoxShotSheet_52: -4554724131045519030
+      FoxShotSheet_53: 5347093912107982275
+      FoxShotSheet_54: 4668275841762227906
+      FoxShotSheet_55: -7114790588886783648
+      FoxShotSheet_56: -8016260633271631884
+      FoxShotSheet_57: -4480522503352861799
+      FoxShotSheet_58: -903242056362473792
+      FoxShotSheet_59: -4615010807243519849
+      FoxShotSheet_6: -1960041004030992332
+      FoxShotSheet_60: 1883483392500638824
+      FoxShotSheet_61: 2310116785345986357
+      FoxShotSheet_62: 4685555739984468065
+      FoxShotSheet_63: -6475072312720815223
+      FoxShotSheet_64: -2862288826265623986
+      FoxShotSheet_65: 3548140232369989628
+      FoxShotSheet_66: 3597273765023376013
+      FoxShotSheet_67: 7522800664141991159
+      FoxShotSheet_68: 6972121266212348588
+      FoxShotSheet_69: 3407009059265701242
+      FoxShotSheet_7: 929130748335721239
+      FoxShotSheet_70: -5739579006070397217
+      FoxShotSheet_71: 7013749315703523595
+      FoxShotSheet_72: -6409103274025119429
+      FoxShotSheet_73: 4693407325237712749
+      FoxShotSheet_74: -1717652650575653538
+      FoxShotSheet_75: 152358145725933140
+      FoxShotSheet_76: -6230277223149837967
+      FoxShotSheet_77: -1038624777233438626
+      FoxShotSheet_78: 8628228452929445230
+      FoxShotSheet_79: 2727870539630879873
+      FoxShotSheet_8: 4539915805530833519
+      FoxShotSheet_80: 3809140619178149294
+      FoxShotSheet_81: -8549311426298069660
+      FoxShotSheet_82: 8825166883760615680
+      FoxShotSheet_83: -6520848196808913960
+      FoxShotSheet_84: -7973539859279466858
+      FoxShotSheet_85: 1934147128938219661
+      FoxShotSheet_9: 3274402512119106485
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

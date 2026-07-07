@@ -2,7 +2,15 @@ using UnityEngine;
 
 public class enemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] enemyPrefabs;
+    [System.Serializable]
+    private struct SpawnEntry
+    {
+        public GameObject prefab;
+        public int minLevel;   // eligible when worldState.level >= minLevel
+    }
+
+    [SerializeField] private SpawnEntry[] spawnTable;
+    private readonly System.Collections.Generic.List<GameObject> eligible = new System.Collections.Generic.List<GameObject>();
     [SerializeField] private float spawnInterval = 2f;
     [SerializeField] private float edgeMargin = 0.08f;
     private float spawnTimer;
@@ -10,7 +18,7 @@ public class enemySpawner : MonoBehaviour
     void Update()
     {
         if (worldState.instance == null || worldState.instance.player == null) return;
-        if (objectPool.instance == null || enemyPrefabs == null || enemyPrefabs.Length == 0) return;
+        if (objectPool.instance == null || spawnTable == null || spawnTable.Length == 0) return;
 
         Camera cam = Camera.main;
         if (cam == null) return;
@@ -20,7 +28,13 @@ public class enemySpawner : MonoBehaviour
         if (spawnTimer >= interval)
         {
             spawnTimer = 0f;
-            GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+            int lvl = worldState.instance != null ? worldState.instance.level : 1;
+            eligible.Clear();
+            for (int i = 0; i < spawnTable.Length; i++)
+                if (spawnTable[i].prefab != null && lvl >= spawnTable[i].minLevel)
+                    eligible.Add(spawnTable[i].prefab);
+            if (eligible.Count == 0) return;
+            GameObject prefab = eligible[Random.Range(0, eligible.Count)];
 
             int side = Random.Range(0, 4);
             Vector3 vp;
