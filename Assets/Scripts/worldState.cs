@@ -1,20 +1,39 @@
-using System.Xml.XPath;
 using UnityEngine;
 
 public class worldState
 {
     public static worldState instance;
     public Transform player;
-    public float attackSpeed = 1f;
-    public float attackDamage = 10;
-    public float moveSpeed = 1;
-    public float baseAttackSpeed = 0.8f;
-    public float range = 4f;
+
+    // Base + multiplier stat system. Effective value = base * mult (via getters).
+    public float attackDamageBase = 10f;
+    public float attackDamageMult = 1f;
+    public float moveSpeedBase = 1f;
+    public float moveSpeedMult = 1f;
+    public float fireRateBase = 1.25f;   // = 1 / (attackSpeed 1 * baseAttackSpeed 0.8)
+    public float fireRateMult = 1f;
+    public float rangeBase = 4f;
+    public float rangeMult = 1f;
+    public float maxHPBase = 100f;
+    public float maxHPMult = 1f;
+    public float defenseBase = 0f;
+    public float defenseMult = 1f;
+    public float regenBase = 0f;
+    public float regenMult = 1f;
+
+    public float AttackDamage() => attackDamageBase * attackDamageMult;
+    public float MoveSpeed() => moveSpeedBase * moveSpeedMult;
+    public float FireRate() => fireRateBase * fireRateMult;
+    public float FireCooldown() => 1f / FireRate();
+    public float Range() => rangeBase * rangeMult;
+    public int MaxHP() => Mathf.RoundToInt(maxHPBase * maxHPMult);
+    public float Defense() => defenseBase * defenseMult;
+    public float Regen() => regenBase * regenMult;
 
     public int lvlUpXP = 16, currentXP = 0;
     public int level = 1;
 
-    public int maxHP = 100, currentHP = 100;
+    public int currentHP = 100;
 
     public float baseSpawnInterval = 2.5f;
     public float spawnIntervalCoefficient = 0.3f;

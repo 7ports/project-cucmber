@@ -4,32 +4,32 @@ using UnityEngine.UI;
 
 public class levelUpMenuController : MonoBehaviour
 {
-    private enum StatKind { MaxHP, FireRate, AttackDamage, MoveSpeed, Range }
+    private enum StatKind { MaxHP, FireRate, AttackDamage, MoveSpeed, Range, Defense, Regen }
+    private enum Mode { Flat, Percent }
+
+    private struct Upgrade
+    {
+        public StatKind kind;
+        public Mode mode;
+    }
 
     [SerializeField] private Button[] buttons; // 3
     [SerializeField] private Text[] labels;    // 3, one per button
 
-    private readonly StatKind[] rolled = new StatKind[3];
+    private readonly Upgrade[] rolled = new Upgrade[3];
 
     private void OnEnable()
     {
         if (buttons == null || buttons.Length < 3) return;
         if (labels == null || labels.Length < 3) return;
 
-        List<StatKind> pool = new List<StatKind>
-        {
-            StatKind.MaxHP,
-            StatKind.FireRate,
-            StatKind.AttackDamage,
-            StatKind.MoveSpeed,
-            StatKind.Range
-        };
+        List<Upgrade> pool = BuildPool();
 
         // Fisher-Yates shuffle
         for (int i = pool.Count - 1; i > 0; i--)
         {
             int j = Random.Range(0, i + 1);
-            StatKind tmp = pool[i];
+            Upgrade tmp = pool[i];
             pool[i] = pool[j];
             pool[j] = tmp;
         }
@@ -45,44 +45,133 @@ public class levelUpMenuController : MonoBehaviour
         }
     }
 
-    private string LabelFor(StatKind k)
+    private List<Upgrade> BuildPool()
     {
-        switch (k)
+        StatKind[] stats =
         {
-            case StatKind.MaxHP: return "+10% Max HP";
-            case StatKind.FireRate: return "+10% Fire Rate";
+            StatKind.MaxHP,
+            StatKind.FireRate,
+            StatKind.AttackDamage,
+            StatKind.MoveSpeed,
+            StatKind.Range,
+            StatKind.Defense,
+            StatKind.Regen
+        };
+
+        bool defenseHasBase = worldState.instance != null && worldState.instance.defenseBase > 0f;
+        bool regenHasBase = worldState.instance != null && worldState.instance.regenBase > 0f;
+
+        List<Upgrade> pool = new List<Upgrade>();
+        foreach (StatKind k in stats)
+        {
+            // Flat is always offered.
+            pool.Add(new Upgrade { kind = k, mode = Mode.Flat });
+
+            // Percent is inert on a 0 base for Defense/Regen — only offer once seeded.
+            if (k == StatKind.Defense && !defenseHasBase) continue;
+            if (k == StatKind.Regen && !regenHasBase) continue;
+
+            pool.Add(new Upgrade { kind = k, mode = Mode.Percent });
+        }
+
+        return pool;
+    }
+
+    private string LabelFor(Upgrade u)
+    {
+        if (u.mode == Mode.Flat)
+        {
+            switch (u.kind)
+            {
+                case StatKind.AttackDamage: return "+2 Damage";
+                case StatKind.MoveSpeed: return "+0.2 Move Speed";
+                case StatKind.FireRate: return "+0.25 Fire Rate";
+                case StatKind.Range: return "+0.5 Range";
+                case StatKind.MaxHP: return "+15 Max HP";
+                case StatKind.Defense: return "+2 Defense";
+                case StatKind.Regen: return "+0.1 HP/s Regen";
+                default: return "";
+            }
+        }
+
+        switch (u.kind)
+        {
             case StatKind.AttackDamage: return "+10% Damage";
             case StatKind.MoveSpeed: return "+10% Move Speed";
+            case StatKind.FireRate: return "+10% Fire Rate";
             case StatKind.Range: return "+10% Range";
+            case StatKind.MaxHP: return "+10% Max HP";
+            case StatKind.Defense: return "+10% Defense";
+            case StatKind.Regen: return "+10% Regen";
             default: return "";
         }
     }
 
-    private void Choose(StatKind k)
+    private void Choose(Upgrade u)
     {
         if (worldState.instance == null) return;
 
-        switch (k)
+        if (u.mode == Mode.Flat)
         {
-            case StatKind.MaxHP:
+            switch (u.kind)
             {
-                int old = worldState.instance.maxHP;
-                worldState.instance.maxHP = Mathf.RoundToInt(worldState.instance.maxHP * 1.1f);
-                worldState.instance.currentHP += (worldState.instance.maxHP - old);
-                break;
+                case StatKind.AttackDamage:
+                    worldState.instance.attackDamageBase += 2f;
+                    break;
+                case StatKind.MoveSpeed:
+                    worldState.instance.moveSpeedBase += 0.2f;
+                    break;
+                case StatKind.FireRate:
+                    worldState.instance.fireRateBase += 0.25f;
+                    break;
+                case StatKind.Range:
+                    worldState.instance.rangeBase += 0.5f;
+                    break;
+                case StatKind.MaxHP:
+                {
+                    int before = worldState.instance.MaxHP();
+                    worldState.instance.maxHPBase += 15f;
+                    worldState.instance.currentHP += (worldState.instance.MaxHP() - before);
+                    break;
+                }
+                case StatKind.Defense:
+                    worldState.instance.defenseBase += 2f;
+                    break;
+                case StatKind.Regen:
+                    worldState.instance.regenBase += 0.1f;
+                    break;
             }
-            case StatKind.FireRate:
-                worldState.instance.attackSpeed = Mathf.Max(0.2f, worldState.instance.attackSpeed * 0.9f);
-                break;
-            case StatKind.AttackDamage:
-                worldState.instance.attackDamage *= 1.1f;
-                break;
-            case StatKind.MoveSpeed:
-                worldState.instance.moveSpeed *= 1.1f;
-                break;
-            case StatKind.Range:
-                worldState.instance.range *= 1.1f;
-                break;
+        }
+        else // Percent
+        {
+            switch (u.kind)
+            {
+                case StatKind.AttackDamage:
+                    worldState.instance.attackDamageMult *= 1.1f;
+                    break;
+                case StatKind.MoveSpeed:
+                    worldState.instance.moveSpeedMult *= 1.1f;
+                    break;
+                case StatKind.FireRate:
+                    worldState.instance.fireRateMult *= 1.1f;
+                    break;
+                case StatKind.Range:
+                    worldState.instance.rangeMult *= 1.1f;
+                    break;
+                case StatKind.MaxHP:
+                {
+                    int before = worldState.instance.MaxHP();
+                    worldState.instance.maxHPMult *= 1.1f;
+                    worldState.instance.currentHP += (worldState.instance.MaxHP() - before);
+                    break;
+                }
+                case StatKind.Defense:
+                    worldState.instance.defenseMult *= 1.1f;
+                    break;
+                case StatKind.Regen:
+                    worldState.instance.regenMult *= 1.1f;
+                    break;
+            }
         }
 
         if (levelUpManager.instance != null)

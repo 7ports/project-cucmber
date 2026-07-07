@@ -10,7 +10,7 @@ public class playerProjectileShooter : MonoBehaviour
     {
        shootTimer += Time.deltaTime;
 
-       if(shootTimer >= (worldState.instance.attackSpeed * worldState.instance.baseAttackSpeed))
+       if(shootTimer >= worldState.instance.FireCooldown())
         {
             // Find the nearest enemy. If none exist, skip firing this frame.
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");

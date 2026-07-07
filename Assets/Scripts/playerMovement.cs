@@ -41,7 +41,7 @@ public class playerMovement : MonoBehaviour
     {
         if ((x != 0) || (y != 0))
         {
-            transform.Translate(new Vector3(x,y).normalized * Time.deltaTime * worldState.instance.moveSpeed);
+            transform.Translate(new Vector3(x,y).normalized * Time.deltaTime * worldState.instance.MoveSpeed());
         }        
         
     }

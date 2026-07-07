@@ -18,7 +18,7 @@ public class projectileBehaviour : MonoBehaviour
 
     void Update()
     {
-        float limit = worldState.instance != null ? worldState.instance.range : fallbackRange;
+        float limit = worldState.instance != null ? worldState.instance.Range() : fallbackRange;
         float traveled = Vector3.Distance(transform.position, spawnOrigin);
         if (traveled >= limit)
         {
@@ -46,7 +46,7 @@ public class projectileBehaviour : MonoBehaviour
             enemyHealth eh = other.GetComponent<enemyHealth>();
             if (eh != null)
             {
-                int dmg = worldState.instance != null ? Mathf.RoundToInt(worldState.instance.attackDamage) : 1;
+                int dmg = worldState.instance != null ? Mathf.RoundToInt(worldState.instance.AttackDamage()) : 1;
                 eh.takeDamage(dmg);
                 Debug.Log("hit");
             }
