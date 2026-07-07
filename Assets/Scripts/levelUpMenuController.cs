@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class levelUpMenuController : MonoBehaviour
 {
-    private enum StatKind { MaxHP, FireRate, AttackDamage, MoveSpeed, Range, Defense, Regen, PickupRadius }
+    private enum StatKind { MaxHP, FireRate, AttackDamage, MoveSpeed, Range, Defense, Regen, PickupRadius, Pierce }
     private enum Mode { Flat, Percent }
 
     private struct Upgrade
@@ -58,7 +58,8 @@ public class levelUpMenuController : MonoBehaviour
             StatKind.Range,
             StatKind.Defense,
             StatKind.Regen,
-            StatKind.PickupRadius
+            StatKind.PickupRadius,
+            StatKind.Pierce
         };
 
         bool defenseHasBase = worldState.instance != null && worldState.instance.defenseBase > 0f;
@@ -69,6 +70,9 @@ public class levelUpMenuController : MonoBehaviour
         {
             // Flat is always offered.
             pool.Add(new Upgrade { kind = k, mode = Mode.Flat });
+
+            // Pierce is a flat-only stat — never offer it as a percent.
+            if (k == StatKind.Pierce) continue;
 
             // Percent is inert on a 0 base for Defense/Regen — only offer once seeded.
             if (k == StatKind.Defense && !defenseHasBase) continue;
@@ -82,32 +86,40 @@ public class levelUpMenuController : MonoBehaviour
 
     private string LabelFor(Upgrade u)
     {
+        worldState ws = worldState.instance;
+        if (ws == null) return "";
+
+        var ci = System.Globalization.CultureInfo.InvariantCulture;
+
         if (u.mode == Mode.Flat)
         {
             switch (u.kind)
             {
-                case StatKind.AttackDamage: return "+2 Damage";
-                case StatKind.MoveSpeed: return "+0.2 Move Speed";
-                case StatKind.FireRate: return "+0.25 Fire Rate";
-                case StatKind.Range: return "+0.5 Range";
-                case StatKind.MaxHP: return "+15 Max HP";
-                case StatKind.Defense: return "+2 Defense";
-                case StatKind.Regen: return "+0.1 HP/s Regen";
-                case StatKind.PickupRadius: return "+0.5 Pickup Radius";
+                case StatKind.AttackDamage: return "+" + ws.attackDamageFlatStep.ToString(ci) + " Damage";
+                case StatKind.MoveSpeed:    return "+" + ws.moveSpeedFlatStep.ToString(ci) + " Move Speed";
+                case StatKind.FireRate:     return "+" + ws.fireRateFlatStep.ToString(ci) + " Fire Rate";
+                case StatKind.Range:        return "+" + ws.rangeFlatStep.ToString(ci) + " Range";
+                case StatKind.MaxHP:        return "+" + ws.maxHPFlatStep.ToString(ci) + " Max HP";
+                case StatKind.Defense:      return "+" + ws.defenseFlatStep.ToString(ci) + " Defense";
+                case StatKind.Regen:        return "+" + ws.regenFlatStep.ToString(ci) + " HP/s Regen";
+                case StatKind.PickupRadius: return "+" + ws.pickupRadiusFlatStep.ToString(ci) + " Pickup Radius";
+                case StatKind.Pierce:       return "+" + ws.pierceFlatStep.ToString(ci) + " Pierce";
                 default: return "";
             }
         }
 
+        // Percent: derive "+Y%" from the shared fractional step (0.1 -> 10).
+        int pct = Mathf.RoundToInt(ws.levelUpPercentStep * 100f);
         switch (u.kind)
         {
-            case StatKind.AttackDamage: return "+10% Damage";
-            case StatKind.MoveSpeed: return "+10% Move Speed";
-            case StatKind.FireRate: return "+10% Fire Rate";
-            case StatKind.Range: return "+10% Range";
-            case StatKind.MaxHP: return "+10% Max HP";
-            case StatKind.Defense: return "+10% Defense";
-            case StatKind.Regen: return "+10% Regen";
-            case StatKind.PickupRadius: return "+10% Pickup Radius";
+            case StatKind.AttackDamage: return "+" + pct + "% Damage";
+            case StatKind.MoveSpeed:    return "+" + pct + "% Move Speed";
+            case StatKind.FireRate:     return "+" + pct + "% Fire Rate";
+            case StatKind.Range:        return "+" + pct + "% Range";
+            case StatKind.MaxHP:        return "+" + pct + "% Max HP";
+            case StatKind.Defense:      return "+" + pct + "% Defense";
+            case StatKind.Regen:        return "+" + pct + "% Regen";
+            case StatKind.PickupRadius: return "+" + pct + "% Pickup Radius";
             default: return "";
         }
     }
@@ -115,72 +127,77 @@ public class levelUpMenuController : MonoBehaviour
     private void Choose(Upgrade u)
     {
         if (worldState.instance == null) return;
+        worldState ws = worldState.instance;
 
         if (u.mode == Mode.Flat)
         {
             switch (u.kind)
             {
                 case StatKind.AttackDamage:
-                    worldState.instance.attackDamageBase += 2f;
+                    ws.attackDamageBase += ws.attackDamageFlatStep;
                     break;
                 case StatKind.MoveSpeed:
-                    worldState.instance.moveSpeedBase += 0.2f;
+                    ws.moveSpeedBase += ws.moveSpeedFlatStep;
                     break;
                 case StatKind.FireRate:
-                    worldState.instance.fireRateBase += 0.25f;
+                    ws.fireRateBase += ws.fireRateFlatStep;
                     break;
                 case StatKind.Range:
-                    worldState.instance.rangeBase += 0.5f;
+                    ws.rangeBase += ws.rangeFlatStep;
                     break;
                 case StatKind.MaxHP:
                 {
-                    int before = worldState.instance.MaxHP();
-                    worldState.instance.maxHPBase += 15f;
-                    worldState.instance.currentHP += (worldState.instance.MaxHP() - before);
+                    int before = ws.MaxHP();
+                    ws.maxHPBase += ws.maxHPFlatStep;
+                    ws.currentHP += (ws.MaxHP() - before);
                     break;
                 }
                 case StatKind.Defense:
-                    worldState.instance.defenseBase += 2f;
+                    ws.defenseBase += ws.defenseFlatStep;
                     break;
                 case StatKind.Regen:
-                    worldState.instance.regenBase += 0.1f;
+                    ws.regenBase += ws.regenFlatStep;
                     break;
                 case StatKind.PickupRadius:
-                    worldState.instance.pickupRadiusBase += 0.5f;
+                    ws.pickupRadiusBase += ws.pickupRadiusFlatStep;
+                    break;
+                case StatKind.Pierce:
+                    ws.pierceBase += ws.pierceFlatStep;
                     break;
             }
         }
         else // Percent
         {
+            float p = 1f + ws.levelUpPercentStep;
             switch (u.kind)
             {
                 case StatKind.AttackDamage:
-                    worldState.instance.attackDamageMult *= 1.1f;
+                    ws.attackDamageMult *= p;
                     break;
                 case StatKind.MoveSpeed:
-                    worldState.instance.moveSpeedMult *= 1.1f;
+                    ws.moveSpeedMult *= p;
                     break;
                 case StatKind.FireRate:
-                    worldState.instance.fireRateMult *= 1.1f;
+                    ws.fireRateMult *= p;
                     break;
                 case StatKind.Range:
-                    worldState.instance.rangeMult *= 1.1f;
+                    ws.rangeMult *= p;
                     break;
                 case StatKind.MaxHP:
                 {
-                    int before = worldState.instance.MaxHP();
-                    worldState.instance.maxHPMult *= 1.1f;
-                    worldState.instance.currentHP += (worldState.instance.MaxHP() - before);
+                    int before = ws.MaxHP();
+                    ws.maxHPMult *= p;
+                    ws.currentHP += (ws.MaxHP() - before);
                     break;
                 }
                 case StatKind.Defense:
-                    worldState.instance.defenseMult *= 1.1f;
+                    ws.defenseMult *= p;
                     break;
                 case StatKind.Regen:
-                    worldState.instance.regenMult *= 1.1f;
+                    ws.regenMult *= p;
                     break;
                 case StatKind.PickupRadius:
-                    worldState.instance.pickupRadiusMult *= 1.1f;
+                    ws.pickupRadiusMult *= p;
                     break;
             }
         }

@@ -38,17 +38,21 @@ public class shooterBehaviour : MonoBehaviour
         {
             case State.Chase:
                 transform.position = Vector3.MoveTowards(transform.position, playerPos, moveSpeed * Time.deltaTime);
-                if (dist <= aimRange) { state = State.Aim; stateTimer = 0f; EnableTelegraph(true); }
+                if (dist <= aimRange)
+                {
+                    aimDir = ((Vector2)(playerPos - transform.position)).normalized;
+                    if (aimDir == Vector2.zero) aimDir = Vector2.right; // guard: player exactly on top
+                    state = State.Aim; stateTimer = 0f; EnableTelegraph(true);
+                }
                 break;
 
             case State.Aim:
-                UpdateTelegraph(transform.position, playerPos);
+                UpdateTelegraph(transform.position, transform.position + (Vector3)(aimDir * aimRange));
                 stateTimer += Time.deltaTime;
                 if (stateTimer >= aimDuration) state = State.Fire;
                 break;
 
             case State.Fire:
-                aimDir = ((Vector2)(playerPos - transform.position)).normalized;
                 FireProjectile();
                 EnableTelegraph(false);
                 state = State.Cooldown; stateTimer = 0f;

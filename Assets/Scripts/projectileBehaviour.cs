@@ -7,10 +7,12 @@ public class projectileBehaviour : MonoBehaviour
     [SerializeField] private float fallbackRange = 8f;
     private float lifeTimer;
     private Vector3 spawnOrigin;
+    private int enemiesHit;   // per-shot pierce counter; reset in OnEnable (pooled reset)
 
     void OnEnable()
     {
         lifeTimer = 0f;
+        enemiesHit = 0;
         spawnOrigin = transform.position;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null) rb.linearVelocity = Vector2.zero;
@@ -48,9 +50,14 @@ public class projectileBehaviour : MonoBehaviour
             {
                 int dmg = worldState.instance != null ? Mathf.RoundToInt(worldState.instance.AttackDamage()) : 1;
                 eh.takeDamage(dmg);
-                Debug.Log("hit");
             }
-            if (objectPool.instance != null) objectPool.instance.ret(gameObject);
+
+            enemiesHit++;
+            int pierce = worldState.instance != null ? worldState.instance.Pierce() : 1;
+            if (enemiesHit > pierce)
+            {
+                if (objectPool.instance != null) objectPool.instance.ret(gameObject);
+            }
         }
     }
 }

@@ -23,6 +23,26 @@ public class worldState
     public float pickupRadiusBase = 1.5f;   // = current playerPickupRadius default -> behavior unchanged
     public float pickupRadiusMult = 1f;
 
+    public int pierceBase = 1;   // enemies a bullet passes through before despawning; 1 = "pierce through 1 enemy" default
+
+    // Level-up increment magnitudes. Single source of truth for BOTH the
+    // "+X" / "+Y%" labels and the actual mutations in levelUpMenuController.
+    // Defaults equal the previously hardcoded values -> behavior unchanged.
+
+    // Flat additive steps (per stat).
+    public float attackDamageFlatStep = 2f;
+    public float moveSpeedFlatStep    = 0.2f;
+    public float fireRateFlatStep     = 0.25f;
+    public float rangeFlatStep        = 0.5f;
+    public float maxHPFlatStep        = 15f;
+    public float defenseFlatStep      = 2f;
+    public float regenFlatStep        = 0.1f;
+    public float pickupRadiusFlatStep = 0.5f;
+    public int   pierceFlatStep       = 1;   // flat-only Pierce upgrade step
+
+    // Percent step, shared across all stats. 0.1 = +10% (mult factor = 1 + step).
+    public float levelUpPercentStep = 0.1f;
+
     public float AttackDamage() => attackDamageBase * attackDamageMult;
     public float MoveSpeed() => moveSpeedBase * moveSpeedMult;
     public float FireRate() => fireRateBase * fireRateMult;
@@ -32,6 +52,7 @@ public class worldState
     public float Defense() => defenseBase * defenseMult;
     public float Regen() => regenBase * regenMult;
     public float PickupRadius() => pickupRadiusBase * pickupRadiusMult;
+    public int Pierce() => pierceBase;
 
     public int lvlUpXP = 4, currentXP = 0;
     public int level = 1;
