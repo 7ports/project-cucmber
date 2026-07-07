@@ -7,12 +7,17 @@ public class enemySpawner : MonoBehaviour
     {
         public GameObject prefab;
         public int minLevel;   // eligible when worldState.level >= minLevel
+        public float weight;    // relative base weight; <= 0 is treated as 1 (default for existing entries)
     }
 
     [SerializeField] private SpawnEntry[] spawnTable;
+    // Rebuilt every spawn: eligible prefabs + their computed (ramped) weights, index-aligned.
     private readonly System.Collections.Generic.List<GameObject> eligible = new System.Collections.Generic.List<GameObject>();
+    private readonly System.Collections.Generic.List<float> eligibleWeights = new System.Collections.Generic.List<float>();
     [SerializeField] private float spawnInterval = 2f;
     [SerializeField] private float edgeMargin = 0.08f;
+    // Levels a newly-unlocked type takes to ramp from 1/ramp of its base weight up to full weight.
+    [SerializeField] private int unlockRampLevels = 4;
     private float spawnTimer;
 
     void Update()
@@ -29,12 +34,36 @@ public class enemySpawner : MonoBehaviour
         {
             spawnTimer = 0f;
             int lvl = worldState.instance != null ? worldState.instance.level : 1;
+
             eligible.Clear();
+            eligibleWeights.Clear();
+            float totalWeight = 0f;
+            int ramp = Mathf.Max(1, unlockRampLevels);   // guards against a deserialized 0
             for (int i = 0; i < spawnTable.Length; i++)
-                if (spawnTable[i].prefab != null && lvl >= spawnTable[i].minLevel)
-                    eligible.Add(spawnTable[i].prefab);
-            if (eligible.Count == 0) return;
-            GameObject prefab = eligible[Random.Range(0, eligible.Count)];
+            {
+                if (spawnTable[i].prefab == null || lvl < spawnTable[i].minLevel) continue;
+
+                float baseWeight = spawnTable[i].weight > 0f ? spawnTable[i].weight : 1f;
+                // 1/ramp of base weight at the unlock level, growing linearly to full weight over `ramp` levels.
+                float t = Mathf.Clamp01((lvl - spawnTable[i].minLevel + 1) / (float)ramp);
+                float w = baseWeight * t;
+                if (w <= 0f) continue;
+
+                eligible.Add(spawnTable[i].prefab);
+                eligibleWeights.Add(w);
+                totalWeight += w;
+            }
+            if (eligible.Count == 0 || totalWeight <= 0f) return;
+
+            // Weighted pick over the eligible set.
+            float r = Random.value * totalWeight;
+            int pick = eligible.Count - 1;   // fallback guards float rounding at the top of the range
+            for (int i = 0; i < eligibleWeights.Count; i++)
+            {
+                r -= eligibleWeights[i];
+                if (r <= 0f) { pick = i; break; }
+            }
+            GameObject prefab = eligible[pick];
 
             int side = Random.Range(0, 4);
             Vector3 vp;
