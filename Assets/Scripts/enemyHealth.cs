@@ -13,6 +13,7 @@ public class enemyHealth : MonoBehaviour
     [SerializeField] private GameObject deathDropPrefab;   // optional; only the boss sets this
 
     private damageFlash flash;
+    private bool _isBoss;   // ADDED: true only for the boss (has bossBehaviour); gates blood-on-hit
 
     public int EnemyDamage => enemyDamage;
     public int MaxHp => maxHp;
@@ -21,6 +22,7 @@ public class enemyHealth : MonoBehaviour
     void Awake()
     {
         flash = GetComponent<damageFlash>();
+        _isBoss = GetComponent<bossBehaviour>() != null;   // ADDED: boss-only marker, cached once
     }
 
     void OnEnable()
@@ -31,6 +33,8 @@ public class enemyHealth : MonoBehaviour
     public void takeDamage(int amount)
     {
         currentHp -= amount;
+        if (_isBoss && bloodPrefab != null && objectPool.instance != null)   // ADDED: boss-only blood on each hit
+            objectPool.instance.get(bloodPrefab, transform.position, Quaternion.identity);
         if (flash != null) flash.Flash();
         if (objectPool.instance != null && damageNumberPrefab != null)
         {

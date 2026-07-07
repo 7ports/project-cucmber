@@ -8,16 +8,20 @@ public class bossSpawner : MonoBehaviour
     [SerializeField] private GameObject[] bossPrefabs;
     [SerializeField] private float edgeMargin = 0.08f;   // same as enemySpawner
     private GameObject activeBoss;
-    private bool spawned;
+    private float nextBossTime = -1f;   // lazily initialized to bossFirstTime on first valid frame
 
     void Start() { }
 
     void Update()
     {
-        if (spawned) return;
-        if (worldState.instance == null || worldState.instance.player == null) return;
-        if (worldState.instance.level < 5) return;   // boss only at level 5+
-        SpawnBoss();
+        if (worldState.instance == null || worldState.instance.player == null) return;   // player-null retry preserved
+        if (nextBossTime < 0f) nextBossTime = worldState.instance.bossFirstTime;          // first boss at bossFirstTime
+        if (Time.timeSinceLevelLoad < nextBossTime) return;
+
+        // Only advance the cadence when a boss actually spawns; if one is still alive,
+        // SpawnBoss() no-ops via its alive-guard and we retry next frame (spawns as soon as it dies).
+        if (SpawnBoss())
+            nextBossTime += worldState.instance.bossInterval;   // schedule the next boss (+5:00 default)
     }
 
     // === FUTURE TIMED CADENCE HOOK ===
@@ -25,20 +29,20 @@ public class bossSpawner : MonoBehaviour
     //   (mirror enemySpawner's spawnTimer pattern), calling SpawnBoss() on interval.
     //   The "already alive" guard below makes repeat calls safe.
 
-    void SpawnBoss()
+    bool SpawnBoss()
     {
-        if (activeBoss != null && activeBoss.activeInHierarchy) return;
-        if (worldState.instance == null || worldState.instance.player == null) return;
+        if (activeBoss != null && activeBoss.activeInHierarchy) return false;   // one boss at a time
+        if (worldState.instance == null || worldState.instance.player == null) return false;
 
         // Fail safe: no bosses configured -> do nothing (no null-ref spam).
-        if (bossPrefabs == null || bossPrefabs.Length == 0) return;
+        if (bossPrefabs == null || bossPrefabs.Length == 0) return false;
 
         Camera cam = Camera.main;
-        if (cam == null) return;
+        if (cam == null) return false;
 
         // Pick a random preconfigured boss; skip if the chosen slot is empty.
         GameObject chosen = bossPrefabs[Random.Range(0, bossPrefabs.Length)];
-        if (chosen == null) return;
+        if (chosen == null) return false;
 
         int side = Random.Range(0, 4);
         Vector3 vp;
@@ -53,6 +57,6 @@ public class bossSpawner : MonoBehaviour
         activeBoss = Instantiate(chosen, point, Quaternion.identity);
         bossShooter shooter = activeBoss.GetComponent<bossShooter>();
         if (shooter != null) shooter.RandomizePattern();
-        spawned = true;
+        return true;
     }
 }

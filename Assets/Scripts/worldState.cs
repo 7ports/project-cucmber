@@ -18,27 +18,33 @@ public class worldState
     public float maxHPMult = 1f;
     public float defenseBase = 0f;
     public float defenseMult = 1f;
-    public float regenBase = 0f;
+    public float regenBase = 0.1f;
     public float regenMult = 1f;
     public float pickupRadiusBase = 1.5f;   // = current playerPickupRadius default -> behavior unchanged
     public float pickupRadiusMult = 1f;
 
     public int pierceBase = 1;   // enemies a bullet passes through before despawning; 1 = "pierce through 1 enemy" default
 
+    // Flat bonus XP added to EVERY pickup's xpValue at collection time.
+    // Base 0 (behavior unchanged); each XP-Gain upgrade adds +xpBonusStep; hard cap 3.
+    public int xpBonusPerPickup = 0;
+
     // Level-up increment magnitudes. Single source of truth for BOTH the
     // "+X" / "+Y%" labels and the actual mutations in levelUpMenuController.
     // Defaults equal the previously hardcoded values -> behavior unchanged.
 
     // Flat additive steps (per stat).
-    public float attackDamageFlatStep = 2f;
+    public float attackDamageFlatStep = 5f;
     public float moveSpeedFlatStep    = 0.2f;
-    public float fireRateFlatStep     = 0.25f;
+    public float fireRateFlatStep     = 0.2f;
     public float rangeFlatStep        = 0.5f;
-    public float maxHPFlatStep        = 15f;
-    public float defenseFlatStep      = 2f;
-    public float regenFlatStep        = 0.1f;
+    public float maxHPFlatStep        = 50f;
+    public float defenseFlatStep      = 5f;
+    public float regenFlatStep        = 0.2f;
     public float pickupRadiusFlatStep = 0.5f;
     public int   pierceFlatStep       = 1;   // flat-only Pierce upgrade step
+    public int   xpBonusStep          = 1;   // flat-only XP-Gain upgrade step
+    public const int xpBonusCap        = 3;  // max total bonus (base 1 pickup -> 4 XP)
 
     // Percent step, shared across all stats. 0.1 = +10% (mult factor = 1 + step).
     public float levelUpPercentStep = 0.1f;
@@ -53,6 +59,7 @@ public class worldState
     public float Regen() => regenBase * regenMult;
     public float PickupRadius() => pickupRadiusBase * pickupRadiusMult;
     public int Pierce() => pierceBase;
+    public int XpBonus() => xpBonusPerPickup;
 
     public int lvlUpXP = 4, currentXP = 0;
     public int level = 1;
@@ -63,6 +70,14 @@ public class worldState
     public float spawnIntervalCoefficient = 0.3f;
     public float minSpawnInterval = 0.6f;
     public float currentSpawnInterval = 1.75f;
+
+    // --- Time-based TYPE progression (seconds of elapsed run time) ---
+    public float shooterStartTime  = 120f;   // reference: shooters begin at 2:00 (set on the shooter SpawnEntry)
+    public float unlockRampSeconds = 30f;    // newly-unlocked type ramps 0 -> full weight over this window
+
+    // --- Repeating boss cadence (seconds of elapsed run time) ---
+    public float bossFirstTime = 300f;   // first boss at 5:00
+    public float bossInterval  = 300f;   // then every 5:00
 
     public static event System.Action OnLevelUp;
 

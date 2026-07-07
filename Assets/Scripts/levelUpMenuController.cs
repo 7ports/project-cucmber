@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class levelUpMenuController : MonoBehaviour
 {
-    private enum StatKind { MaxHP, FireRate, AttackDamage, MoveSpeed, Range, Defense, Regen, PickupRadius, Pierce }
+    private enum StatKind { MaxHP, FireRate, AttackDamage, MoveSpeed, Range, Defense, Regen, PickupRadius, Pierce, XpGain }
     private enum Mode { Flat, Percent }
 
     private struct Upgrade
@@ -59,20 +59,26 @@ public class levelUpMenuController : MonoBehaviour
             StatKind.Defense,
             StatKind.Regen,
             StatKind.PickupRadius,
-            StatKind.Pierce
+            StatKind.Pierce,
+            StatKind.XpGain
         };
 
         bool defenseHasBase = worldState.instance != null && worldState.instance.defenseBase > 0f;
         bool regenHasBase = worldState.instance != null && worldState.instance.regenBase > 0f;
+        bool xpGainAtCap = worldState.instance != null && worldState.instance.xpBonusPerPickup >= worldState.xpBonusCap;
 
         List<Upgrade> pool = new List<Upgrade>();
         foreach (StatKind k in stats)
         {
+            // XP-Gain is capped: once the bonus hits the cap, stop offering it entirely.
+            if (k == StatKind.XpGain && xpGainAtCap) continue;
+
             // Flat is always offered.
             pool.Add(new Upgrade { kind = k, mode = Mode.Flat });
 
-            // Pierce is a flat-only stat — never offer it as a percent.
+            // Pierce and XpGain are flat-only stats — never offer them as a percent.
             if (k == StatKind.Pierce) continue;
+            if (k == StatKind.XpGain) continue;
 
             // Percent is inert on a 0 base for Defense/Regen — only offer once seeded.
             if (k == StatKind.Defense && !defenseHasBase) continue;
@@ -104,6 +110,7 @@ public class levelUpMenuController : MonoBehaviour
                 case StatKind.Regen:        return "+" + ws.regenFlatStep.ToString(ci) + " HP/s Regen";
                 case StatKind.PickupRadius: return "+" + ws.pickupRadiusFlatStep.ToString(ci) + " Pickup Radius";
                 case StatKind.Pierce:       return "+" + ws.pierceFlatStep.ToString(ci) + " Pierce";
+                case StatKind.XpGain:       return "+" + ws.xpBonusStep.ToString(ci) + " XP per Pickup";
                 default: return "";
             }
         }
@@ -163,6 +170,9 @@ public class levelUpMenuController : MonoBehaviour
                     break;
                 case StatKind.Pierce:
                     ws.pierceBase += ws.pierceFlatStep;
+                    break;
+                case StatKind.XpGain:
+                    ws.xpBonusPerPickup = Mathf.Min(worldState.xpBonusCap, ws.xpBonusPerPickup + ws.xpBonusStep);
                     break;
             }
         }

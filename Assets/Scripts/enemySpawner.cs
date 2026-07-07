@@ -6,8 +6,8 @@ public class enemySpawner : MonoBehaviour
     private struct SpawnEntry
     {
         public GameObject prefab;
-        public int minLevel;   // eligible when worldState.level >= minLevel
-        public float weight;    // relative base weight; <= 0 is treated as 1 (default for existing entries)
+        public float minTimeSeconds;   // eligible when elapsed run time >= minTimeSeconds
+        public float weight;           // relative base weight; <= 0 is treated as 1
     }
 
     [SerializeField] private SpawnEntry[] spawnTable;
@@ -16,8 +16,6 @@ public class enemySpawner : MonoBehaviour
     private readonly System.Collections.Generic.List<float> eligibleWeights = new System.Collections.Generic.List<float>();
     [SerializeField] private float spawnInterval = 2f;
     [SerializeField] private float edgeMargin = 0.08f;
-    // Levels a newly-unlocked type takes to ramp from 1/ramp of its base weight up to full weight.
-    [SerializeField] private int unlockRampLevels = 4;
     private float spawnTimer;
 
     void Update()
@@ -33,19 +31,22 @@ public class enemySpawner : MonoBehaviour
         if (spawnTimer >= interval)
         {
             spawnTimer = 0f;
-            int lvl = worldState.instance != null ? worldState.instance.level : 1;
+            float elapsed = Time.timeSinceLevelLoad;
 
             eligible.Clear();
             eligibleWeights.Clear();
             float totalWeight = 0f;
-            int ramp = Mathf.Max(1, unlockRampLevels);   // guards against a deserialized 0
+            // Ramp window in SECONDS, from worldState (guards against a deserialized 0).
+            float ramp = (worldState.instance != null)
+                ? Mathf.Max(0.0001f, worldState.instance.unlockRampSeconds)
+                : 30f;
             for (int i = 0; i < spawnTable.Length; i++)
             {
-                if (spawnTable[i].prefab == null || lvl < spawnTable[i].minLevel) continue;
+                if (spawnTable[i].prefab == null || elapsed < spawnTable[i].minTimeSeconds) continue;
 
                 float baseWeight = spawnTable[i].weight > 0f ? spawnTable[i].weight : 1f;
-                // 1/ramp of base weight at the unlock level, growing linearly to full weight over `ramp` levels.
-                float t = Mathf.Clamp01((lvl - spawnTable[i].minLevel + 1) / (float)ramp);
+                // Linear phase-in: 0 at unlock time, growing to full weight over `ramp` seconds.
+                float t = Mathf.Clamp01((elapsed - spawnTable[i].minTimeSeconds) / ramp);
                 float w = baseWeight * t;
                 if (w <= 0f) continue;
 

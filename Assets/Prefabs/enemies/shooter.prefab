@@ -160,6 +160,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4158945752031968793, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4158945752031968793, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4158945752031968793, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4158945752031968793, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.5
       objectReference: {fileID: 0}
@@ -199,6 +211,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4558011501249285806, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
+      propertyPath: m_Radius
+      value: 0.23554218
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558011501249285806, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.008386493
+      objectReference: {fileID: 0}
     - target: {fileID: 9198072831249636405, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
       propertyPath: m_Name
       value: shooter
@@ -232,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5993fc08de9e44a4fa024942ad0ad566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::shooterBehaviour
-  moveSpeed: 1.5
+  moveSpeed: 1
   aimRange: 4
   aimDuration: 0.75
   fireCooldown: 2

@@ -290,6 +290,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4558011501249285806, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
+      propertyPath: m_Radius
+      value: 0.21053644
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558011501249285806, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0022097896
+      objectReference: {fileID: 0}
     - target: {fileID: 8993517367165848743, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
       propertyPath: maxHp
       value: 250
@@ -364,11 +372,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::bossShooter
   patternType: 0
   enemyProjectilePrefab: {fileID: 7764204554120627737, guid: f4205754e59391d43a828cb04147752e, type: 3}
-  fireInterval: 1.2
-  bulletSpeed: 3.5
-  bulletLifetime: 6
-  bulletsPerVolley: 12
-  spreadAngle: 45
+  fireInterval: 3
+  bulletSpeed: 2
+  bulletLifetime: 5
+  bulletsPerVolley: 10
+  spreadAngle: 60
   spinStep: 13
   randomizeOnEnable: 0
 --- !u!114 &4855371742518237053 stripped
