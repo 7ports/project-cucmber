@@ -39,7 +39,7 @@ public class worldState
     public float fireRateFlatStep     = 0.2f;
     public float rangeFlatStep        = 0.5f;
     public float maxHPFlatStep        = 50f;
-    public float defenseFlatStep      = 5f;
+    public float defenseFlatStep      = 1f;
     public float regenFlatStep        = 0.2f;
     public float pickupRadiusFlatStep = 0.5f;
     public int   pierceFlatStep       = 1;   // flat-only Pierce upgrade step
