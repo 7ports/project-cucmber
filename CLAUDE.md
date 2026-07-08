@@ -21,76 +21,71 @@ Verify all three by running `mcp__project-voltron__setup_voltron` — it hard-fa
 
 ## Project Identity
 
-**Project Name:** [YOUR PROJECT NAME]
-**Genre / Type:** [e.g. 3D platformer, 2D puzzle, mobile idle]
-**Target Platform(s):** [PC / Android / iOS / WebGL / Console]
-**Unity Version:** [e.g. 6000.0.30f1]
-**Render Pipeline:** [Built-in / URP / HDRP]
-**Status:** [Prototype / Alpha / Beta / Shipping]
+**Project Name:** project-cucumber
+**Genre / Type:** 2D top-down survivors (Vampire-Survivors-like)
+**Target Platform(s):** PC
+**Unity Version:** 6000.4.2f1
+**Render Pipeline:** URP 2D (com.unity.render-pipelines.universal 17.4.0; Renderer2D.asset in Assets/Settings/)
+**Status:** Prototype / active development
 
 ---
 
 ## Repository Layout
 
+> **NOTE:** This project does NOT use the `Assets/_Project/` convention from the Voltron template.
+> All custom scripts are flat in `Assets/Scripts/`; agents must look there, not under `Assets/_Project/`.
+
 ```
 Assets/
-  _Project/               <- All custom project files live here
-    Scripts/
-      Gameplay/           <- Player, enemies, mechanics
-      Systems/            <- Game loop, save, audio, events
-      UI/                 <- Canvas, panels, HUD logic
-      Utilities/          <- Extensions, helpers, constants
-    Prefabs/
-    ScriptableObjects/
-    Scenes/
-      Main/
-      UI/
-      Testing/
-    Art/
-      Materials/
-      Textures/
-      Shaders/
-    Audio/
-  ThirdParty/             <- Imported packages (read-only, don't edit)
-  Plugins/                <- Native plugins
-Packages/                 <- Unity Package Manager manifests
+  Scripts/          <- 43 flat .cs files — global namespace, no subdirectory grouping
+  Prefabs/
+    enemies/        <- chaser.prefab, shooter.prefab, slime.prefab, enemyProjectile.prefab
+      bosses/       <- boss.prefab, diggy.prefab, ziggy.prefab
+    pickups/        <- XP1.prefab–XP4.prefab, itemPickup.prefab, questItem.prefab
+    blood.prefab, damageNumber.prefab, floatingLevelText.prefab,
+    levelUpBurst.prefab, star.prefab, uiLevelUpBurst.prefab
+  Scenes/
+    SampleScene.unity   <- single scene (no Bootstrap/Persistent multi-scene pattern)
+  Materials/        <- ParticleColored.mat, TelegraphLine.mat
+  Sprites/          <- sprite sheets, .asset slices (cave tileset, decorations, etc.)
+  Settings/         <- UniversalRP.asset, Renderer2D.asset (URP 2D pipeline assets)
+  Editor/           <- editor-only utilities
+  SmallScaleInt/    <- third-party character creator asset (read-only, don't edit)
+Packages/           <- Unity Package Manager manifests
 ProjectSettings/
 ```
 
-**Rule:** Never place custom files outside `Assets/_Project/`. Never modify anything under `ThirdParty/` or `Plugins/`.
+**Rules:**
+- Scripts live in `Assets/Scripts/` (flat). Do NOT create subdirectories there without explicit instruction.
+- Do NOT modify anything under `Assets/SmallScaleInt/` (third-party asset).
+- No `ThirdParty/` or `Plugins/` directories currently exist in this project.
 
 ---
 
 ## C# Conventions
 
-**Namespace root:** `[YourStudio].[ProjectName]` (e.g. `AcmeCo.StarRun`)
-**Namespace mirrors folder:** `AcmeCo.StarRun.Gameplay`, `AcmeCo.StarRun.UI`, etc.
+> **IMPORTANT — No namespaces.** All 43 scripts are in the **global namespace**. Do NOT invent or add namespace declarations when writing new scripts. The Voltron template shows a namespaced example; that template does NOT apply to this project.
 
 ```csharp
-// Standard MonoBehaviour header
+// Actual project pattern — no namespace block
 using UnityEngine;
 
-namespace AcmeCo.StarRun.Gameplay
+public class PlayerMovement : MonoBehaviour
 {
-    public class PlayerController : MonoBehaviour
-    {
-        // Serialized fields use [SerializeField], never public fields for inspector use
-        [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] private float _moveSpeed = 5f;
 
-        // Private fields use _camelCase
-        private Rigidbody _rb;
+    private Rigidbody2D _rb;
 
-        // Properties use PascalCase
-        public float MoveSpeed => _moveSpeed;
-    }
+    public float MoveSpeed => _moveSpeed;
 }
 ```
 
 **Key rules:**
-- No `Find()`, `FindObjectOfType()`, or `SendMessage()` — use dependency injection or events
-- Prefer `UnityEvent` or C# `Action`/`event` over tight coupling
-- `Update()` logic belongs in systems, not individual MonoBehaviours where avoidable
-- ScriptableObjects for shared data, not static singletons
+- **No namespaces** — scripts in the global namespace (match existing files)
+- Serialized inspector fields use `[SerializeField] private` — not `public`
+- Private fields use `_camelCase`; properties/methods use `PascalCase`
+- No `Find()`, `FindObjectOfType()`, or `SendMessage()` — wire via inspector or events
+- Prefer C# `Action`/`event` over tight coupling
 - All `Coroutine` starts must have a corresponding stop path
 
 ---
@@ -99,20 +94,34 @@ namespace AcmeCo.StarRun.Gameplay
 
 | Package | Version | Notes |
 |---|---|---|
-| Input System | [x.x.x] | New input system only — no legacy Input.GetKey |
-| DOTween | [x.x.x] | All tweening goes through DOTween |
-| [Your other packages] | | |
+| com.unity.render-pipelines.universal | 17.4.0 | URP 2D — Renderer2D.asset; no HDRP |
+| com.unity.inputsystem | 1.19.0 | New Input System only — no legacy Input.GetKey |
+| com.unity.2d.animation | 14.0.4 | 2D skeletal animation |
+| com.unity.2d.sprite | 1.0.0 | 2D sprite tools |
+| com.unity.2d.tilemap | 1.0.0 | Tilemap support |
+| com.unity.2d.tilemap.extras | 7.0.1 | Rule tiles, animated tiles |
+| com.unity.2d.spriteshape | 14.0.1 | Sprite shape rendering |
+| com.unity.2d.aseprite | 4.0.1 | Aseprite importer |
+| com.unity.2d.psdimporter | 13.0.2 | PSD file importer |
+| com.unity.cinemachine | 3.1.7 | Camera follow system |
+| com.unity.timeline | 1.8.12 | Timeline/sequencing |
+| com.unity.ugui | 2.0.0 | UI Toolkit / Canvas UI |
+| com.coplaydev.coplay | git (beta) | CoPlay MCP integration |
+| com.coplaydev.unity-mcp | git (main) | Unity MCP bridge for AI agents |
+
+> **No DOTween** is in the manifest — do not add DOTween calls. Use Unity coroutines or Cinemachine for any camera/value animation needs.
 
 ---
 
 ## Scene Structure
 
-**Main scene load order:** Bootstrap -> Persistent -> [Level]
-- `Bootstrap.unity` — initializes systems, loads Persistent additively
-- `Persistent.unity` — always loaded: GameManager, AudioManager, EventSystem
-- Level scenes — loaded/unloaded additively, never standalone
+> **NOTE:** This project uses a **single scene**, not the Bootstrap/Persistent multi-scene pattern from the Voltron template. Do NOT create Bootstrap or Persistent scenes; all game systems live in SampleScene.
 
-**When editing scenes:** Always make sure Bootstrap is the active scene in Play Mode testing.
+**Single scene:** `Assets/Scenes/SampleScene.unity`
+- Contains all game systems: GameController, spawners, player, UI, camera, environment
+- Play Mode testing always uses SampleScene as the only active scene
+
+**When editing scenes:** Save the scene after any hierarchy/component changes before exiting or running Play Mode.
 
 ---
 
@@ -143,16 +152,32 @@ Before completing any task, run these checks:
 
 <!-- Update this section frequently — agents use it to understand current focus -->
 
-**Current sprint goal:** [e.g. "Implement basic player movement and camera follow"]
+**Current sprint goal:** Polish and expand combat loop — additional enemy behaviors, weapon tuning, item balance
 
 **In progress:**
-- [ ] [Task]
+- (check `bd list --status=in_progress` for current claims)
 
-**Recently completed:**
-- [x] [Task]
+**Recently shipped (from git log):**
+- [x] Editor wiring: wall physics, XP drop array, item-choice panel
+- [x] Timer format, wall collision, bounce-scaling, timed XP ×2, XP drop visuals, item-choice menu
+- [x] Five weapon items via boss drops: cone, bounce, fire, explosion, freeze
+- [x] ×10 damage/health rebalance + projectile-size stat and upgrade
+- [x] Enemy HP scales +50% every 7 minutes (spawn-time; bosses included)
+- [x] Time-based enemy progression, boss blood-on-hit, capped XP-gain upgrade
+- [x] Balanced enemy spawn distribution + random multi-boss spawner
+- [x] Shooter aim locked at telegraph, configurable level-up increments, bullet pierce
+- [x] Shooter enemy, boss bullet-hell, enemy projectiles, item drops, 5-choice level-up menu, level-gated spawns
+- [x] XP pickup-radius stat + upgrade; boss enemy (250 HP, world-space health bar, catch-up leash)
+- [x] Defense/regen stats, base+mult stat system, flat+percent level-up upgrades, animated chaser, quest items + off-screen indicators
+- [x] Damage feedback — hit flash, screen shake+flash, pooled damage numbers
+- [x] HUD counters, per-level spawn scaling, LEVEL UP! text, collision fixes, pause menu
+- [x] Combat batch: projectile range/fade, player HP + contact damage, level-up menu, game-over, enemy blood
+- [x] Level-up + XP bar, movement fixes, trigger collisions + Walls layer
+- [x] XP system — pooling, enemy health/XP drops, pickup homing, chaser, off-screen spawner
 
 **Known issues / tech debt:**
-- [Issue and rough location]
+- Enemy body collider currently also bumps the player (pending a dedicated EnemyBody physics layer to separate contact damage from body collision)
+- Item-choice menu and level-up menu both freeze time via `Time.timeScale = 0` — possible early-unpause if both try to restore simultaneously (`itemChoiceMenuController.cs`, `levelUpMenuController.cs`)
 
 ---
 
@@ -222,7 +247,10 @@ Before completing any task, run these checks:
 
 | Date | Decision | Reason |
 |---|---|---|
-| [YYYY-MM-DD] | [e.g. "Chose URP over HDRP"] | [e.g. "Mobile target requires lower overhead"] |
+| 2026-07-08 | Chose URP 2D (Renderer2D) over HDRP or Built-in | 2D top-down genre; lightweight render path; Renderer2D.asset already configured |
+| 2026-07-08 | Single-scene architecture (SampleScene.unity only) | Prototype stage; no need for additive scene loading yet |
+| 2026-07-08 | Scripts in global namespace (no namespace declarations) | Consistent with all 43 existing scripts; avoids churn |
+| 2026-07-08 | **Editor exception: scrum-master dispatches `scene-architect` and `build-validator` via the `Agent` tool, NOT `run_agent_in_docker`** | These agents require a live Unity Editor + Coplay MCP, which Docker cannot provide. This OVERRIDES any generic "never use the Agent tool" guidance. The user's only manual carve-out is build-validator Play-Mode testing; all other Editor wiring (scene/prefab/inspector/Physics-matrix/UI) is dispatched by the scrum-master automatically. |
 
 ---
 
