@@ -6,7 +6,7 @@ public class worldState
     public Transform player;
 
     // Base + multiplier stat system. Effective value = base * mult (via getters).
-    public float attackDamageBase = 10f;
+    public float attackDamageBase = 100f;
     public float attackDamageMult = 1f;
     public float moveSpeedBase = 1f;
     public float moveSpeedMult = 1f;
@@ -14,7 +14,7 @@ public class worldState
     public float fireRateMult = 1f;
     public float rangeBase = 2.5f;
     public float rangeMult = 1f;
-    public float maxHPBase = 100f;
+    public float maxHPBase = 1000f;
     public float maxHPMult = 1f;
     public float defenseBase = 0f;
     public float defenseMult = 1f;
@@ -22,6 +22,11 @@ public class worldState
     public float regenMult = 1f;
     public float pickupRadiusBase = 1.5f;   // = current playerPickupRadius default -> behavior unchanged
     public float pickupRadiusMult = 1f;
+
+    // Projectile visual+collider scale multiplier. Effective = base * mult, applied to
+    // the player bullet's localScale at spawn (OnEnable). Default 1.0 -> size unchanged.
+    public float projectileSizeBase = 1f;
+    public float projectileSizeMult = 1f;
 
     public int pierceBase = 1;   // enemies a bullet passes through before despawning; 1 = "pierce through 1 enemy" default
 
@@ -34,14 +39,15 @@ public class worldState
     // Defaults equal the previously hardcoded values -> behavior unchanged.
 
     // Flat additive steps (per stat).
-    public float attackDamageFlatStep = 5f;
+    public float attackDamageFlatStep = 50f;
     public float moveSpeedFlatStep    = 0.2f;
     public float fireRateFlatStep     = 0.2f;
     public float rangeFlatStep        = 0.5f;
-    public float maxHPFlatStep        = 50f;
-    public float defenseFlatStep      = 1f;
+    public float maxHPFlatStep        = 500f;
+    public float defenseFlatStep      = 10f;
     public float regenFlatStep        = 0.2f;
     public float pickupRadiusFlatStep = 0.5f;
+    public float projectileSizeFlatStep = 0.2f;   // +0.2 size per Flat upgrade
     public int   pierceFlatStep       = 1;   // flat-only Pierce upgrade step
     public int   xpBonusStep          = 1;   // flat-only XP-Gain upgrade step
     public const int xpBonusCap        = 3;  // max total bonus (base 1 pickup -> 4 XP)
@@ -58,13 +64,14 @@ public class worldState
     public float Defense() => defenseBase * defenseMult;
     public float Regen() => regenBase * regenMult;
     public float PickupRadius() => pickupRadiusBase * pickupRadiusMult;
+    public float ProjectileSize() => projectileSizeBase * projectileSizeMult;
     public int Pierce() => pierceBase;
     public int XpBonus() => xpBonusPerPickup;
 
     public int lvlUpXP = 4, currentXP = 0;
     public int level = 1;
 
-    public int currentHP = 100;
+    public int currentHP = 1000;
 
     public float baseSpawnInterval = 1.75f;
     public float spawnIntervalCoefficient = 0.3f;

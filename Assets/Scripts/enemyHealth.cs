@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class enemyHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHp = 3;
+    [SerializeField] private int maxHp = 30;
     private int currentHp;
     private int scaledMaxHp;   // ADDED: base maxHp * time multiplier, recomputed each (re)spawn
     [SerializeField] private GameObject xpPrefab;
     [SerializeField] private int xpDropCount = 1;
-    [SerializeField] private int enemyDamage = 5;
+    [SerializeField] private int enemyDamage = 50;
     [SerializeField] private GameObject bloodPrefab;
     [SerializeField] private GameObject damageNumberPrefab;
     [SerializeField] private Vector3 dmgTextOffset = new Vector3(0f, 0.5f, 0f);

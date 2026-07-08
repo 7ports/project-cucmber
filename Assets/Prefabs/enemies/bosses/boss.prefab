@@ -300,11 +300,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8993517367165848743, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
       propertyPath: maxHp
-      value: 250
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: 8993517367165848743, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
       propertyPath: enemyDamage
-      value: 15
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 8993517367165848743, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
       propertyPath: xpDropCount

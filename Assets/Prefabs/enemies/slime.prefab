@@ -181,10 +181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2bffd5d7da66646b06b1a2d8e5af89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  maxHp: 40
+  maxHp: 400
   xpPrefab: {fileID: 2084821060898178022, guid: b31ccd7fc04b9b74d8123d6165057dba, type: 3}
   xpDropCount: 1
-  enemyDamage: 5
+  enemyDamage: 50
   bloodPrefab: {fileID: 5194919893134547747, guid: 33b7c54ff1c6f25408e61beff8f5cda7, type: 3}
   damageNumberPrefab: {fileID: 5950328191150159265, guid: 4a7e29744b29c7240ad5f3ee34ccc98b, type: 3}
   dmgTextOffset: {x: 0, y: 0.5, z: 0}

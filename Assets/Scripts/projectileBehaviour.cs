@@ -8,12 +8,28 @@ public class projectileBehaviour : MonoBehaviour
     private float lifeTimer;
     private Vector3 spawnOrigin;
     private int enemiesHit;   // per-shot pierce counter; reset in OnEnable (pooled reset)
+    private Vector3 baseScale = Vector3.one;   // authored prefab scale, captured once
+    private bool baseScaleCaptured;
+
+    void Awake()
+    {
+        baseScale = transform.localScale;   // capture the prefab's authored scale ONCE
+        baseScaleCaptured = true;
+    }
 
     void OnEnable()
     {
         lifeTimer = 0f;
         enemiesHit = 0;
         spawnOrigin = transform.position;
+
+        // Re-apply size EVERY spawn from the stored base, reading the CURRENT stat so
+        // upgrades taken mid-run apply to the very next bullet. Never multiply the live
+        // localScale (that would compound across pooled reuse).
+        if (!baseScaleCaptured) { baseScale = transform.localScale; baseScaleCaptured = true; } // safety if OnEnable precedes Awake
+        float size = worldState.instance != null ? worldState.instance.ProjectileSize() : 1f;
+        transform.localScale = baseScale * size;
+
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null) rb.linearVelocity = Vector2.zero;
     }

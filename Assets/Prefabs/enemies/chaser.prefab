@@ -18,11 +18,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3976880873792520215, guid: a3f0c52240fc14f4fbcb9e1d3c7451b1, type: 3}
       propertyPath: maxHp
-      value: 30
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3976880873792520215, guid: a3f0c52240fc14f4fbcb9e1d3c7451b1, type: 3}
       propertyPath: enemyDamage
-      value: 8
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8234927922015957673, guid: a3f0c52240fc14f4fbcb9e1d3c7451b1, type: 3}
       propertyPath: m_LocalScale.x

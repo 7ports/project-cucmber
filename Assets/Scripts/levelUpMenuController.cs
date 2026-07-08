@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class levelUpMenuController : MonoBehaviour
 {
-    private enum StatKind { MaxHP, FireRate, AttackDamage, MoveSpeed, Range, Defense, Regen, PickupRadius, Pierce, XpGain }
+    private enum StatKind { MaxHP, FireRate, AttackDamage, MoveSpeed, Range, Defense, Regen, PickupRadius, Pierce, XpGain, ProjectileSize }
     private enum Mode { Flat, Percent }
 
     private struct Upgrade
@@ -60,7 +60,8 @@ public class levelUpMenuController : MonoBehaviour
             StatKind.Regen,
             StatKind.PickupRadius,
             StatKind.Pierce,
-            StatKind.XpGain
+            StatKind.XpGain,
+            StatKind.ProjectileSize
         };
 
         bool defenseHasBase = worldState.instance != null && worldState.instance.defenseBase > 0f;
@@ -109,6 +110,7 @@ public class levelUpMenuController : MonoBehaviour
                 case StatKind.Defense:      return "+" + ws.defenseFlatStep.ToString(ci) + " Defense";
                 case StatKind.Regen:        return "+" + ws.regenFlatStep.ToString(ci) + " HP/s Regen";
                 case StatKind.PickupRadius: return "+" + ws.pickupRadiusFlatStep.ToString(ci) + " Pickup Radius";
+                case StatKind.ProjectileSize: return "+" + ws.projectileSizeFlatStep.ToString(ci) + " Projectile Size";
                 case StatKind.Pierce:       return "+" + ws.pierceFlatStep.ToString(ci) + " Pierce";
                 case StatKind.XpGain:       return "+" + ws.xpBonusStep.ToString(ci) + " XP per Pickup";
                 default: return "";
@@ -127,6 +129,7 @@ public class levelUpMenuController : MonoBehaviour
             case StatKind.Defense:      return "+" + pct + "% Defense";
             case StatKind.Regen:        return "+" + pct + "% Regen";
             case StatKind.PickupRadius: return "+" + pct + "% Pickup Radius";
+            case StatKind.ProjectileSize: return "+" + pct + "% Projectile Size";
             default: return "";
         }
     }
@@ -168,6 +171,9 @@ public class levelUpMenuController : MonoBehaviour
                 case StatKind.PickupRadius:
                     ws.pickupRadiusBase += ws.pickupRadiusFlatStep;
                     break;
+                case StatKind.ProjectileSize:
+                    ws.projectileSizeBase += ws.projectileSizeFlatStep;
+                    break;
                 case StatKind.Pierce:
                     ws.pierceBase += ws.pierceFlatStep;
                     break;
@@ -208,6 +214,9 @@ public class levelUpMenuController : MonoBehaviour
                     break;
                 case StatKind.PickupRadius:
                     ws.pickupRadiusMult *= p;
+                    break;
+                case StatKind.ProjectileSize:
+                    ws.projectileSizeMult *= p;
                     break;
             }
         }
