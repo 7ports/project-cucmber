@@ -18,7 +18,7 @@ public class worldState
     public float maxHPMult = 1f;
     public float defenseBase = 0f;
     public float defenseMult = 1f;
-    public float regenBase = 0.1f;
+    public float regenBase = 1f;
     public float regenMult = 1f;
     public float pickupRadiusBase = 1.5f;   // = current playerPickupRadius default -> behavior unchanged
     public float pickupRadiusMult = 1f;
@@ -60,7 +60,7 @@ public class worldState
     public float rangeFlatStep        = 0.5f;
     public float maxHPFlatStep        = 500f;
     public float defenseFlatStep      = 10f;
-    public float regenFlatStep        = 0.2f;
+    public float regenFlatStep        = 2f;
     public float pickupRadiusFlatStep = 0.5f;
     public float projectileSizeFlatStep = 0.2f;   // +0.2 size per Flat upgrade
     public int   pierceFlatStep       = 1;   // flat-only Pierce upgrade step
@@ -98,8 +98,8 @@ public class worldState
     public float unlockRampSeconds = 30f;    // newly-unlocked type ramps 0 -> full weight over this window
 
     // --- Repeating boss cadence (seconds of elapsed run time) ---
-    public float bossFirstTime = 300f;   // first boss at 5:00
-    public float bossInterval  = 300f;   // then every 5:00
+    public float bossFirstTime = 200f;   // first boss at 5:00
+    public float bossInterval  = 200f;   // then every 5:00
 
     // --- Time-based ENEMY HP scaling (seconds of elapsed run time) ---
     // Every hpScaleInterval seconds, NEWLY-spawned enemies (and bosses) get
@@ -117,6 +117,21 @@ public class worldState
         if (tier < 0) tier = 0;
         return 1f + hpScalePerTier * tier;
         // COMPOUNDING alternative (retune): return Mathf.Pow(1f + hpScalePerTier, tier);
+    }
+
+    // --- Time-based XP doubling (seconds of elapsed run time) ---
+    // After xpDoubleThreshold seconds, ALL earned XP is doubled (single ×2, permanent).
+    // Separate field from hpScaleInterval so it can be retuned independently, default
+    // equal (420 = 7 min) so it fires with the same milestone as EnemyHpTimeMultiplier().
+    public float xpDoubleThreshold = 420f;   // 7 minutes
+    public float xpDoubleFactor     = 2f;    // the "double"
+
+    // Multiplier applied to earned XP at the grant site. Uses Time.timeSinceLevelLoad,
+    // the same run-time source as the HP/spawn/boss systems, so all time-gates agree.
+    public float XpTimeMultiplier()
+    {
+        if (xpDoubleThreshold <= 0f) return 1f;                 // guard/disable
+        return (Time.timeSinceLevelLoad >= xpDoubleThreshold) ? xpDoubleFactor : 1f;
     }
 
     public static event System.Action OnLevelUp;

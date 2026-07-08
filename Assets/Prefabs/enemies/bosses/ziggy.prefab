@@ -372,11 +372,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::bossShooter
   patternType: 1
   enemyProjectilePrefab: {fileID: 7764204554120627737, guid: f4205754e59391d43a828cb04147752e, type: 3}
-  fireInterval: 3
+  fireInterval: 4
   bulletSpeed: 2
   bulletLifetime: 5
-  bulletsPerVolley: 10
-  spreadAngle: 60
+  bulletsPerVolley: 5
+  spreadAngle: 75
   spinStep: 13
   randomizeOnEnable: 0
 --- !u!114 &4855371742518237053 stripped

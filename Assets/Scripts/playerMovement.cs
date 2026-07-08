@@ -7,12 +7,14 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private float animThreshold = 0.1f;
     float x, y;
     float oldX, oldY;
+    private Rigidbody2D _rb;   // ADD
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         oldX = oldY = float.NaN;
         playerAnimator = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody2D>();          // ADD
     }
 
     // Update is called once per frame
@@ -41,8 +43,10 @@ public class playerMovement : MonoBehaviour
     {
         if ((x != 0) || (y != 0))
         {
-            transform.Translate(new Vector3(x,y).normalized * Time.deltaTime * worldState.instance.MoveSpeed());
-        }        
+            Vector2 delta = new Vector2(x, y).normalized
+                            * Time.fixedDeltaTime * worldState.instance.MoveSpeed();
+            _rb.MovePosition(_rb.position + delta);  // CHANGED from transform.Translate(...)
+        }
         
     }
 }

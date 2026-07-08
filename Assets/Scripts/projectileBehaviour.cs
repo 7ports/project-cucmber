@@ -8,7 +8,7 @@ public class projectileBehaviour : MonoBehaviour
     private float lifeTimer;
     private Vector3 spawnOrigin;
     private int enemiesHit;   // per-shot pierce counter; reset in OnEnable (pooled reset)
-    private bool hasBounced;  // one-time bounce guard; reset in OnEnable (pooled reset)
+    private int bounceCount;  // Bounce: bounces used this shot; budget = Pierce(); reset in OnEnable (pooled reset)
     private Vector3 baseScale = Vector3.one;   // authored prefab scale, captured once
     private bool baseScaleCaptured;
 
@@ -22,7 +22,7 @@ public class projectileBehaviour : MonoBehaviour
     {
         lifeTimer = 0f;
         enemiesHit = 0;
-        hasBounced = false;
+        bounceCount = 0;
         spawnOrigin = transform.position;
 
         // Re-apply size EVERY spawn from the stored base, reading the CURRENT stat so
@@ -104,24 +104,33 @@ public class projectileBehaviour : MonoBehaviour
                 }
             }
 
-            enemiesHit++;
             int pierce = worldState.instance != null ? worldState.instance.Pierce() : 1;
-            if (enemiesHit > pierce)
-            {
-                // BOUNCE: on the FINAL enemy hit (pierce exhausted), redirect ONCE toward
-                // the nearest OTHER enemy instead of despawning. Range/lifetime expiry lives
-                // in Update() and never reaches here, so it can never bounce.
-                if (!hasBounced
-                    && playerInventory.instance != null
-                    && playerInventory.instance.Has(ItemId.Bounce)
-                    && TryBounce(other))
-                {
-                    hasBounced = true;
-                    enemiesHit = 0;   // grant fresh pierce budget for the post-bounce segment
-                    return;           // do NOT despawn — keep flying toward the new target
-                }
 
+            bool hasBounce = playerInventory.instance != null
+                             && playerInventory.instance.Has(ItemId.Bounce);
+
+            if (hasBounce)
+            {
+                // BOUNCE REPLACES PIERCE: the bullet never passes through. On each enemy
+                // hit it redirects to the nearest OTHER enemy, up to Pierce() bounces
+                // (upgrading Pierce raises the bounce budget). enemiesHit is intentionally
+                // NOT touched here, so pierce and bounce are mutually exclusive when owned.
+                // Range/lifetime expiry lives in Update() and never reaches here.
+                if (bounceCount < pierce && TryBounce(other))
+                {
+                    bounceCount++;
+                    return;   // keep flying toward the new target; do NOT despawn
+                }
                 if (objectPool.instance != null) objectPool.instance.ret(gameObject);
+            }
+            else
+            {
+                // PIERCE (unchanged for non-owners): pass through Pierce() enemies, then despawn.
+                enemiesHit++;
+                if (enemiesHit > pierce)
+                {
+                    if (objectPool.instance != null) objectPool.instance.ret(gameObject);
+                }
             }
         }
     }

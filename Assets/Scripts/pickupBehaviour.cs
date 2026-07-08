@@ -23,7 +23,11 @@ public class pickupBehaviour : MonoBehaviour
         if (worldState.instance == null) return;
         if (other.transform == worldState.instance.player || other.transform.root == worldState.instance.player)
         {
-            worldState.instance.addXP(xpValue + worldState.instance.XpBonus());
+            // xpValue is baked into the dropped prefab (XP1..XP4), which already encodes
+            // base + XpGain bonus via enemyHealth's prefab choice — do NOT add the flat XP
+            // bonus here or it double-counts. XpTimeMultiplier() applies the 7-min ×2 at collection.
+            int earned = Mathf.RoundToInt(xpValue * worldState.instance.XpTimeMultiplier());
+            worldState.instance.addXP(earned);
             objectPool.instance.ret(gameObject);
         }
     }

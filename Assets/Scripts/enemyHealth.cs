@@ -5,7 +5,8 @@ public class enemyHealth : MonoBehaviour
     [SerializeField] private int maxHp = 30;
     private int currentHp;
     private int scaledMaxHp;   // ADDED: base maxHp * time multiplier, recomputed each (re)spawn
-    [SerializeField] private GameObject xpPrefab;
+    [SerializeField] private GameObject[] xpPrefabsByValue;   // [0]=XP1(v1) .. [3]=XP4(v4); assign in Inspector
+    [SerializeField] private int baseDropValue = 1;           // per-drop worth before the XpGain bonus
     [SerializeField] private int xpDropCount = 1;
     [SerializeField] private int enemyDamage = 50;
     [SerializeField] private GameObject bloodPrefab;
@@ -116,12 +117,25 @@ public class enemyHealth : MonoBehaviour
             die();
     }
 
+    // Selects the XP prefab whose baked value matches the effective per-drop worth
+    // (baseDropValue + XpGain bonus). Higher upgrade level -> bigger prefab (XP4),
+    // so the drop visually reflects its worth. Clamped so a raised cap can't overflow.
+    GameObject PickXpPrefab()
+    {
+        if (xpPrefabsByValue == null || xpPrefabsByValue.Length == 0) return null;
+        int bonus = (worldState.instance != null) ? worldState.instance.XpBonus() : 0;
+        int value = baseDropValue + bonus;                       // 1..4 under current cap
+        int idx   = Mathf.Clamp(value - 1, 0, xpPrefabsByValue.Length - 1);
+        return xpPrefabsByValue[idx];
+    }
+
     void die()
     {
+        GameObject xp = PickXpPrefab();
         for (int i = 0; i < xpDropCount; i++)
         {
-            if (objectPool.instance != null && xpPrefab != null)
-                objectPool.instance.get(xpPrefab, transform.position, Quaternion.identity);
+            if (objectPool.instance != null && xp != null)
+                objectPool.instance.get(xp, transform.position, Quaternion.identity);
         }
 
         if (bloodPrefab != null && objectPool.instance != null)

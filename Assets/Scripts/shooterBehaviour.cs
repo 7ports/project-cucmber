@@ -18,8 +18,14 @@ public class shooterBehaviour : MonoBehaviour
     private float stateTimer;
     private Vector2 aimDir;
     private enemyHealth _health;                 // ADDED
+    private Rigidbody2D _rb;   // ADD
 
-    void Awake() { ConfigureTelegraph(); _health = GetComponent<enemyHealth>(); }   // CHANGED: added cache
+    void Awake()
+    {
+        ConfigureTelegraph();
+        _health = GetComponent<enemyHealth>();
+        _rb = GetComponent<Rigidbody2D>();          // ADD
+    }
 
     void OnEnable()
     {
@@ -29,17 +35,17 @@ public class shooterBehaviour : MonoBehaviour
         if (telegraph != null) telegraph.enabled = false;
     }
 
-    void Update()
+    void FixedUpdate()                               // CHANGED from Update()
     {
         if (worldState.instance == null || worldState.instance.player == null) return;
-        if (_health != null && _health.IsFrozen) return;       // ADDED: freeze pauses the state machine
+        if (_health != null && _health.IsFrozen) return;       // freeze pauses the state machine
         Vector3 playerPos = worldState.instance.player.position;
-        float dist = Vector2.Distance(transform.position, playerPos);
+        float dist = Vector2.Distance(_rb.position, playerPos);
 
         switch (state)
         {
             case State.Chase:
-                transform.position = Vector3.MoveTowards(transform.position, playerPos, moveSpeed * Time.deltaTime);
+                _rb.MovePosition(Vector2.MoveTowards(_rb.position, playerPos, moveSpeed * Time.fixedDeltaTime));
                 if (dist <= aimRange)
                 {
                     aimDir = ((Vector2)(playerPos - transform.position)).normalized;
@@ -50,7 +56,7 @@ public class shooterBehaviour : MonoBehaviour
 
             case State.Aim:
                 UpdateTelegraph(transform.position, transform.position + (Vector3)(aimDir * aimRange));
-                stateTimer += Time.deltaTime;
+                stateTimer += Time.fixedDeltaTime;
                 if (stateTimer >= aimDuration) state = State.Fire;
                 break;
 
@@ -61,8 +67,8 @@ public class shooterBehaviour : MonoBehaviour
                 break;
 
             case State.Cooldown:
-                transform.position = Vector3.MoveTowards(transform.position, playerPos, moveSpeed * Time.deltaTime);
-                stateTimer += Time.deltaTime;
+                _rb.MovePosition(Vector2.MoveTowards(_rb.position, playerPos, moveSpeed * Time.fixedDeltaTime));
+                stateTimer += Time.fixedDeltaTime;
                 if (stateTimer >= fireCooldown) state = State.Chase;
                 break;
         }

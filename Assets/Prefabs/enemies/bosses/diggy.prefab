@@ -316,7 +316,7 @@ PrefabInstance:
       objectReference: {fileID: 9060372013897832416, guid: 89c7dea22fb13174793c37dea5d776e5, type: 3}
     - target: {fileID: 9198072831249636405, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
       propertyPath: m_Name
-      value: boss
+      value: diggy
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6666092604276946308, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
@@ -372,10 +372,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::bossShooter
   patternType: 0
   enemyProjectilePrefab: {fileID: 7764204554120627737, guid: f4205754e59391d43a828cb04147752e, type: 3}
-  fireInterval: 3
+  fireInterval: 4
   bulletSpeed: 2
   bulletLifetime: 5
-  bulletsPerVolley: 10
+  bulletsPerVolley: 6
   spreadAngle: 60
   spinStep: 13
   randomizeOnEnable: 0

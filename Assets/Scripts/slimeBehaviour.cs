@@ -10,6 +10,9 @@ public class slimeBehaviour : MonoBehaviour
     [SerializeField] private float hopDistance = 1f;
 
     private bool isHopping = false;
+    private Rigidbody2D _rb;   // ADD
+
+    void Awake() { _rb = GetComponent<Rigidbody2D>(); }   // ADD
 
     // Update is called once per frame
     void Update()
@@ -37,11 +40,11 @@ public class slimeBehaviour : MonoBehaviour
 
         for (float t = 0; t <= 1; t += 0.1f)
         {
-            transform.position = Vector3.Lerp(initPosition, targetPosition, t);
-            yield return new WaitForEndOfFrame();
+            _rb.MovePosition(Vector3.Lerp(initPosition, targetPosition, t));  // CHANGED from transform.position =
+            yield return new WaitForFixedUpdate();                            // CHANGED: land on physics step
         }
 
-        transform.position = targetPosition;
+        _rb.MovePosition(targetPosition);                                    // CHANGED from transform.position =
         movementTimer = 0;
         isHopping = false;
     }

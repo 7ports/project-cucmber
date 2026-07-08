@@ -4,18 +4,21 @@ public class chaserBehaviour : MonoBehaviour
 {
     [SerializeField] private float chaseSpeed = 1.5f;
     private enemyHealth _health;                 // ADDED
+    private Rigidbody2D _rb;   // ADD
 
-    void Awake() { _health = GetComponent<enemyHealth>(); }   // ADDED
+    void Awake()
+    {
+        _health = GetComponent<enemyHealth>();
+        _rb = GetComponent<Rigidbody2D>();          // ADD
+    }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()                               // CHANGED from Update()
     {
         if (worldState.instance == null || worldState.instance.player == null) return;
-        if (_health != null && _health.IsFrozen) return;       // ADDED: freeze gate
+        if (_health != null && _health.IsFrozen) return;   // freeze gate preserved
 
-        transform.position = Vector3.MoveTowards(
-            transform.position,
-            worldState.instance.player.position,
-            chaseSpeed * Time.deltaTime);
+        Vector2 target = worldState.instance.player.position;
+        Vector2 next = Vector2.MoveTowards(_rb.position, target, chaseSpeed * Time.fixedDeltaTime);
+        _rb.MovePosition(next);                       // CHANGED from transform.position = ...
     }
 }

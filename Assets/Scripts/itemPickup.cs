@@ -8,7 +8,8 @@ public class itemPickup : MonoBehaviour
         if (other.transform == worldState.instance.player ||
             other.transform.root == worldState.instance.player)
         {
-            itemManager.GrantRandomItem();
+            if (itemChoiceMenuController.instance != null)
+                itemChoiceMenuController.instance.Offer(); // opens menu (or no-op if owns all)
             if (objectPool.instance != null) objectPool.instance.ret(gameObject);
         }
     }
