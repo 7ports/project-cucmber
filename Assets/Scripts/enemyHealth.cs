@@ -16,6 +16,14 @@ public class enemyHealth : MonoBehaviour
     private damageFlash flash;
     private bool _isBoss;   // ADDED: true only for the boss (has bossBehaviour); gates blood-on-hit
 
+    // --- Status effect state (Fire / Freeze). Reset every OnEnable (pool respawn). ---
+    private int   _burnStacks;          // 0..fireStackCap
+    private float _burnTimeRemaining;   // seconds left before burn fully expires
+    private float _burnTickAccum;       // accumulates toward one FireTickInterval
+    private float _freezeTimeRemaining; // seconds left immobilized
+
+    public bool IsFrozen => _freezeTimeRemaining > 0f;   // read by the three movers
+
     public int EnemyDamage => enemyDamage;
     public int MaxHp => scaledMaxHp;   // CHANGED: bars read the scaled max so fill proportions stay correct
     public int CurrentHp => currentHp;
@@ -31,6 +39,65 @@ public class enemyHealth : MonoBehaviour
         float mult = (worldState.instance != null) ? worldState.instance.EnemyHpTimeMultiplier() : 1f;
         scaledMaxHp = Mathf.Max(1, Mathf.RoundToInt(maxHp * mult));   // never mutate serialized maxHp
         currentHp = scaledMaxHp;
+
+        // ADDED: clear all status so a recycled enemy never starts burning/frozen.
+        _burnStacks = 0;
+        _burnTimeRemaining = 0f;
+        _burnTickAccum = 0f;
+        _freezeTimeRemaining = 0f;
+    }
+
+    void Update()
+    {
+        // Read config once; fall back to constants if worldState not ready.
+        float tickInterval = (worldState.instance != null) ? worldState.instance.fireTickInterval : 1f;
+        int   dpsPerStack  = (worldState.instance != null) ? worldState.instance.fireDpsPerStack : 10;
+
+        // --- Burning DoT ---
+        if (_burnStacks > 0 && _burnTimeRemaining > 0f)
+        {
+            _burnTimeRemaining -= Time.deltaTime;
+            _burnTickAccum     += Time.deltaTime;
+            while (_burnTickAccum >= tickInterval)
+            {
+                _burnTickAccum -= tickInterval;
+                takeDamage(dpsPerStack * _burnStacks);   // 10 dmg/sec PER STACK
+                if (currentHp <= 0) return;              // die() already recycled us
+            }
+            if (_burnTimeRemaining <= 0f)                // burn expired
+            {
+                _burnStacks = 0;
+                _burnTickAccum = 0f;
+            }
+        }
+
+        // --- Freeze countdown ---
+        if (_freezeTimeRemaining > 0f)
+            _freezeTimeRemaining -= Time.deltaTime;
+    }
+
+    /// <summary>
+    /// CONTRACT (called by the projectile-hit site when the player owns ItemId.Fire).
+    /// Adds one burning stack (capped) and refreshes burn duration.
+    /// </summary>
+    public void ApplyFire()
+    {
+        int cap = (worldState.instance != null) ? worldState.instance.fireStackCap : 3;
+        _burnStacks = Mathf.Min(_burnStacks + 1, cap);
+        _burnTimeRemaining = (worldState.instance != null) ? worldState.instance.fireBurnDuration : 3f;
+    }
+
+    /// <summary>
+    /// CONTRACT (called by the projectile-hit site AFTER its freeze-chance roll succeeds
+    /// and the player owns ItemId.Freeze). Immobilizes the enemy for `seconds`.
+    /// Passing seconds &lt;= 0 uses the configured default duration.
+    /// </summary>
+    public void ApplyFreeze(float seconds)
+    {
+        if (seconds <= 0f)
+            seconds = (worldState.instance != null) ? worldState.instance.freezeDefaultDuration : 2f;
+        // Refresh-to-longest: a new freeze never shortens an active one.
+        _freezeTimeRemaining = Mathf.Max(_freezeTimeRemaining, seconds);
     }
 
     public void takeDamage(int amount)

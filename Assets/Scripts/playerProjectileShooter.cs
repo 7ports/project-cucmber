@@ -29,18 +29,42 @@ public class playerProjectileShooter : MonoBehaviour
 
             if (nearest != null)
             {
-                GameObject shot = objectPool.instance.get(projectile, transform.position, transform.rotation);
-                Rigidbody2D rb = shot.GetComponent<Rigidbody2D>();
-                if (rb != null)
+                Vector2 dir = ((Vector2)nearest.transform.position - myPos).normalized;
+
+                bool cone = playerInventory.instance != null && playerInventory.instance.Has(ItemId.Cone);
+                if (cone)
                 {
-                    Vector2 dir = ((Vector2)nearest.transform.position - myPos).normalized;
-                    rb.linearVelocity = dir * projectileSpeed;
+                    float half = worldState.instance != null ? worldState.instance.coneHalfAngleDeg : 15f;
+                    FireOne(RotateVec(dir, -half));
+                    FireOne(dir);
+                    FireOne(RotateVec(dir, +half));
                 }
+                else
+                {
+                    FireOne(dir);
+                }
+
                 // Reset cooldown only after a shot actually fires so the cadence repeats.
                 shootTimer = 0;
             }
             // Deliberate choice: when no enemy exists we do NOT reset shootTimer, so the
             // shooter fires immediately the moment an enemy appears instead of waiting a full cooldown.
         }
+    }
+
+    // Spawns one player bullet aimed along `dir`. Same spawn+aim as the original inline code.
+    private void FireOne(Vector2 dir)
+    {
+        GameObject shot = objectPool.instance.get(projectile, transform.position, transform.rotation);
+        Rigidbody2D rb = shot.GetComponent<Rigidbody2D>();
+        if (rb != null) rb.linearVelocity = dir * projectileSpeed;
+    }
+
+    // Rotate a 2D vector by `deg` degrees (CCW positive).
+    private static Vector2 RotateVec(Vector2 v, float deg)
+    {
+        float r = deg * Mathf.Deg2Rad;
+        float c = Mathf.Cos(r), s = Mathf.Sin(r);
+        return new Vector2(v.x * c - v.y * s, v.x * s + v.y * c);
     }
 }

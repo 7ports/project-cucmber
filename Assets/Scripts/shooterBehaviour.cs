@@ -17,8 +17,9 @@ public class shooterBehaviour : MonoBehaviour
     private State state;
     private float stateTimer;
     private Vector2 aimDir;
+    private enemyHealth _health;                 // ADDED
 
-    void Awake() { ConfigureTelegraph(); }
+    void Awake() { ConfigureTelegraph(); _health = GetComponent<enemyHealth>(); }   // CHANGED: added cache
 
     void OnEnable()
     {
@@ -31,6 +32,7 @@ public class shooterBehaviour : MonoBehaviour
     void Update()
     {
         if (worldState.instance == null || worldState.instance.player == null) return;
+        if (_health != null && _health.IsFrozen) return;       // ADDED: freeze pauses the state machine
         Vector3 playerPos = worldState.instance.player.position;
         float dist = Vector2.Distance(transform.position, playerPos);
 

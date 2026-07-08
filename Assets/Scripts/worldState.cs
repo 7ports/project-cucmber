@@ -30,6 +30,21 @@ public class worldState
 
     public int pierceBase = 1;   // enemies a bullet passes through before despawning; 1 = "pierce through 1 enemy" default
 
+    // --- Enemy status effects (Fire DoT / Freeze). New (post-x10) damage scale. ---
+    public int   fireDpsPerStack   = 10;    // damage per second PER burning stack
+    public int   fireStackCap      = 3;     // max simultaneous burning stacks
+    public float fireTickInterval  = 1f;    // seconds between burn ticks (1s -> dmg/tick == dps)
+    public float fireBurnDuration  = 3f;    // seconds a burn lasts; refreshed by each ApplyFire()
+    public float freezeDefaultDuration = 2f;// fallback freeze seconds when hit site passes <= 0
+
+    // --- Item projectile/weapon mods (Cone / Bounce / Explode / Freeze) ---
+    // Single-home tunables read by playerProjectileShooter + projectileBehaviour at the hit/spawn site.
+    public float coneHalfAngleDeg     = 15f;   // Cone: ± spread of the 3-shot cone
+    public float bounceSearchRadius   = 6f;    // Bounce: OverlapCircle radius to find next target
+    public float explosionRadiusFactor = 1f;   // Explode: AoE radius = Range() * this
+    public float freezeChance         = 0.2f;  // Freeze: per-hit probability to freeze
+    public float freezeItemDuration   = 2f;    // Freeze: seconds passed to ApplyFreeze
+
     // Flat bonus XP added to EVERY pickup's xpValue at collection time.
     // Base 0 (behavior unchanged); each XP-Gain upgrade adds +xpBonusStep; hard cap 3.
     public int xpBonusPerPickup = 0;

@@ -15,4 +15,17 @@ public class playerInventory : MonoBehaviour
     {
         items.Add(item);
     }
+
+    /// <summary>
+    /// Returns true if the player currently owns the given item.
+    /// itemId must be one of the ItemId.* constants (e.g. ItemId.Fire).
+    /// This is THE ownership query weapon/projectile code calls.
+    /// </summary>
+    public bool Has(string itemId)
+    {
+        return items.Contains(itemId);
+    }
+
+    /// <summary>Number of distinct upgrade items currently owned (used by the granter for the all-owned check).</summary>
+    public int OwnedCount => items.Count;
 }

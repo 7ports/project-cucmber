@@ -8,6 +8,7 @@ public class projectileBehaviour : MonoBehaviour
     private float lifeTimer;
     private Vector3 spawnOrigin;
     private int enemiesHit;   // per-shot pierce counter; reset in OnEnable (pooled reset)
+    private bool hasBounced;  // one-time bounce guard; reset in OnEnable (pooled reset)
     private Vector3 baseScale = Vector3.one;   // authored prefab scale, captured once
     private bool baseScaleCaptured;
 
@@ -21,6 +22,7 @@ public class projectileBehaviour : MonoBehaviour
     {
         lifeTimer = 0f;
         enemiesHit = 0;
+        hasBounced = false;
         spawnOrigin = transform.position;
 
         // Re-apply size EVERY spawn from the stored base, reading the CURRENT stat so
@@ -68,12 +70,90 @@ public class projectileBehaviour : MonoBehaviour
                 eh.takeDamage(dmg);
             }
 
+            // STATUS: apply on-hit effects to the enemy just struck (damage already applied).
+            if (eh != null && playerInventory.instance != null)
+            {
+                if (playerInventory.instance.Has(ItemId.Fire))
+                    eh.ApplyFire();
+
+                float freezeChance = worldState.instance != null ? worldState.instance.freezeChance : 0.2f;
+                if (playerInventory.instance.Has(ItemId.Freeze) && Random.value < freezeChance)
+                {
+                    float freezeDur = worldState.instance != null ? worldState.instance.freezeItemDuration : 2f;
+                    eh.ApplyFreeze(freezeDur);
+                }
+            }
+
+            // EXPLODE: range-scaled AoE dealing 1/3 attack damage to every enemy nearby.
+            if (playerInventory.instance != null && playerInventory.instance.Has(ItemId.Explode))
+            {
+                float baseDmg = worldState.instance != null ? worldState.instance.AttackDamage() : 3f;
+                int splash = Mathf.FloorToInt(baseDmg / 3f);   // the 1/3-damage item; relative, x10-safe
+                if (splash > 0)
+                {
+                    float range = worldState.instance != null ? worldState.instance.Range() : 2.5f;
+                    float factor = worldState.instance != null ? worldState.instance.explosionRadiusFactor : 1f;
+                    float radius = range * factor;
+                    Collider2D[] near = Physics2D.OverlapCircleAll(transform.position, radius);
+                    foreach (Collider2D c in near)
+                    {
+                        if (c == null || !c.CompareTag("Enemy")) continue;
+                        enemyHealth splashEh = c.GetComponent<enemyHealth>();
+                        if (splashEh != null) splashEh.takeDamage(splash);   // includes the directly-hit enemy (extra 1/3)
+                    }
+                }
+            }
+
             enemiesHit++;
             int pierce = worldState.instance != null ? worldState.instance.Pierce() : 1;
             if (enemiesHit > pierce)
             {
+                // BOUNCE: on the FINAL enemy hit (pierce exhausted), redirect ONCE toward
+                // the nearest OTHER enemy instead of despawning. Range/lifetime expiry lives
+                // in Update() and never reaches here, so it can never bounce.
+                if (!hasBounced
+                    && playerInventory.instance != null
+                    && playerInventory.instance.Has(ItemId.Bounce)
+                    && TryBounce(other))
+                {
+                    hasBounced = true;
+                    enemiesHit = 0;   // grant fresh pierce budget for the post-bounce segment
+                    return;           // do NOT despawn — keep flying toward the new target
+                }
+
                 if (objectPool.instance != null) objectPool.instance.ret(gameObject);
             }
         }
+    }
+
+    // Finds the nearest enemy other than `justHit` within bounceSearchRadius and redirects
+    // this projectile toward it, preserving current speed. Returns false if none found.
+    private bool TryBounce(Collider2D justHit)
+    {
+        Vector2 pos = transform.position;
+        float searchRadius = worldState.instance != null ? worldState.instance.bounceSearchRadius : 6f;
+        Collider2D[] hits = Physics2D.OverlapCircleAll(pos, searchRadius);
+        Transform best = null;
+        float bestSqr = Mathf.Infinity;
+        foreach (Collider2D c in hits)
+        {
+            if (c == null || c == justHit) continue;
+            if (!c.CompareTag("Enemy")) continue;
+            float sqr = ((Vector2)c.transform.position - pos).sqrMagnitude;
+            if (sqr < bestSqr) { bestSqr = sqr; best = c.transform; }
+        }
+        if (best == null) return false;
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb == null) return false;
+        float speed = rb.linearVelocity.magnitude;
+        if (speed <= 0.001f) speed = 10f;   // fallback if velocity was zeroed
+        Vector2 dir = ((Vector2)best.position - pos).normalized;
+        rb.linearVelocity = dir * speed;
+
+        // Re-anchor the range odometer so the post-bounce leg gets a fresh Range() budget
+        // (otherwise the bullet may instantly exceed traveled>=limit and despawn next frame).
+        spawnOrigin = transform.position;
+        return true;
     }
 }

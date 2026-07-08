@@ -5,10 +5,14 @@ public class bossBehaviour : MonoBehaviour
     [SerializeField] private float chaseSpeed = 0.7f;        // ~0.7x the chaser's real speed of 1.0
     [SerializeField] private float leashDistance = 14f;      // world units
     [SerializeField] private float leashOffscreenPad = 1f;   // units past the visible edge
+    private enemyHealth _health;                 // ADDED
+
+    void Awake() { _health = GetComponent<enemyHealth>(); }   // ADDED
 
     void Update()
     {
         if (worldState.instance == null || worldState.instance.player == null) return;
+        if (_health != null && _health.IsFrozen) return;       // ADDED: one gate stops leash AND chase
         Vector3 target = worldState.instance.player.position;
 
         if ((transform.position - target).sqrMagnitude > leashDistance * leashDistance)
