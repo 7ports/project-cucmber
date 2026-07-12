@@ -104,10 +104,8 @@ public class PlayerMovement : MonoBehaviour
 | com.unity.2d.aseprite | 4.0.1 | Aseprite importer |
 | com.unity.2d.psdimporter | 13.0.2 | PSD file importer |
 | com.unity.cinemachine | 3.1.7 | Camera follow system |
-| com.unity.timeline | 1.8.12 | Timeline/sequencing |
 | com.unity.ugui | 2.0.0 | UI Toolkit / Canvas UI |
-| com.coplaydev.coplay | git (beta) | CoPlay MCP integration |
-| com.coplaydev.unity-mcp | git (main) | Unity MCP bridge for AI agents |
+| com.unity.2d.tooling | 2.0.1 | 2D project tools and extensions |
 
 > **No DOTween** is in the manifest — do not add DOTween calls. Use Unity coroutines or Cinemachine for any camera/value animation needs.
 

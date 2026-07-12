@@ -12,7 +12,7 @@ public class worldState
     public float moveSpeedMult = 1f;
     public float fireRateBase = 1.25f;   // = 1 / (attackSpeed 1 * baseAttackSpeed 0.8)
     public float fireRateMult = 1f;
-    public float rangeBase = 2.5f;
+    public float rangeBase = 3f;
     public float rangeMult = 1f;
     public float maxHPBase = 1000f;
     public float maxHPMult = 1f;
@@ -88,17 +88,17 @@ public class worldState
     public float moveSpeedFlatStep    = 0.2f;
     public float fireRateFlatStep     = 0.2f;
     public float rangeFlatStep        = 0.5f;
-    public float maxHPFlatStep        = 500f;
-    public float defenseFlatStep      = 10f;
+    public float maxHPFlatStep        = 200f;
+    public float defenseFlatStep      = 5f;
     public float regenFlatStep        = 2f;
-    public float pickupRadiusFlatStep = 0.5f;
+    public float pickupRadiusFlatStep = 1f;
     public float projectileSizeFlatStep = 0.2f;   // +0.2 size per Flat upgrade
     public int   pierceFlatStep       = 1;   // flat-only Pierce upgrade step
     public int   xpBonusStep          = 1;   // flat-only XP-Gain upgrade step
     public const int xpBonusCap        = 3;  // max total bonus (base 1 pickup -> 4 XP)
 
     // Percent step, shared across all stats. 0.1 = +10% (mult factor = 1 + step).
-    public float levelUpPercentStep = 0.1f;
+    public float levelUpPercentStep = 0.2f;
 
     public float AttackDamage() => attackDamageBase * attackDamageMult;
     public float MoveSpeed() => moveSpeedBase * moveSpeedMult;
@@ -241,7 +241,7 @@ public class worldState
             currentXP -= lvlUpXP;
             level++;
             currentSpawnInterval = Mathf.Max(minSpawnInterval, currentSpawnInterval - spawnIntervalCoefficient * (1f / level));
-            lvlUpXP = Mathf.RoundToInt(lvlUpXP * 1.5f);   // each level costs more
+            lvlUpXP = Mathf.RoundToInt(lvlUpXP * 1.3f);   // each level costs more
             if (OnLevelUp != null) OnLevelUp();
         }
     }
