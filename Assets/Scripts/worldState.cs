@@ -30,6 +30,12 @@ public class worldState
 
     public int pierceBase = 1;   // enemies a bullet passes through before despawning; 1 = "pierce through 1 enemy" default
 
+    // --- Critical hit stats (base+mult). critChanceBase 0 -> no crits until an item/upgrade raises it (behavior-neutral). ---
+    public float critChanceBase = 0f;
+    public float critChanceMult = 1f;
+    public float critDamageBase = 2.0f;   // crit deals 2x by default
+    public float critDamageMult = 1f;
+
     // --- Enemy status effects (Fire DoT / Freeze). New (post-x10) damage scale. ---
     public int   fireDpsPerStack   = 10;    // damage per second PER burning stack
     public int   fireStackCap      = 3;     // max simultaneous burning stacks
@@ -44,6 +50,30 @@ public class worldState
     public float explosionRadiusFactor = 1f;   // Explode: AoE radius = Range() * this
     public float freezeChance         = 0.2f;  // Freeze: per-hit probability to freeze
     public float freezeItemDuration   = 2f;    // Freeze: seconds passed to ApplyFreeze
+
+    // --- Phase 2 item weapon stats (base+mult, mirroring existing style). Registered but inert until their components exist. ---
+    // Damage Aura: constant DPS in a radius around the player.
+    public float auraDpsBase        = 1f;
+    public float auraDpsMult         = 1f;
+    public float auraRadiusBase     = 1.5f;
+    public float auraRadiusMult      = 1f;
+    public float auraTickInterval    = 0.25f;  // seconds between aura damage ticks
+    // Attack Bot: a bot dealing a fraction of attack damage on an interval.
+    public float robotDamageFactor   = 0.5f;   // bot damage = AttackDamage() * this
+    public float robotSpeedFactor    = 1f;     // bot move/orbit speed multiplier
+    public float robotHitInterval    = 0.5f;   // seconds between bot hits
+    // Searing Trail: damaging trail segments left behind the player.
+    public float trailDpsBase        = 1f;
+    public float trailDpsMult         = 1f;
+    public float trailSegmentLifetime = 2f;    // seconds a trail segment persists
+    public float trailEmitDistance    = 0.5f;  // player travel distance between emitted segments
+    public float trailTickInterval    = 0.25f; // seconds between trail damage ticks
+    // Grenadier: periodically lobs a grenade that explodes for AoE damage.
+    public float grenadeInterval     = 2f;     // seconds between grenade throws
+    public float grenadeDamageBase   = 1f;
+    public float grenadeDamageMult    = 1f;
+    public float grenadeRadiusBase   = 1.5f;
+    public float grenadeRadiusMult    = 1f;
 
     // Flat bonus XP added to EVERY pickup's xpValue at collection time.
     // Base 0 (behavior unchanged); each XP-Gain upgrade adds +xpBonusStep; hard cap 3.
@@ -82,6 +112,25 @@ public class worldState
     public float ProjectileSize() => projectileSizeBase * projectileSizeMult;
     public int Pierce() => pierceBase;
     public int XpBonus() => xpBonusPerPickup;
+
+    // --- Critical hit getters + shared damage roll ---
+    public float CritChance() => Mathf.Clamp01(critChanceBase * critChanceMult);
+    public float CritMultiplier() => critDamageBase * critDamageMult;
+
+    // --- Phase 2 item weapon getters (effective = base * mult) ---
+    public float AuraDps() => auraDpsBase * auraDpsMult;
+    public float AuraRadius() => auraRadiusBase * auraRadiusMult;
+    public float TrailDps() => trailDpsBase * trailDpsMult;
+    public float GrenadeDamage() => grenadeDamageBase * grenadeDamageMult;
+    public float GrenadeRadius() => grenadeRadiusBase * grenadeRadiusMult;
+
+    // Single shared damage roll: rounds to int, applies a crit roll (crit base 0 -> never crits).
+    public int RollDamage(float baseDamage, out bool isCrit)
+    {
+        isCrit = Random.value < CritChance();
+        float d = isCrit ? baseDamage * CritMultiplier() : baseDamage;
+        return Mathf.RoundToInt(d);
+    }
 
     public int lvlUpXP = 4, currentXP = 0;
     public int level = 1;

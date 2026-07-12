@@ -36,6 +36,10 @@ public class itemChoiceMenuController : MonoBehaviour
             case ItemId.Fire:    return "Burning Rounds";
             case ItemId.Explode: return "Explosive Rounds";
             case ItemId.Freeze:  return "Frostbite";
+            case ItemId.Aura:    return "Damage Aura";
+            case ItemId.Robot:   return "Attack Bot";
+            case ItemId.Trail:   return "Searing Trail";
+            case ItemId.Grenade: return "Grenadier";
             default:             return id;
         }
     }

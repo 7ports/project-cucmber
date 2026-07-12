@@ -8,9 +8,13 @@ public static class ItemId
     public const string Fire    = "FIRE";    // burning DoT, stacks up to 3, 10 dmg/sec
     public const string Explode = "EXPLODE"; // range-scaled explosion for 1/3 attack damage
     public const string Freeze  = "FREEZE";  // chance to freeze enemies in place
+    public const string Aura    = "AURA";    // constant-damage aura around the player
+    public const string Robot   = "ROBOT";   // attack bot dealing a fraction of attack damage
+    public const string Trail   = "TRAIL";   // searing damage trail left behind the player
+    public const string Grenade = "GRENADE"; // periodically lobs an AoE grenade
 
     /// <summary>The full grantable pool, in declaration order.</summary>
-    public static readonly string[] All = { Cone, Bounce, Fire, Explode, Freeze };
+    public static readonly string[] All = { Cone, Bounce, Fire, Explode, Freeze, Aura, Robot, Trail, Grenade };
 }
 
 public static class itemManager

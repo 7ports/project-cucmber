@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class projectileBehaviour : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class projectileBehaviour : MonoBehaviour
     private Vector3 spawnOrigin;
     private int enemiesHit;   // per-shot pierce counter; reset in OnEnable (pooled reset)
     private int bounceCount;  // Bounce: bounces used this shot; budget = Pierce(); reset in OnEnable (pooled reset)
+    private readonly HashSet<int> hitEnemyIds = new HashSet<int>();  // distinct enemies struck this shot; de-dups enemies carrying multiple colliders; reset in OnEnable (pooled reset)
     private Vector3 baseScale = Vector3.one;   // authored prefab scale, captured once
     private bool baseScaleCaptured;
 
@@ -23,6 +25,7 @@ public class projectileBehaviour : MonoBehaviour
         lifeTimer = 0f;
         enemiesHit = 0;
         bounceCount = 0;
+        hitEnemyIds.Clear();
         spawnOrigin = transform.position;
 
         // Re-apply size EVERY spawn from the stored base, reading the CURRENT stat so
@@ -63,10 +66,22 @@ public class projectileBehaviour : MonoBehaviour
 
         if (other.CompareTag("Enemy"))
         {
+            // De-dup: an enemy may carry multiple colliders (a solid body collider plus a
+            // damage trigger); OnTriggerEnter2D fires once per collider. Resolve a STABLE
+            // per-enemy identity and skip any collider whose enemy was already processed
+            // this shot, so damage AND the pierce/bounce counters advance at most once per
+            // distinct enemy, no matter how many colliders it has.
+            int enemyId = other.attachedRigidbody != null
+                ? other.attachedRigidbody.gameObject.GetInstanceID()
+                : other.transform.root.gameObject.GetInstanceID();
+            if (!hitEnemyIds.Add(enemyId)) return;
+
             enemyHealth eh = other.GetComponent<enemyHealth>();
             if (eh != null)
             {
-                int dmg = worldState.instance != null ? Mathf.RoundToInt(worldState.instance.AttackDamage()) : 1;
+                int dmg = worldState.instance != null
+                    ? worldState.instance.RollDamage(worldState.instance.AttackDamage(), out bool crit)
+                    : 1;
                 eh.takeDamage(dmg);
             }
 
@@ -94,13 +109,7 @@ public class projectileBehaviour : MonoBehaviour
                     float range = worldState.instance != null ? worldState.instance.Range() : 2.5f;
                     float factor = worldState.instance != null ? worldState.instance.explosionRadiusFactor : 1f;
                     float radius = range * factor;
-                    Collider2D[] near = Physics2D.OverlapCircleAll(transform.position, radius);
-                    foreach (Collider2D c in near)
-                    {
-                        if (c == null || !c.CompareTag("Enemy")) continue;
-                        enemyHealth splashEh = c.GetComponent<enemyHealth>();
-                        if (splashEh != null) splashEh.takeDamage(splash);   // includes the directly-hit enemy (extra 1/3)
-                    }
+                    explosionUtil.Detonate(transform.position, radius, splash);
                 }
             }
 

@@ -6,6 +6,9 @@ public class playerInventory : MonoBehaviour
 
     public System.Collections.Generic.List<string> items = new System.Collections.Generic.List<string>();
 
+    /// <summary>Fired AFTER an item id is added to the inventory (used by item weapon components to self-register).</summary>
+    public event System.Action<string> OnItemAdded;
+
     void Awake()
     {
         instance = this;
@@ -14,6 +17,7 @@ public class playerInventory : MonoBehaviour
     public void Add(string item)
     {
         items.Add(item);
+        OnItemAdded?.Invoke(item);
     }
 
     /// <summary>
