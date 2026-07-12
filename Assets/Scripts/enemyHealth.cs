@@ -137,6 +137,7 @@ public class enemyHealth : MonoBehaviour
     public void takeDamage(int amount, bool isCrit = false)
     {
         currentHp -= amount;
+        runStats.TotalDamage += amount;   // run-scoped telemetry: all damage flows through here
         if (_isBoss && bloodPrefab != null && objectPool.instance != null)   // ADDED: boss-only blood on each hit
             objectPool.instance.get(bloodPrefab, transform.position, Quaternion.identity);
         if (flash != null) flash.Flash();
@@ -164,6 +165,7 @@ public class enemyHealth : MonoBehaviour
 
     void die()
     {
+        runStats.EnemiesKilled++;   // run-scoped telemetry: single death path
         GameObject xp = PickXpPrefab();
         for (int i = 0; i < xpDropCount; i++)
         {
