@@ -15,6 +15,9 @@ public class enemyHealth : MonoBehaviour
     [SerializeField] private Vector3 dmgTextOffset = new Vector3(0f, 0.5f, 0f);
     [SerializeField] private GameObject deathDropPrefab;   // optional; only the boss sets this
 
+    [SerializeField] private ParticleSystem _burnFx;    // placeholder burn VFX child; on while _burnStacks>0
+    [SerializeField] private ParticleSystem _frostFx;   // placeholder freeze VFX child; on while IsFrozen
+
     private damageFlash flash;
     private bool _isBoss;   // ADDED: true only for the boss (has bossBehaviour); gates blood-on-hit
 
@@ -50,6 +53,10 @@ public class enemyHealth : MonoBehaviour
         _burnTimeRemaining = 0f;
         _burnTickAccum = 0f;
         _freezeTimeRemaining = 0f;
+
+        // ADDED: reset placeholder status VFX so a recycled enemy shows none.
+        SetStatusFx(_burnFx, false);
+        SetStatusFx(_frostFx, false);
     }
 
     void Update()
@@ -73,12 +80,17 @@ public class enemyHealth : MonoBehaviour
             {
                 _burnStacks = 0;
                 _burnTickAccum = 0f;
+                SetStatusFx(_burnFx, false);
             }
         }
 
         // --- Freeze countdown ---
         if (_freezeTimeRemaining > 0f)
+        {
             _freezeTimeRemaining -= Time.deltaTime;
+            if (_freezeTimeRemaining <= 0f)
+                SetStatusFx(_frostFx, false);
+        }
     }
 
     /// <summary>
@@ -90,6 +102,7 @@ public class enemyHealth : MonoBehaviour
         int cap = (worldState.instance != null) ? worldState.instance.fireStackCap : 3;
         _burnStacks = Mathf.Min(_burnStacks + 1, cap);
         _burnTimeRemaining = (worldState.instance != null) ? worldState.instance.fireBurnDuration : 3f;
+        SetStatusFx(_burnFx, true);
     }
 
     /// <summary>
@@ -103,6 +116,22 @@ public class enemyHealth : MonoBehaviour
             seconds = (worldState.instance != null) ? worldState.instance.freezeDefaultDuration : 2f;
         // Refresh-to-longest: a new freeze never shortens an active one.
         _freezeTimeRemaining = Mathf.Max(_freezeTimeRemaining, seconds);
+        SetStatusFx(_frostFx, true);
+    }
+
+    // Toggle a placeholder status particle system on/off, guarding for an unwired reference.
+    private void SetStatusFx(ParticleSystem ps, bool on)
+    {
+        if (ps == null) return;
+        if (on)
+        {
+            if (!ps.isPlaying) ps.Play();
+        }
+        else if (ps.isPlaying)
+        {
+            ps.Stop();
+            ps.Clear();
+        }
     }
 
     public void takeDamage(int amount, bool isCrit = false)
