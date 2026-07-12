@@ -90,8 +90,20 @@ public class worldState
 
     public float baseSpawnInterval = 1.75f;
     public float spawnIntervalCoefficient = 0.3f;
-    public float minSpawnInterval = 0.6f;
+    public float minSpawnInterval = 0.3f;
     public float currentSpawnInterval = 1.75f;
+
+    // --- Time-based SPAWN VOLUME ramp (seconds of elapsed run time) ---
+    // Shrinks the consumed spawn interval as the run goes on so enemy volume
+    // ramps with TIME (not level), harder than the level-based currentSpawnInterval curve.
+    public float spawnIntervalTimeCoefficient = 0.05f;   // -5% of base interval per elapsed minute
+    public float spawnIntervalTimeFloor       = 0.1f;    // never shrink below 10% of the base interval
+
+    // --- Time-based BOSS scaling coefficients (per elapsed minute) ---
+    public float bossFireRateTimeCoefficient    = 0.15f; // +15% fire rate per minute (bosses fire faster)
+    public float bossBulletSpeedTimeCoefficient = 0.10f; // +10% bullet speed per minute
+    public float bossVolleyBonusPerMinute       = 0.5f;  // +1 extra bullet every 2 minutes (floored)
+    public float bossStatTimeCoefficient        = 0.10f; // +10% boss HP & damage per minute
 
     // --- Time-based TYPE progression (seconds of elapsed run time) ---
     public float shooterStartTime  = 120f;   // reference: shooters begin at 2:00 (set on the shooter SpawnEntry)
@@ -104,8 +116,8 @@ public class worldState
     // --- Time-based ENEMY HP scaling (seconds of elapsed run time) ---
     // Every hpScaleInterval seconds, NEWLY-spawned enemies (and bosses) get
     // +hpScalePerTier of their BASE hp. ADDITIVE: mult = 1 + perTier * tier.
-    public float hpScaleInterval = 420f;   // 7 minutes per tier
-    public float hpScalePerTier  = 0.5f;   // +50% of base per tier
+    public float hpScaleInterval = 300f;   // 7 minutes per tier
+    public float hpScalePerTier  = 1f;   // +50% of base per tier
 
     // Multiplier for HP applied AT SPAWN, from elapsed run time.
     // Uses Time.timeSinceLevelLoad — the run-time source already adopted by
@@ -123,7 +135,7 @@ public class worldState
     // After xpDoubleThreshold seconds, ALL earned XP is doubled (single ×2, permanent).
     // Separate field from hpScaleInterval so it can be retuned independently, default
     // equal (420 = 7 min) so it fires with the same milestone as EnemyHpTimeMultiplier().
-    public float xpDoubleThreshold = 420f;   // 7 minutes
+    public float xpDoubleThreshold = 300f;   // 7 minutes
     public float xpDoubleFactor     = 2f;    // the "double"
 
     // Multiplier applied to earned XP at the grant site. Uses Time.timeSinceLevelLoad,
@@ -132,6 +144,42 @@ public class worldState
     {
         if (xpDoubleThreshold <= 0f) return 1f;                 // guard/disable
         return (Time.timeSinceLevelLoad >= xpDoubleThreshold) ? xpDoubleFactor : 1f;
+    }
+
+    // --- Time-based BOSS scaling getters (pull-based; Time.timeSinceLevelLoad -> minutes) ---
+    // Bosses fire faster, throw faster & more bullets, and hit harder the longer the run lasts.
+    // Mirror EnemyHpTimeMultiplier(): additive ramp, guarded, always >= 1.
+    public float BossFireRateTimeMultiplier()
+    {
+        float minutes = Mathf.Max(0f, Time.timeSinceLevelLoad / 60f);
+        return 1f + bossFireRateTimeCoefficient * minutes;
+    }
+
+    public float BossBulletSpeedTimeMultiplier()
+    {
+        float minutes = Mathf.Max(0f, Time.timeSinceLevelLoad / 60f);
+        return 1f + bossBulletSpeedTimeCoefficient * minutes;
+    }
+
+    public int BossVolleyBonus()
+    {
+        float minutes = Mathf.Max(0f, Time.timeSinceLevelLoad / 60f);
+        return Mathf.FloorToInt(bossVolleyBonusPerMinute * minutes);
+    }
+
+    public float BossStatTimeMultiplier()
+    {
+        float minutes = Mathf.Max(0f, Time.timeSinceLevelLoad / 60f);
+        return 1f + bossStatTimeCoefficient * minutes;
+    }
+
+    // Multiplier applied to the consumed spawn interval so enemy VOLUME ramps with
+    // elapsed time. Shrinks over time (more enemies), floored so spawns stay sane.
+    public float SpawnIntervalTimeMultiplier()
+    {
+        float minutes = Mathf.Max(0f, Time.timeSinceLevelLoad / 60f);
+        float mult = 1f - spawnIntervalTimeCoefficient * minutes;
+        return Mathf.Max(spawnIntervalTimeFloor, mult);
     }
 
     public static event System.Action OnLevelUp;

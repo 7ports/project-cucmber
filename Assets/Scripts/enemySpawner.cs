@@ -27,7 +27,9 @@ public class enemySpawner : MonoBehaviour
         if (cam == null) return;
 
         spawnTimer += Time.deltaTime;
-        float interval = (worldState.instance != null) ? worldState.instance.currentSpawnInterval : spawnInterval;
+        float interval = (worldState.instance != null)
+            ? worldState.instance.currentSpawnInterval * worldState.instance.SpawnIntervalTimeMultiplier()
+            : spawnInterval;
         if (spawnTimer >= interval)
         {
             spawnTimer = 0f;

@@ -5,6 +5,7 @@ public class enemyHealth : MonoBehaviour
     [SerializeField] private int maxHp = 30;
     private int currentHp;
     private int scaledMaxHp;   // ADDED: base maxHp * time multiplier, recomputed each (re)spawn
+    private int scaledEnemyDamage;   // ADDED: enemyDamage * boss time multiplier, recomputed each (re)spawn
     [SerializeField] private GameObject[] xpPrefabsByValue;   // [0]=XP1(v1) .. [3]=XP4(v4); assign in Inspector
     [SerializeField] private int baseDropValue = 1;           // per-drop worth before the XpGain bonus
     [SerializeField] private int xpDropCount = 1;
@@ -25,7 +26,7 @@ public class enemyHealth : MonoBehaviour
 
     public bool IsFrozen => _freezeTimeRemaining > 0f;   // read by the three movers
 
-    public int EnemyDamage => enemyDamage;
+    public int EnemyDamage => scaledEnemyDamage;   // CHANGED: bosses scale damage over time
     public int MaxHp => scaledMaxHp;   // CHANGED: bars read the scaled max so fill proportions stay correct
     public int CurrentHp => currentHp;
 
@@ -38,8 +39,11 @@ public class enemyHealth : MonoBehaviour
     void OnEnable()
     {
         float mult = (worldState.instance != null) ? worldState.instance.EnemyHpTimeMultiplier() : 1f;
-        scaledMaxHp = Mathf.Max(1, Mathf.RoundToInt(maxHp * mult));   // never mutate serialized maxHp
+        // Bosses additionally scale HP AND damage with elapsed run time so they get stronger, not just tankier.
+        float bossMult = (_isBoss && worldState.instance != null) ? worldState.instance.BossStatTimeMultiplier() : 1f;
+        scaledMaxHp = Mathf.Max(1, Mathf.RoundToInt(maxHp * mult * bossMult));   // never mutate serialized maxHp
         currentHp = scaledMaxHp;
+        scaledEnemyDamage = Mathf.Max(1, Mathf.RoundToInt(enemyDamage * bossMult));   // never mutate serialized enemyDamage
 
         // ADDED: clear all status so a recycled enemy never starts burning/frozen.
         _burnStacks = 0;

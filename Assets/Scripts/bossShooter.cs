@@ -38,7 +38,8 @@ public class bossShooter : MonoBehaviour
         if (worldState.instance == null || worldState.instance.player == null) return;
         if (objectPool.instance == null || enemyProjectilePrefab == null) return;
         fireTimer += Time.deltaTime;
-        if (fireTimer >= fireInterval) { fireTimer = 0f; Fire(); }
+        float fireRateMult = (worldState.instance != null) ? worldState.instance.BossFireRateTimeMultiplier() : 1f;
+        if (fireTimer >= fireInterval / fireRateMult) { fireTimer = 0f; Fire(); }
     }
 
     public void RandomizePattern()
@@ -61,14 +62,14 @@ public class bossShooter : MonoBehaviour
 
     void EmitRing()
     {
-        int n = Mathf.Max(1, bulletsPerVolley);
+        int n = Mathf.Max(1, EffectiveVolley());
         float step = 360f / n;
         for (int i = 0; i < n; i++) EmitBullet(Ang2Dir(i * step));
     }
 
     void EmitSpiral()
     {
-        int n = Mathf.Max(1, bulletsPerVolley);
+        int n = Mathf.Max(1, EffectiveVolley());
         float step = 360f / n;
         for (int i = 0; i < n; i++) EmitBullet(Ang2Dir(spinAngle + i * step));
         spinAngle = Mathf.Repeat(spinAngle + spinStep, 360f);
@@ -76,7 +77,7 @@ public class bossShooter : MonoBehaviour
 
     void EmitAimedSpread()
     {
-        int k = Mathf.Max(1, bulletsPerVolley);
+        int k = Mathf.Max(1, EffectiveVolley());
         float center = AimAngleDeg();
         if (k == 1) { EmitBullet(Ang2Dir(center)); return; }
         float half = spreadAngle * 0.5f;
@@ -86,8 +87,15 @@ public class bossShooter : MonoBehaviour
 
     void EmitRandomScatter()
     {
-        int n = Mathf.Max(1, bulletsPerVolley);
+        int n = Mathf.Max(1, EffectiveVolley());
         for (int i = 0; i < n; i++) EmitBullet(Ang2Dir(Random.Range(0f, 360f)));
+    }
+
+    // Boss volley size grows over elapsed run time (worldState.BossVolleyBonus()).
+    int EffectiveVolley()
+    {
+        int bonus = (worldState.instance != null) ? worldState.instance.BossVolleyBonus() : 0;
+        return Mathf.Max(1, bulletsPerVolley + bonus);
     }
 
     void EmitBullet(Vector2 dir)
@@ -95,7 +103,8 @@ public class bossShooter : MonoBehaviour
         if (objectPool.instance == null || enemyProjectilePrefab == null) return;
         GameObject go = objectPool.instance.get(enemyProjectilePrefab, transform.position, Quaternion.identity);
         enemyProjectile p = go.GetComponent<enemyProjectile>();
-        if (p != null) p.Launch(dir, bulletSpeed, bulletLifetime);
+        float speedMult = (worldState.instance != null) ? worldState.instance.BossBulletSpeedTimeMultiplier() : 1f;
+        if (p != null) p.Launch(dir, bulletSpeed * speedMult, bulletLifetime);
     }
 
     float AimAngleDeg()
