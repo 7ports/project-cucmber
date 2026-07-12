@@ -105,7 +105,7 @@ public class enemyHealth : MonoBehaviour
         _freezeTimeRemaining = Mathf.Max(_freezeTimeRemaining, seconds);
     }
 
-    public void takeDamage(int amount)
+    public void takeDamage(int amount, bool isCrit = false)
     {
         currentHp -= amount;
         if (_isBoss && bloodPrefab != null && objectPool.instance != null)   // ADDED: boss-only blood on each hit
@@ -115,7 +115,7 @@ public class enemyHealth : MonoBehaviour
         {
             GameObject dn = objectPool.instance.get(damageNumberPrefab, transform.position + dmgTextOffset, Quaternion.identity);
             damageNumber num = dn.GetComponent<damageNumber>();
-            if (num != null) num.Set(amount);
+            if (num != null) num.Set(amount, isCrit);
         }
         if (currentHp <= 0)
             die();

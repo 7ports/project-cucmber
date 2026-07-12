@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class levelUpMenuController : MonoBehaviour
 {
-    private enum StatKind { MaxHP, FireRate, AttackDamage, MoveSpeed, Range, Defense, Regen, PickupRadius, Pierce, XpGain, ProjectileSize }
+    private enum StatKind { MaxHP, FireRate, AttackDamage, MoveSpeed, Range, Defense, Regen, PickupRadius, Pierce, XpGain, ProjectileSize, CritChance, CritDamage }
     private enum Mode { Flat, Percent }
 
     private struct Upgrade
@@ -14,6 +14,10 @@ public class levelUpMenuController : MonoBehaviour
     }
 
     private const int OfferCount = 5;
+
+    // Crit level-up step magnitudes (flat). Percent reuses worldState.levelUpPercentStep.
+    private const float critChanceFlatStep = 0.05f;   // +5% crit chance per flat pick
+    private const float critDamageFlatStep = 0.25f;   // +0.25x crit damage per flat pick
 
     [SerializeField] private Button[] buttons; // 3
     [SerializeField] private Text[] labels;    // 3, one per button
@@ -61,18 +65,25 @@ public class levelUpMenuController : MonoBehaviour
             StatKind.PickupRadius,
             StatKind.Pierce,
             StatKind.XpGain,
-            StatKind.ProjectileSize
+            StatKind.ProjectileSize,
+            StatKind.CritChance,
+            StatKind.CritDamage
         };
 
         bool defenseHasBase = worldState.instance != null && worldState.instance.defenseBase > 0f;
         bool regenHasBase = worldState.instance != null && worldState.instance.regenBase > 0f;
         bool xpGainAtCap = worldState.instance != null && worldState.instance.xpBonusPerPickup >= worldState.xpBonusCap;
+        bool critChanceHasBase = worldState.instance != null && worldState.instance.critChanceBase > 0f;
+        bool critChanceAtCap = worldState.instance != null && worldState.instance.CritChance() >= 1f;
 
         List<Upgrade> pool = new List<Upgrade>();
         foreach (StatKind k in stats)
         {
             // XP-Gain is capped: once the bonus hits the cap, stop offering it entirely.
             if (k == StatKind.XpGain && xpGainAtCap) continue;
+
+            // Crit Chance soft cap: once effective chance hits 100%, stop offering it entirely.
+            if (k == StatKind.CritChance && critChanceAtCap) continue;
 
             // Flat is always offered.
             pool.Add(new Upgrade { kind = k, mode = Mode.Flat });
@@ -84,6 +95,7 @@ public class levelUpMenuController : MonoBehaviour
             // Percent is inert on a 0 base for Defense/Regen — only offer once seeded.
             if (k == StatKind.Defense && !defenseHasBase) continue;
             if (k == StatKind.Regen && !regenHasBase) continue;
+            if (k == StatKind.CritChance && !critChanceHasBase) continue;
 
             pool.Add(new Upgrade { kind = k, mode = Mode.Percent });
         }
@@ -113,6 +125,8 @@ public class levelUpMenuController : MonoBehaviour
                 case StatKind.ProjectileSize: return "+" + ws.projectileSizeFlatStep.ToString(ci) + " Projectile Size";
                 case StatKind.Pierce:       return "+" + ws.pierceFlatStep.ToString(ci) + " Pierce";
                 case StatKind.XpGain:       return "+" + ws.xpBonusStep.ToString(ci) + " XP per Pickup";
+                case StatKind.CritChance:   return "+" + Mathf.RoundToInt(critChanceFlatStep * 100f) + "% Crit Chance";
+                case StatKind.CritDamage:   return "+" + critDamageFlatStep.ToString(ci) + "x Crit Damage";
                 default: return "";
             }
         }
@@ -130,6 +144,8 @@ public class levelUpMenuController : MonoBehaviour
             case StatKind.Regen:        return "+" + pct + "% Regen";
             case StatKind.PickupRadius: return "+" + pct + "% Pickup Radius";
             case StatKind.ProjectileSize: return "+" + pct + "% Projectile Size";
+            case StatKind.CritChance:   return "+" + pct + "% Crit Chance";
+            case StatKind.CritDamage:   return "+" + pct + "% Crit Damage";
             default: return "";
         }
     }
@@ -180,6 +196,12 @@ public class levelUpMenuController : MonoBehaviour
                 case StatKind.XpGain:
                     ws.xpBonusPerPickup = Mathf.Min(worldState.xpBonusCap, ws.xpBonusPerPickup + ws.xpBonusStep);
                     break;
+                case StatKind.CritChance:
+                    ws.critChanceBase += critChanceFlatStep;
+                    break;
+                case StatKind.CritDamage:
+                    ws.critDamageBase += critDamageFlatStep;
+                    break;
             }
         }
         else // Percent
@@ -217,6 +239,12 @@ public class levelUpMenuController : MonoBehaviour
                     break;
                 case StatKind.ProjectileSize:
                     ws.projectileSizeMult *= p;
+                    break;
+                case StatKind.CritChance:
+                    ws.critChanceMult *= p;
+                    break;
+                case StatKind.CritDamage:
+                    ws.critDamageMult *= p;
                     break;
             }
         }
