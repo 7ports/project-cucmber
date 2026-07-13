@@ -216,5 +216,12 @@ public static class upgradePool
                     break;
             }
         }
+
+        // Shared splash hook: both the normal level-up menu and the slot-machine
+        // menu route their picks through ApplyUpgrade, so this single call floats
+        // a yellow name splash for every applied upgrade (multi-applies enqueue
+        // sequentially).
+        if (upgradeSplashController.instance != null)
+            upgradeSplashController.instance.Enqueue(LabelFor(u));
     }
 }
