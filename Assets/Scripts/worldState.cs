@@ -28,7 +28,7 @@ public class worldState
     public float projectileSizeBase = 1f;
     public float projectileSizeMult = 1f;
 
-    public int pierceBase = 1;   // enemies a bullet passes through before despawning; 1 = "pierce through 1 enemy" default
+    public int pierceBase = 2;   // enemies a bullet passes through before despawning; 1 = "pierce through 1 enemy" default
 
     // --- Critical hit stats (base+mult). critChanceBase 0 -> no crits until an item/upgrade raises it (behavior-neutral). ---
     public float critChanceBase = 0f;
