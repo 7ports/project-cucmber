@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "project-voltron": {
+      "command": "node",
+      "args": [
+        "/workspace/src/index.js"
+      ]
+    }
+  }
+}
