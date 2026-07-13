@@ -137,6 +137,10 @@ public class worldState
 
     public int currentHP = 1000;
 
+    // Run-scoped pity flag for the slot-machine level-up menu. worldState.instance is
+    // re-created each play session, so this auto-resets to false at the start of every run.
+    public bool slotPityPending = false;
+
     public float baseSpawnInterval = 1.75f;
     public float spawnIntervalCoefficient = 0.3f;
     public float minSpawnInterval = 0.3f;
