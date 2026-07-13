@@ -6,6 +6,7 @@ public class levelUpManager : MonoBehaviour
     public static levelUpManager instance;
 
     [SerializeField] private GameObject menuPanel;
+    [SerializeField] private GameObject slotMenuPanel;
     [SerializeField] private GameObject floatingTextPrefab;
     [SerializeField] private ParticleSystem playerLevelUpParticles;
     [SerializeField] private Vector3 textOffset = new Vector3(0f, 1.2f, 0f);
@@ -13,6 +14,7 @@ public class levelUpManager : MonoBehaviour
 
     private int pendingLevelUps;
     private bool menuScheduled;
+    private GameObject _activePanel;
 
     private void Awake()
     {
@@ -62,10 +64,22 @@ public class levelUpManager : MonoBehaviour
         }
     }
 
+    // Returns the panel to show for the CURRENT player level:
+    // the slot-machine panel on every 5th level, otherwise the normal menu.
+    // Recomputed at each open because the level can change between queued level-ups.
+    private GameObject SelectPanelForCurrentLevel()
+    {
+        if (slotMenuPanel != null && worldState.instance != null &&
+            worldState.instance.level % 5 == 0)
+            return slotMenuPanel;
+        return menuPanel;
+    }
+
     private void OpenMenu()
     {
-        if (menuPanel != null)
-            menuPanel.SetActive(true);
+        _activePanel = SelectPanelForCurrentLevel();
+        if (_activePanel != null)
+            _activePanel.SetActive(true);
         Time.timeScale = 0f;
     }
 
@@ -74,17 +88,18 @@ public class levelUpManager : MonoBehaviour
         pendingLevelUps--;
         if (pendingLevelUps > 0)
         {
-            // re-open for next pick, still paused
-            if (menuPanel != null)
-            {
-                menuPanel.SetActive(false);
-                menuPanel.SetActive(true);
-            }
+            // re-open for next pick, still paused; recompute for the new current level
+            if (_activePanel != null)
+                _activePanel.SetActive(false);
+            _activePanel = SelectPanelForCurrentLevel();
+            if (_activePanel != null)
+                _activePanel.SetActive(true);
         }
         else
         {
-            if (menuPanel != null)
-                menuPanel.SetActive(false);
+            if (_activePanel != null)
+                _activePanel.SetActive(false);
+            _activePanel = null;
             Time.timeScale = 1f;
         }
     }
