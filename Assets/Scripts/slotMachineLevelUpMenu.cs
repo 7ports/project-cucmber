@@ -21,7 +21,7 @@ public class slotMachineLevelUpMenu : MonoBehaviour
 {
     public enum SlotSymbol { Circle, Triangle, Square }
 
-    private enum Phase { AwaitPick, Spinning, Stopped }
+    private enum Phase { AwaitPick, Spinning, Revealing, AwaitConfirm, Stopped }
 
     [Header("Reels")]
     [SerializeField] private Image[] _reels;               // 5 reel images
@@ -35,18 +35,24 @@ public class slotMachineLevelUpMenu : MonoBehaviour
 
     [Header("Tuning")]
     [SerializeField] private float _spinFrameInterval = 0.07f;
+    [SerializeField] private float _reelStopInterval = 0.18f;   // stagger between reel stops (left->right)
+    [SerializeField] private float _revealDelay = 0.5f;         // pause before the winning-reel highlight
+    [SerializeField] private Color _highlightColor = Color.yellow;
 
     private Phase _phase;
     private SlotSymbol _picked;
     private Upgrade[] _reelUpgrades;
     private SlotSymbol[] _reelSymbols;
     private Coroutine[] _spinCoroutines;
+    private Coroutine _revealCoroutine;
     private int _activeReelCount;
 
     private void OnEnable()
     {
         // Reset all state for a fresh presentation.
         StopAllReels();
+        StopReveal();
+        ResetReelColors();
         _phase = Phase.AwaitPick;
 
         // Draw the pool and shuffle (Fisher-Yates) so reel upgrades are random each time.
@@ -86,19 +92,39 @@ public class slotMachineLevelUpMenu : MonoBehaviour
 
     private void OnDisable()
     {
-        // Coroutine-stop discipline: never let a reel spin on a disabled object.
+        // Coroutine-stop discipline: never let a reel spin (or a reveal run) on a disabled object.
         StopAllReels();
+        StopReveal();
     }
 
     private void Update()
     {
-        if (_phase != Phase.Spinning) return;
-
-        if (Input.GetAxisRaw("Horizontal") != 0f ||
-            Input.GetAxisRaw("Vertical") != 0f ||
-            Input.GetKeyDown(KeyCode.Space))
+        if (_phase == Phase.Spinning)
         {
-            StopAndResolve();
+            // First press: stop the reels and begin the staged reveal. Do NOT resolve here.
+            if (Input.GetAxisRaw("Horizontal") != 0f ||
+                Input.GetAxisRaw("Vertical") != 0f ||
+                Input.GetKeyDown(KeyCode.Space))
+            {
+                _phase = Phase.Revealing;
+                StopReveal();
+                _revealCoroutine = StartCoroutine(RevealSequence());
+            }
+            return;
+        }
+
+        if (_phase == Phase.AwaitConfirm)
+        {
+            // A FRESH key-down commits the result. GetKeyDown (not GetAxisRaw) so a still-held
+            // stop key can't bleed straight through; the reveal delay separates them too.
+            if (Input.GetKeyDown(KeyCode.Space) ||
+                Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) ||
+                Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) ||
+                Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) ||
+                Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                Confirm();
+            }
         }
     }
 
@@ -135,11 +161,12 @@ public class slotMachineLevelUpMenu : MonoBehaviour
         }
     }
 
-    private void StopAndResolve()
+    // Phase 1 of the resolve: roll the final symbols (with pity/bias), then stop the reels
+    // one-by-one left->right revealing each reel's upgrade label, pause, and highlight the
+    // winning reels. Applies NOTHING — that waits for a separate Confirm press.
+    private IEnumerator RevealSequence()
     {
-        _phase = Phase.Stopped;
-        StopAllReels();
-
+        // Freeze the roll now so what the player sees is exactly what Confirm applies.
         bool pity = worldState.instance != null && worldState.instance.slotPityPending;
 
         // Under pity, force two random distinct reels onto the pick, then roll the rest
@@ -175,10 +202,49 @@ public class slotMachineLevelUpMenu : MonoBehaviour
             }
 
             _reelSymbols[i] = rolled;
-            SnapReelSprite(i, rolled);
         }
 
-        // Count matches and apply the upgrade behind every reel that landed on the pick.
+        // Stop reels left->right, snapping each to its final symbol and showing its upgrade.
+        WaitForSecondsRealtime stopWait = new WaitForSecondsRealtime(_reelStopInterval);
+        for (int i = 0; i < _activeReelCount; i++)
+        {
+            if (_spinCoroutines != null && i < _spinCoroutines.Length && _spinCoroutines[i] != null)
+            {
+                StopCoroutine(_spinCoroutines[i]);
+                _spinCoroutines[i] = null;
+            }
+
+            SnapReelSprite(i, _reelSymbols[i]);
+            SetReelLabel(i, upgradePool.LabelFor(_reelUpgrades[i]));
+
+            yield return stopWait;
+        }
+
+        // Beat before the payout highlight lands.
+        yield return new WaitForSecondsRealtime(_revealDelay);
+
+        // Highlight every reel (and its label) that matched the pick.
+        for (int i = 0; i < _activeReelCount; i++)
+        {
+            if (_reelSymbols[i] != _picked) continue;
+
+            if (_reels != null && i < _reels.Length && _reels[i] != null)
+                _reels[i].color = _highlightColor;
+            if (_reelLabels != null && i < _reelLabels.Length && _reelLabels[i] != null)
+                _reelLabels[i].color = _highlightColor;
+        }
+
+        _revealCoroutine = null;
+        _phase = Phase.AwaitConfirm;
+    }
+
+    // Phase 2 of the resolve: commit the revealed result exactly once.
+    private void Confirm()
+    {
+        if (_phase != Phase.AwaitConfirm) return;
+        _phase = Phase.Stopped;   // terminal — guards against a double-fire
+
+        // Apply the upgrade behind every reel that landed on the pick.
         int matches = 0;
         for (int i = 0; i < _activeReelCount; i++)
         {
@@ -249,6 +315,30 @@ public class slotMachineLevelUpMenu : MonoBehaviour
                 StopCoroutine(_spinCoroutines[i]);
                 _spinCoroutines[i] = null;
             }
+        }
+    }
+
+    private void StopReveal()
+    {
+        if (_revealCoroutine != null)
+        {
+            StopCoroutine(_revealCoroutine);
+            _revealCoroutine = null;
+        }
+    }
+
+    // Clear any leftover winning-reel highlight so a re-opened menu starts neutral.
+    private void ResetReelColors()
+    {
+        if (_reels != null)
+        {
+            for (int i = 0; i < _reels.Length; i++)
+                if (_reels[i] != null) _reels[i].color = Color.white;
+        }
+        if (_reelLabels != null)
+        {
+            for (int i = 0; i < _reelLabels.Length; i++)
+                if (_reelLabels[i] != null) _reelLabels[i].color = Color.white;
         }
     }
 }
