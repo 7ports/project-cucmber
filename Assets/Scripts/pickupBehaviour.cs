@@ -5,7 +5,7 @@ public class pickupBehaviour : MonoBehaviour
     public bool pickup;
     [SerializeField] private float homeSpeed = 8f;
     [SerializeField] private int xpValue = 1;
-    [SerializeField] private float _vacuumSpeed = 25f;
+    [SerializeField] private float _vacuumSpeed = 5f;
 
     // Fired by the XP-vacuum powerup — every active pickup subscribes and force-homes on pickup.
     private static System.Action _onVacuum;
