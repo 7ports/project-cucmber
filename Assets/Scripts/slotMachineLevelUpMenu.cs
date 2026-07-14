@@ -12,8 +12,8 @@ using UnityEngine.UI;
 //      upgrade). All reels start spinning.
 //   3. Any movement input or Space stops the reels and rolls final symbols. Reels whose
 //      symbol matches the pick apply their upgrade.
-//   4. Pity: a roll that lands <=1 match arms pity for the NEXT roll (biases toward the
-//      pick and guarantees >=2 matching reels); a roll with >=2 matches clears pity.
+//   4. Pity: a roll that lands <=1 match arms pity for the NEXT roll (gives a SLIGHT odds
+//      boost toward more matching reels — never a guarantee); a roll with >=2 matches clears pity.
 //
 // The game is paused (Time.timeScale = 0) while this menu is open, so every wait uses
 // WaitForSecondsRealtime and input is polled in Update.
@@ -38,6 +38,7 @@ public class slotMachineLevelUpMenu : MonoBehaviour
     [SerializeField] private float _reelStopInterval = 0.18f;   // stagger between reel stops (left->right)
     [SerializeField] private float _revealDelay = 0.5f;         // pause before the winning-reel highlight
     [SerializeField] private Color _highlightColor = Color.yellow;
+    [SerializeField] private float _pityMatchChance = 0.45f;    // per-reel pick odds under pity (baseline 1/3); slight boost, never a guarantee
 
     private Phase _phase;
     private SlotSymbol _picked;
@@ -169,32 +170,15 @@ public class slotMachineLevelUpMenu : MonoBehaviour
         // Freeze the roll now so what the player sees is exactly what Confirm applies.
         bool pity = worldState.instance != null && worldState.instance.slotPityPending;
 
-        // Under pity, force two random distinct reels onto the pick, then roll the rest
-        // with a raised probability of landing on the pick.
-        HashSet<int> forced = null;
-        if (pity && _activeReelCount > 0)
-        {
-            forced = new HashSet<int>();
-            int guarantee = Mathf.Min(2, _activeReelCount);
-            int guard = 0;
-            while (forced.Count < guarantee && guard < 100)
-            {
-                forced.Add(Random.Range(0, _activeReelCount));
-                guard++;
-            }
-        }
-
+        // Under pity, each reel gets a SLIGHT probability bump toward the pick — no reel is
+        // ever locked to the pick, so extra matches are only nudged, never guaranteed.
         for (int i = 0; i < _activeReelCount; i++)
         {
             SlotSymbol rolled;
-            if (forced != null && forced.Contains(i))
+            if (pity)
             {
-                rolled = _picked;
-            }
-            else if (pity)
-            {
-                // Raised probability of matching the pick during pity.
-                rolled = Random.value < 0.6f ? _picked : (SlotSymbol)Random.Range(0, 3);
+                // Slightly raised probability of matching the pick during pity.
+                rolled = Random.value < _pityMatchChance ? _picked : (SlotSymbol)Random.Range(0, 3);
             }
             else
             {
