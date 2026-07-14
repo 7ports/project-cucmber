@@ -5,17 +5,44 @@ public class pickupBehaviour : MonoBehaviour
     public bool pickup;
     [SerializeField] private float homeSpeed = 8f;
     [SerializeField] private int xpValue = 1;
+    [SerializeField] private float _vacuumSpeed = 25f;
+
+    // Fired by the XP-vacuum powerup — every active pickup subscribes and force-homes on pickup.
+    private static System.Action _onVacuum;
+    private bool _attracted;
 
     void OnEnable()
     {
         pickup = false;
+        _attracted = false; // pooled reset
+        _onVacuum += Attract;
+    }
+
+    void OnDisable()
+    {
+        // Required so pooled/destroyed pickups don't leak the static subscription.
+        _onVacuum -= Attract;
     }
 
     void Update()
     {
-        if (!pickup) return;
+        // Normal homing is gated by `pickup` (the pickup-radius system); the vacuum forces
+        // homing regardless of that gate, at a boosted speed.
+        if (!pickup && !_attracted) return;
         if (worldState.instance == null || worldState.instance.player == null) return;
-        transform.position = Vector3.MoveTowards(transform.position, worldState.instance.player.position, homeSpeed * Time.deltaTime);
+        float speed = _attracted ? _vacuumSpeed : homeSpeed;
+        transform.position = Vector3.MoveTowards(transform.position, worldState.instance.player.position, speed * Time.deltaTime);
+    }
+
+    private void Attract()
+    {
+        _attracted = true;
+    }
+
+    // Called by xpVacuumPickup on collection — pulls every active XP pickup to the player.
+    public static void VacuumAll()
+    {
+        if (_onVacuum != null) _onVacuum();
     }
 
     void OnTriggerEnter2D(Collider2D other)
