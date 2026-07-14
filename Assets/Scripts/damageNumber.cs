@@ -5,7 +5,7 @@ public class damageNumber : MonoBehaviour
 {
     [SerializeField] private CanvasGroup group;
     [SerializeField] private Text label;
-    [SerializeField] private Color color = new Color(0.55f, 0f, 0f, 1f); // dark red
+    [SerializeField] private Color color = new Color(0.9f, 0.15f, 0.15f, 1f); // red
     [SerializeField] private Color _critColor = new Color(1f, 0.85f, 0.1f, 1f); // yellow for crits
     [SerializeField] private float _critScale = 1.5f;                            // crit text enlarged
     [SerializeField] private float fadeInSeconds = 0.1f;
