@@ -20,6 +20,7 @@ public class itemChoiceMenuController : MonoBehaviour
 
     private readonly string[] offered = new string[3];
     private int offeredCount;
+    private bool _fromLevelUp;
 
     private void Awake()
     {
@@ -51,6 +52,49 @@ public class itemChoiceMenuController : MonoBehaviour
     /// </summary>
     public bool Offer()
     {
+        _fromLevelUp = false;
+        if (!PopulateOffers()) return false; // owns all -> no menu, no grant
+        if (menuPanel != null) menuPanel.SetActive(true);
+        Time.timeScale = 0f; // pause — mirrors levelUpManager.OpenMenu line 69
+        return true;
+    }
+
+    /// <summary>
+    /// Called by levelUpManager to reuse this picker as a level-up reward menu.
+    /// Populates and shows the panel but does NOT touch Time.timeScale — the
+    /// level-up manager already owns the pause. Returns true if a menu was shown;
+    /// false if the player owns everything.
+    /// </summary>
+    public bool OpenForLevelUp()
+    {
+        _fromLevelUp = true;
+        if (!PopulateOffers()) return false;
+        if (menuPanel != null) menuPanel.SetActive(true);
+        return true; // no Time.timeScale — levelUpManager already paused
+    }
+
+    /// <summary>
+    /// True if the player is missing at least one item (i.e. a level-up offer
+    /// would have candidates). Pure predicate — no UI, no pause. Used by
+    /// levelUpManager as an owns-all guard.
+    /// </summary>
+    public bool HasOffers()
+    {
+        var inv = playerInventory.instance;
+        if (inv == null) return false;
+        foreach (string id in ItemId.All)
+            if (!inv.Has(id)) return true;
+        return false;
+    }
+
+    /// <summary>
+    /// Builds the not-yet-owned candidate pool, shuffles it, and populates the
+    /// choice buttons/labels. Returns false when the player owns everything
+    /// (no candidates), true otherwise. Does NOT touch Time.timeScale and does
+    /// NOT call menuPanel.SetActive — callers own visibility and pause.
+    /// </summary>
+    private bool PopulateOffers()
+    {
         var inv = playerInventory.instance;
         if (inv == null) return false;
         if (buttons == null || labels == null) return false;
@@ -59,7 +103,7 @@ public class itemChoiceMenuController : MonoBehaviour
         List<string> candidates = new List<string>();
         foreach (string id in ItemId.All)
             if (!inv.Has(id)) candidates.Add(id);
-        if (candidates.Count == 0) return false; // owns all -> no menu, no grant
+        if (candidates.Count == 0) return false; // owns all -> no candidates
 
         // Fisher-Yates shuffle (mirrors levelUpMenuController lines 31-37).
         for (int i = candidates.Count - 1; i > 0; i--)
@@ -83,8 +127,6 @@ public class itemChoiceMenuController : MonoBehaviour
             buttons[i].onClick.AddListener(() => Choose(idx));
         }
 
-        if (menuPanel != null) menuPanel.SetActive(true);
-        Time.timeScale = 0f; // pause — mirrors levelUpManager.OpenMenu line 69
         return true;
     }
 
@@ -97,7 +139,18 @@ public class itemChoiceMenuController : MonoBehaviour
             if (inv != null && !inv.Has(offered[idx]))
                 inv.Add(offered[idx]); // grant — playerInventory.cs:14
         }
-        Close();
+
+        if (!_fromLevelUp)
+        {
+            Close(); // boss-drop: panel off + resume time
+        }
+        else
+        {
+            // Level-up: hide panel but leave Time.timeScale to levelUpManager,
+            // then advance the level-up queue.
+            if (menuPanel != null) menuPanel.SetActive(false);
+            if (levelUpManager.instance != null) levelUpManager.instance.ApplyChoiceAndAdvance();
+        }
     }
 
     private void Close()
