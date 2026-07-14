@@ -7,6 +7,7 @@ public class levelUpManager : MonoBehaviour
 
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject slotMenuPanel;
+    [SerializeField] private GameObject itemMenuPanel;
     [SerializeField] private GameObject floatingTextPrefab;
     [SerializeField] private ParticleSystem playerLevelUpParticles;
     [SerializeField] private Vector3 textOffset = new Vector3(0f, 1.2f, 0f);
@@ -65,21 +66,38 @@ public class levelUpManager : MonoBehaviour
     }
 
     // Returns the panel to show for the CURRENT player level:
-    // the slot-machine panel on every 5th level, otherwise the normal menu.
+    // the item panel on every 10th level (only if there are unowned items to offer),
+    // the slot-machine panel on every 3rd level, otherwise the normal menu.
     // Recomputed at each open because the level can change between queued level-ups.
     private GameObject SelectPanelForCurrentLevel()
     {
-        if (slotMenuPanel != null && worldState.instance != null &&
-            worldState.instance.level % 5 == 0)
-            return slotMenuPanel;
+        var ws = worldState.instance;
+        if (ws != null)
+        {
+            if (itemMenuPanel != null && ws.level % 10 == 0 &&
+                itemChoiceMenuController.instance != null && itemChoiceMenuController.instance.HasOffers())
+                return itemMenuPanel;
+            if (slotMenuPanel != null && ws.level % 3 == 0)   // slot every 3rd level (was 5)
+                return slotMenuPanel;
+        }
         return menuPanel;
+    }
+
+    // Shows a panel. The item panel is populated via the item-choice controller
+    // (which activates its own panel but does NOT touch timeScale — this manager
+    // remains the sole Time.timeScale owner). Other panels are simply activated.
+    private void ActivatePanel(GameObject panel)
+    {
+        if (panel == itemMenuPanel && itemChoiceMenuController.instance != null)
+            itemChoiceMenuController.instance.OpenForLevelUp();
+        else if (panel != null)
+            panel.SetActive(true);
     }
 
     private void OpenMenu()
     {
         _activePanel = SelectPanelForCurrentLevel();
-        if (_activePanel != null)
-            _activePanel.SetActive(true);
+        ActivatePanel(_activePanel);
         Time.timeScale = 0f;
     }
 
@@ -92,8 +110,7 @@ public class levelUpManager : MonoBehaviour
             if (_activePanel != null)
                 _activePanel.SetActive(false);
             _activePanel = SelectPanelForCurrentLevel();
-            if (_activePanel != null)
-                _activePanel.SetActive(true);
+            ActivatePanel(_activePanel);
         }
         else
         {
