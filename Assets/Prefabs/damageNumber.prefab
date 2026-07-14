@@ -168,7 +168,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::damageNumber
   group: {fileID: 4474647157899327891}
   label: {fileID: 4009069374008482011}
-  color: {r: 0.55, g: 0, b: 0, a: 1}
+  color: {r: 0.9, g: 0.15, b: 0.15, a: 1}
+  _critColor: {r: 1, g: 0.85, b: 0.1, a: 1}
+  _critScale: 1.5
   fadeInSeconds: 0.1
   travelSeconds: 0.5
   holdSeconds: 0.2
