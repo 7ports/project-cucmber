@@ -75,10 +75,11 @@ public class trailSegment : MonoBehaviour
 
         // dps -> per-tick damage: TrailDps() * tickInterval. crit is rolled by RollDamage (out
         // param) but takeDamage takes only the rolled amount, matching projectileBehaviour.
+        bool crit = false;
         int dmg = worldState.instance != null
-            ? worldState.instance.RollDamage(worldState.instance.TrailDps() * interval, out bool crit)
+            ? worldState.instance.RollDamage(worldState.instance.TrailDps() * interval, out crit)
             : 0;
-        eh.takeDamage(dmg);
+        eh.takeDamage(dmg, crit);
 
         _cooldowns[enemyId] = interval;   // arm the cooldown; this enemy is eligible again one interval from now
     }

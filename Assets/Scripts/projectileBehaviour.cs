@@ -79,10 +79,11 @@ public class projectileBehaviour : MonoBehaviour
             enemyHealth eh = other.GetComponent<enemyHealth>();
             if (eh != null)
             {
+                bool crit = false;
                 int dmg = worldState.instance != null
-                    ? worldState.instance.RollDamage(worldState.instance.AttackDamage(), out bool crit)
+                    ? worldState.instance.RollDamage(worldState.instance.AttackDamage(), out crit)
                     : 1;
-                eh.takeDamage(dmg);
+                eh.takeDamage(dmg, crit);
             }
 
             // STATUS: apply on-hit effects to the enemy just struck (damage already applied).

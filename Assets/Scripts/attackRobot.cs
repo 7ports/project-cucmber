@@ -143,6 +143,6 @@ public class attackRobot : MonoBehaviour
 
         int dmg = Mathf.FloorToInt(worldState.instance.robotDamageFactor * worldState.instance.AttackDamage());
         int finalDmg = worldState.instance.RollDamage(dmg, out bool crit);
-        eh.takeDamage(finalDmg);
+        eh.takeDamage(finalDmg, crit);
     }
 }

@@ -84,7 +84,7 @@ public class auraWeapon : MonoBehaviour
             enemyHealth eh = c.GetComponent<enemyHealth>();
             if (eh == null) continue;
             int dmg = ws.RollDamage(perTickDamage, out bool crit);
-            eh.takeDamage(dmg);
+            eh.takeDamage(dmg, crit);
         }
     }
 

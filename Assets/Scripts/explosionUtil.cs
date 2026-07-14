@@ -29,10 +29,11 @@ public static class explosionUtil
             if (c == null || !c.CompareTag("Enemy")) continue;
             enemyHealth eh = c.GetComponent<enemyHealth>();
             if (eh == null) continue;
+            bool crit = false;
             int dmg = worldState.instance != null
-                ? worldState.instance.RollDamage(damage, out bool crit)
+                ? worldState.instance.RollDamage(damage, out crit)
                 : damage;
-            eh.takeDamage(dmg);
+            eh.takeDamage(dmg, crit);
         }
     }
 }
