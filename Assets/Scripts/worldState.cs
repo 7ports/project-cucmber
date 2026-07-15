@@ -10,7 +10,7 @@ public class worldState
     public float attackDamageMult = 1f;
     public float moveSpeedBase = 1f;
     public float moveSpeedMult = 1f;
-    public float fireRateBase = 1.25f;   // = 1 / (attackSpeed 1 * baseAttackSpeed 0.8)
+    public float fireRateBase = 1.2f;   // = 1 / (attackSpeed 1 * baseAttackSpeed 0.8)
     public float fireRateMult = 1f;
     public float rangeBase = 3f;
     public float rangeMult = 1f;
@@ -31,15 +31,15 @@ public class worldState
     public int pierceBase = 2;   // enemies a bullet passes through before despawning; 1 = "pierce through 1 enemy" default
 
     // --- Critical hit stats (base+mult). critChanceBase 0 -> no crits until an item/upgrade raises it (behavior-neutral). ---
-    public float critChanceBase = 0f;
+    public float critChanceBase = 0.1f;
     public float critChanceMult = 1f;
     public float critDamageBase = 2.0f;   // crit deals 2x by default
     public float critDamageMult = 1f;
 
     // --- Enemy status effects (Fire DoT / Freeze). New (post-x10) damage scale. ---
-    public int   fireDpsPerStack   = 10;    // damage per second PER burning stack
-    public int   fireStackCap      = 3;     // max simultaneous burning stacks
-    public float fireTickInterval  = 1f;    // seconds between burn ticks (1s -> dmg/tick == dps)
+    public float   fireDpsPerStack() => attackDamageBase * 0.05f;    // damage per second PER burning stack
+    public int   fireStackCap      = 5;     // max simultaneous burning stacks
+    public float fireTickInterval  = 0.1f;    // seconds between burn ticks (1s -> dmg/tick == dps)
     public float fireBurnDuration  = 3f;    // seconds a burn lasts; refreshed by each ApplyFire()
     public float freezeDefaultDuration = 2f;// fallback freeze seconds when hit site passes <= 0
 
@@ -47,32 +47,32 @@ public class worldState
     // Single-home tunables read by playerProjectileShooter + projectileBehaviour at the hit/spawn site.
     public float coneHalfAngleDeg     = 15f;   // Cone: ± spread of the 3-shot cone
     public float bounceSearchRadius   = 6f;    // Bounce: OverlapCircle radius to find next target
-    public float explosionRadiusFactor = 1f;   // Explode: AoE radius = Range() * this
+    public float explosionRadiusFactor = 0.5f;   // Explode: AoE radius = Range() * this
     public float freezeChance         = 0.2f;  // Freeze: per-hit probability to freeze
     public float freezeItemDuration   = 2f;    // Freeze: seconds passed to ApplyFreeze
 
     // --- Phase 2 item weapon stats (base+mult, mirroring existing style). Registered but inert until their components exist. ---
     // Damage Aura: constant DPS in a radius around the player.
-    public float auraDpsBase        = 1f;
+    public float auraDpsBase()        => attackDamageBase * 0.1f;
     public float auraDpsMult         = 1f;
     public float auraRadiusBase     = 1.5f;
     public float auraRadiusMult      = 1f;
-    public float auraTickInterval    = 0.25f;  // seconds between aura damage ticks
+    public float auraTickInterval    = 0.1f;  // seconds between aura damage ticks
     // Attack Bot: a bot dealing a fraction of attack damage on an interval.
     public float robotDamageFactor   = 0.5f;   // bot damage = AttackDamage() * this
     public float robotSpeedFactor    = 1f;     // bot move/orbit speed multiplier
     public float robotHitInterval    = 0.5f;   // seconds between bot hits
     // Searing Trail: damaging trail segments left behind the player.
-    public float trailDpsBase        = 1f;
+    public float trailDpsBase()        => attackDamageBase * 0.05f;
     public float trailDpsMult         = 1f;
     public float trailSegmentLifetime = 2f;    // seconds a trail segment persists
     public float trailEmitDistance    = 0.5f;  // player travel distance between emitted segments
-    public float trailTickInterval    = 0.25f; // seconds between trail damage ticks
+    public float trailTickInterval    = 0.1f; // seconds between trail damage ticks
     // Grenadier: periodically lobs a grenade that explodes for AoE damage.
     public float grenadeInterval     = 2f;     // seconds between grenade throws
-    public float grenadeDamageBase   = 1f;
+    public float grenadeDamageBase()   => attackDamageBase * 2f;
     public float grenadeDamageMult    = 1f;
-    public float grenadeRadiusBase   = 1.5f;
+    public float grenadeRadiusBase   => rangeBase;
     public float grenadeRadiusMult    = 1f;
 
     // Flat bonus XP added to EVERY pickup's xpValue at collection time.
@@ -118,10 +118,10 @@ public class worldState
     public float CritMultiplier() => critDamageBase * critDamageMult;
 
     // --- Phase 2 item weapon getters (effective = base * mult) ---
-    public float AuraDps() => auraDpsBase * auraDpsMult;
+    public float AuraDps() => auraDpsBase() * auraDpsMult;
     public float AuraRadius() => auraRadiusBase * auraRadiusMult;
-    public float TrailDps() => trailDpsBase * trailDpsMult;
-    public float GrenadeDamage() => grenadeDamageBase * grenadeDamageMult;
+    public float TrailDps() => trailDpsBase() * trailDpsMult;
+    public float GrenadeDamage() => grenadeDamageBase() * grenadeDamageMult;
     public float GrenadeRadius() => grenadeRadiusBase * grenadeRadiusMult;
 
     // Single shared damage roll: rounds to int, applies a crit roll (crit base 0 -> never crits).
@@ -141,15 +141,15 @@ public class worldState
     // re-created each play session, so this auto-resets to false at the start of every run.
     public bool slotPityPending = false;
 
-    public float baseSpawnInterval = 1.75f;
+    public float baseSpawnInterval = 1.5f;
     public float spawnIntervalCoefficient = 0.3f;
     public float minSpawnInterval = 0.3f;
-    public float currentSpawnInterval = 1.75f;
+    public float currentSpawnInterval = 1.5f;
 
     // --- Time-based SPAWN VOLUME ramp (seconds of elapsed run time) ---
     // Shrinks the consumed spawn interval as the run goes on so enemy volume
     // ramps with TIME (not level), harder than the level-based currentSpawnInterval curve.
-    public float spawnIntervalTimeCoefficient = 0.05f;   // -5% of base interval per elapsed minute
+    public float spawnIntervalTimeCoefficient = 0.1f;   // -5% of base interval per elapsed minute
     public float spawnIntervalTimeFloor       = 0.1f;    // never shrink below 10% of the base interval
 
     // --- Time-based BOSS scaling coefficients (per elapsed minute) ---

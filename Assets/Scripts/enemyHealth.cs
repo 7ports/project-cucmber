@@ -63,7 +63,7 @@ public class enemyHealth : MonoBehaviour
     {
         // Read config once; fall back to constants if worldState not ready.
         float tickInterval = (worldState.instance != null) ? worldState.instance.fireTickInterval : 1f;
-        int   dpsPerStack  = (worldState.instance != null) ? worldState.instance.fireDpsPerStack : 10;
+        int   dpsPerStack  = (worldState.instance != null) ? Mathf.RoundToInt(worldState.instance.fireDpsPerStack()) : 10;
 
         // --- Burning DoT ---
         if (_burnStacks > 0 && _burnTimeRemaining > 0f)
