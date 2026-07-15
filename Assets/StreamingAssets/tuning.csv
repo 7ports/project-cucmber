@@ -1,0 +1,88 @@
+# project-cucumber tuning table. Edit values, save, re-enter Play Mode. No recompile needed.
+# Lines starting with '#' are ignored by the loader. Decimal separator is '.' (period).
+# Columns: key,value,type,comment
+key,value,type,comment
+# --- Core player stats (base values; effective = base * runtime mult) ---
+attackDamageBase,100,float,player base attack damage (drives fire/aura/trail/grenade formulas)
+moveSpeedBase,1,float,player base move speed
+fireRateBase,1.2,float,shots per second baseline
+rangeBase,3,float,projectile/weapon range (also grenade radius via grenadeRadiusBase alias)
+maxHPBase,1000,float,player base max HP
+defenseBase,0,float,flat damage reduction
+regenBase,1,float,HP regen per second baseline
+pickupRadiusBase,1.5,float,XP pickup homing radius baseline
+projectileSizeBase,1,float,bullet visual+collider scale baseline
+pierceBase,2,int,enemies a bullet passes through before despawning
+critChanceBase,0.1,float,crit probability 0..1
+critDamageBase,2.0,float,crit damage multiplier
+# --- Status effect tuning (Fire DoT / Freeze) ---
+fireStackCap,5,int,max simultaneous burning stacks on one enemy
+fireTickInterval,0.1,float,seconds between burn ticks
+fireBurnDuration,3,float,seconds a burn lasts; refreshed by each ApplyFire()
+freezeDefaultDuration,2,float,fallback freeze seconds when hit site passes 0 or less
+# --- Projectile / weapon item behaviour ---
+coneHalfAngleDeg,15,float,Cone item: +/- spread of the 3-shot cone in degrees
+bounceSearchRadius,6,float,Bounce item: OverlapCircle radius to find next target
+explosionRadiusFactor,0.5,float,Explode item: AoE radius = Range() * this
+freezeChance,0.2,float,Freeze item: per-hit probability to apply freeze
+freezeItemDuration,2,float,Freeze item: seconds passed to ApplyFreeze
+# --- Damage Aura item stats ---
+auraRadiusBase,1.5,float,Aura item: constant-damage radius around the player
+auraTickInterval,0.1,float,Aura item: seconds between aura damage ticks
+# --- Attack Bot item stats ---
+robotDamageFactor,0.5,float,Bot: damage = AttackDamage() * this
+robotSpeedFactor,1,float,Bot: move/orbit speed multiplier
+robotHitInterval,0.5,float,Bot: seconds between hits
+# --- Searing Trail item stats ---
+trailSegmentLifetime,2,float,Trail: seconds a trail segment persists
+trailEmitDistance,0.5,float,Trail: player travel distance between emitted segments
+trailTickInterval,0.1,float,Trail: seconds between trail damage ticks
+# --- Grenadier item stats ---
+grenadeInterval,2,float,Grenadier: seconds between grenade throws
+# --- Derived weapon DPS factors (weapon DPS = attackDamageBase * factor) ---
+fireDpsFactor,0.05,float,burn DPS per stack = attackDamageBase * this
+auraDpsFactor,0.1,float,aura DPS = attackDamageBase * this
+trailDpsFactor,0.05,float,trail DPS = attackDamageBase * this
+grenadeDamageFactor,2,float,grenade damage = attackDamageBase * this
+# --- XP pickup bonus ---
+xpBonusPerPickup,0,int,flat bonus XP added to every pickup at collection time (starting value)
+xpBonusStep,1,int,XP-Gain upgrade increment per level-up choice
+# xpBonusCap is const int = 3 in code; cannot be overridden here until de-const'd (optional follow-up)
+# --- Level-up flat additive step sizes (per stat) ---
+attackDamageFlatStep,50,float,flat attack damage added per flat level-up choice
+moveSpeedFlatStep,0.2,float,flat move speed added per flat level-up choice
+fireRateFlatStep,0.2,float,flat fire rate added per flat level-up choice
+rangeFlatStep,0.5,float,flat range added per flat level-up choice
+maxHPFlatStep,200,float,flat max HP added per flat level-up choice
+defenseFlatStep,5,float,flat defense added per flat level-up choice
+regenFlatStep,2,float,flat regen added per flat level-up choice
+pickupRadiusFlatStep,1,float,flat pickup radius added per flat level-up choice
+projectileSizeFlatStep,0.2,float,flat projectile size added per flat level-up choice
+pierceFlatStep,1,int,flat pierce added per flat level-up choice
+# --- Level-up shared percent step ---
+levelUpPercentStep,0.2,float,shared +% step for all percent level-up choices (0.2 = +20%)
+# --- Enemy spawning ---
+baseSpawnInterval,1.5,float,seconds between spawns at run start
+spawnIntervalCoefficient,0.3,float,interval reduction per level gained
+minSpawnInterval,0.3,float,fastest allowed spawn interval (floor)
+spawnIntervalTimeCoefficient,0.1,float,fractional reduction of spawn interval per elapsed minute
+spawnIntervalTimeFloor,0.1,float,never shrink spawn interval below this fraction of base
+# --- Time-based boss scaling ---
+bossFireRateTimeCoefficient,0.15,float,boss fire rate: +15% per elapsed minute
+bossBulletSpeedTimeCoefficient,0.1,float,boss bullet speed: +10% per elapsed minute
+bossVolleyBonusPerMinute,0.5,float,extra boss volley bullets per minute (floored)
+bossStatTimeCoefficient,0.1,float,boss HP and damage: +10% per elapsed minute
+# --- Time-based type progression ---
+shooterStartTime,120,float,seconds before shooter enemies begin spawning
+unlockRampSeconds,30,float,seconds a newly-unlocked type takes to ramp from 0 to full weight
+# --- Boss cadence ---
+bossFirstTime,200,float,seconds into the run when the first boss spawns
+bossInterval,200,float,seconds between subsequent boss spawns
+# --- Enemy HP scaling over time ---
+hpScaleInterval,300,float,seconds per enemy HP tier (newly-spawned enemies only)
+hpScalePerTier,1,float,additive HP fraction per tier: mult = 1 + hpScalePerTier * tier
+# --- Time-based XP doubling ---
+xpDoubleThreshold,300,float,seconds until earned XP is doubled
+xpDoubleFactor,2,float,XP multiplier applied after xpDoubleThreshold
+xpBonusCap,3,int,max total XP bonus per pickup (was const)
+lvlUpCostGrowth,1.3,float,each level-up XP cost multiplies by this

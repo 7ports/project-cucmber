@@ -40,7 +40,7 @@ public static class upgradePool
 
         bool defenseHasBase = worldState.instance != null && worldState.instance.defenseBase > 0f;
         bool regenHasBase = worldState.instance != null && worldState.instance.regenBase > 0f;
-        bool xpGainAtCap = worldState.instance != null && worldState.instance.xpBonusPerPickup >= worldState.xpBonusCap;
+        bool xpGainAtCap = worldState.instance != null && worldState.instance.xpBonusPerPickup >= worldState.instance.xpBonusCap;
         bool critChanceHasBase = worldState.instance != null && worldState.instance.critChanceBase > 0f;
         bool critChanceAtCap = worldState.instance != null && worldState.instance.CritChance() >= 1f;
 
@@ -162,7 +162,7 @@ public static class upgradePool
                     ws.pierceBase += ws.pierceFlatStep;
                     break;
                 case StatKind.XpGain:
-                    ws.xpBonusPerPickup = Mathf.Min(worldState.xpBonusCap, ws.xpBonusPerPickup + ws.xpBonusStep);
+                    ws.xpBonusPerPickup = Mathf.Min(worldState.instance.xpBonusCap, ws.xpBonusPerPickup + ws.xpBonusStep);
                     break;
                 case StatKind.CritChance:
                     ws.critChanceBase += critChanceFlatStep;

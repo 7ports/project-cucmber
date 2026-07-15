@@ -5,6 +5,116 @@ public class worldState
     public static worldState instance;
     public Transform player;
 
+    // --- CSV tuning overlay (Assets/StreamingAssets/tuning.csv) ---------------
+    // worldState.instance is re-created each run (new worldState()). C# runs the
+    // field initializers below FIRST (setting the in-code defaults), THEN this
+    // constructor body — so the overlay always applies on top of the defaults.
+    // Key == field name; a missing/malformed CSV key leaves the field default
+    // (TryGet returns false). xpBonusCap is intentionally NOT overlaid (const-like
+    // cap = 3; see tuning.csv note).
+    public worldState()
+    {
+        ApplyTuningOverrides();
+    }
+
+    // One TryGet per tunable field. int-typed fields (pierceBase, fireStackCap,
+    // xpBonusPerPickup, xpBonusStep, pierceFlatStep) use TryGetInt; every other
+    // field uses TryGetFloat. Assignment happens only on a successful lookup.
+    private void ApplyTuningOverrides()
+    {
+        // Core player stats
+        if (tuningTable.TryGetFloat("attackDamageBase", out var v)) attackDamageBase = v;
+        if (tuningTable.TryGetFloat("moveSpeedBase", out v)) moveSpeedBase = v;
+        if (tuningTable.TryGetFloat("fireRateBase", out v)) fireRateBase = v;
+        if (tuningTable.TryGetFloat("rangeBase", out v)) rangeBase = v;
+        if (tuningTable.TryGetFloat("maxHPBase", out v)) maxHPBase = v;
+        if (tuningTable.TryGetFloat("defenseBase", out v)) defenseBase = v;
+        if (tuningTable.TryGetFloat("regenBase", out v)) regenBase = v;
+        if (tuningTable.TryGetFloat("pickupRadiusBase", out v)) pickupRadiusBase = v;
+        if (tuningTable.TryGetFloat("projectileSizeBase", out v)) projectileSizeBase = v;
+        if (tuningTable.TryGetInt("pierceBase", out var i)) pierceBase = i;
+        if (tuningTable.TryGetFloat("critChanceBase", out v)) critChanceBase = v;
+        if (tuningTable.TryGetFloat("critDamageBase", out v)) critDamageBase = v;
+
+        // Status effects (Fire DoT / Freeze)
+        if (tuningTable.TryGetFloat("fireDpsFactor", out v)) fireDpsFactor = v;
+        if (tuningTable.TryGetInt("fireStackCap", out i)) fireStackCap = i;
+        if (tuningTable.TryGetFloat("fireTickInterval", out v)) fireTickInterval = v;
+        if (tuningTable.TryGetFloat("fireBurnDuration", out v)) fireBurnDuration = v;
+        if (tuningTable.TryGetFloat("freezeDefaultDuration", out v)) freezeDefaultDuration = v;
+
+        // Item projectile/weapon mods (Cone / Bounce / Explode / Freeze)
+        if (tuningTable.TryGetFloat("coneHalfAngleDeg", out v)) coneHalfAngleDeg = v;
+        if (tuningTable.TryGetFloat("bounceSearchRadius", out v)) bounceSearchRadius = v;
+        if (tuningTable.TryGetFloat("explosionRadiusFactor", out v)) explosionRadiusFactor = v;
+        if (tuningTable.TryGetFloat("freezeChance", out v)) freezeChance = v;
+        if (tuningTable.TryGetFloat("freezeItemDuration", out v)) freezeItemDuration = v;
+
+        // Aura / Bot / Trail / Grenadier item stats
+        if (tuningTable.TryGetFloat("auraDpsFactor", out v)) auraDpsFactor = v;
+        if (tuningTable.TryGetFloat("auraRadiusBase", out v)) auraRadiusBase = v;
+        if (tuningTable.TryGetFloat("auraTickInterval", out v)) auraTickInterval = v;
+        if (tuningTable.TryGetFloat("robotDamageFactor", out v)) robotDamageFactor = v;
+        if (tuningTable.TryGetFloat("robotSpeedFactor", out v)) robotSpeedFactor = v;
+        if (tuningTable.TryGetFloat("robotHitInterval", out v)) robotHitInterval = v;
+        if (tuningTable.TryGetFloat("trailDpsFactor", out v)) trailDpsFactor = v;
+        if (tuningTable.TryGetFloat("trailSegmentLifetime", out v)) trailSegmentLifetime = v;
+        if (tuningTable.TryGetFloat("trailEmitDistance", out v)) trailEmitDistance = v;
+        if (tuningTable.TryGetFloat("trailTickInterval", out v)) trailTickInterval = v;
+        if (tuningTable.TryGetFloat("grenadeInterval", out v)) grenadeInterval = v;
+        if (tuningTable.TryGetFloat("grenadeDamageFactor", out v)) grenadeDamageFactor = v;
+
+        // XP pickup bonus
+        if (tuningTable.TryGetInt("xpBonusPerPickup", out i)) xpBonusPerPickup = i;
+        if (tuningTable.TryGetInt("xpBonusStep", out i)) xpBonusStep = i;
+        if (tuningTable.TryGetInt("xpBonusCap", out i)) xpBonusCap = i;
+
+        // Level-up flat additive steps (per stat)
+        if (tuningTable.TryGetFloat("attackDamageFlatStep", out v)) attackDamageFlatStep = v;
+        if (tuningTable.TryGetFloat("moveSpeedFlatStep", out v)) moveSpeedFlatStep = v;
+        if (tuningTable.TryGetFloat("fireRateFlatStep", out v)) fireRateFlatStep = v;
+        if (tuningTable.TryGetFloat("rangeFlatStep", out v)) rangeFlatStep = v;
+        if (tuningTable.TryGetFloat("maxHPFlatStep", out v)) maxHPFlatStep = v;
+        if (tuningTable.TryGetFloat("defenseFlatStep", out v)) defenseFlatStep = v;
+        if (tuningTable.TryGetFloat("regenFlatStep", out v)) regenFlatStep = v;
+        if (tuningTable.TryGetFloat("pickupRadiusFlatStep", out v)) pickupRadiusFlatStep = v;
+        if (tuningTable.TryGetFloat("projectileSizeFlatStep", out v)) projectileSizeFlatStep = v;
+        if (tuningTable.TryGetInt("pierceFlatStep", out i)) pierceFlatStep = i;
+
+        // Level-up shared percent step
+        if (tuningTable.TryGetFloat("levelUpPercentStep", out v)) levelUpPercentStep = v;
+        if (tuningTable.TryGetFloat("lvlUpCostGrowth", out v)) lvlUpCostGrowth = v;
+
+        // Enemy spawning
+        if (tuningTable.TryGetFloat("baseSpawnInterval", out v)) baseSpawnInterval = v;
+        if (tuningTable.TryGetFloat("spawnIntervalCoefficient", out v)) spawnIntervalCoefficient = v;
+        if (tuningTable.TryGetFloat("minSpawnInterval", out v)) minSpawnInterval = v;
+        if (tuningTable.TryGetFloat("spawnIntervalTimeCoefficient", out v)) spawnIntervalTimeCoefficient = v;
+        if (tuningTable.TryGetFloat("spawnIntervalTimeFloor", out v)) spawnIntervalTimeFloor = v;
+
+        // Time-based boss scaling
+        if (tuningTable.TryGetFloat("bossFireRateTimeCoefficient", out v)) bossFireRateTimeCoefficient = v;
+        if (tuningTable.TryGetFloat("bossBulletSpeedTimeCoefficient", out v)) bossBulletSpeedTimeCoefficient = v;
+        if (tuningTable.TryGetFloat("bossVolleyBonusPerMinute", out v)) bossVolleyBonusPerMinute = v;
+        if (tuningTable.TryGetFloat("bossStatTimeCoefficient", out v)) bossStatTimeCoefficient = v;
+
+        // Time-based type progression
+        if (tuningTable.TryGetFloat("shooterStartTime", out v)) shooterStartTime = v;
+        if (tuningTable.TryGetFloat("unlockRampSeconds", out v)) unlockRampSeconds = v;
+
+        // Repeating boss cadence
+        if (tuningTable.TryGetFloat("bossFirstTime", out v)) bossFirstTime = v;
+        if (tuningTable.TryGetFloat("bossInterval", out v)) bossInterval = v;
+
+        // Enemy HP scaling over time
+        if (tuningTable.TryGetFloat("hpScaleInterval", out v)) hpScaleInterval = v;
+        if (tuningTable.TryGetFloat("hpScalePerTier", out v)) hpScalePerTier = v;
+
+        // Time-based XP doubling
+        if (tuningTable.TryGetFloat("xpDoubleThreshold", out v)) xpDoubleThreshold = v;
+        if (tuningTable.TryGetFloat("xpDoubleFactor", out v)) xpDoubleFactor = v;
+    }
+
     // Base + multiplier stat system. Effective value = base * mult (via getters).
     public float attackDamageBase = 100f;
     public float attackDamageMult = 1f;
@@ -37,7 +147,8 @@ public class worldState
     public float critDamageMult = 1f;
 
     // --- Enemy status effects (Fire DoT / Freeze). New (post-x10) damage scale. ---
-    public float   fireDpsPerStack() => attackDamageBase * 0.05f;    // damage per second PER burning stack
+    public float fireDpsFactor = 0.05f;   // fire DPS per stack = attackDamageBase * this
+    public float   fireDpsPerStack() => attackDamageBase * fireDpsFactor;    // damage per second PER burning stack
     public int   fireStackCap      = 5;     // max simultaneous burning stacks
     public float fireTickInterval  = 0.1f;    // seconds between burn ticks (1s -> dmg/tick == dps)
     public float fireBurnDuration  = 3f;    // seconds a burn lasts; refreshed by each ApplyFire()
@@ -53,7 +164,8 @@ public class worldState
 
     // --- Phase 2 item weapon stats (base+mult, mirroring existing style). Registered but inert until their components exist. ---
     // Damage Aura: constant DPS in a radius around the player.
-    public float auraDpsBase()        => attackDamageBase * 0.1f;
+    public float auraDpsFactor = 0.1f;   // aura DPS = attackDamageBase * this
+    public float auraDpsBase()        => attackDamageBase * auraDpsFactor;
     public float auraDpsMult         = 1f;
     public float auraRadiusBase     = 1.5f;
     public float auraRadiusMult      = 1f;
@@ -63,14 +175,16 @@ public class worldState
     public float robotSpeedFactor    = 1f;     // bot move/orbit speed multiplier
     public float robotHitInterval    = 0.5f;   // seconds between bot hits
     // Searing Trail: damaging trail segments left behind the player.
-    public float trailDpsBase()        => attackDamageBase * 0.05f;
+    public float trailDpsFactor = 0.05f;   // trail DPS = attackDamageBase * this
+    public float trailDpsBase()        => attackDamageBase * trailDpsFactor;
     public float trailDpsMult         = 1f;
     public float trailSegmentLifetime = 2f;    // seconds a trail segment persists
     public float trailEmitDistance    = 0.5f;  // player travel distance between emitted segments
     public float trailTickInterval    = 0.1f; // seconds between trail damage ticks
     // Grenadier: periodically lobs a grenade that explodes for AoE damage.
     public float grenadeInterval     = 2f;     // seconds between grenade throws
-    public float grenadeDamageBase()   => attackDamageBase * 2f;
+    public float grenadeDamageFactor = 2f;   // grenade damage = attackDamageBase * this
+    public float grenadeDamageBase()   => attackDamageBase * grenadeDamageFactor;
     public float grenadeDamageMult    = 1f;
     public float grenadeRadiusBase   => rangeBase;
     public float grenadeRadiusMult    = 1f;
@@ -95,7 +209,7 @@ public class worldState
     public float projectileSizeFlatStep = 0.2f;   // +0.2 size per Flat upgrade
     public int   pierceFlatStep       = 1;   // flat-only Pierce upgrade step
     public int   xpBonusStep          = 1;   // flat-only XP-Gain upgrade step
-    public const int xpBonusCap        = 3;  // max total bonus (base 1 pickup -> 4 XP)
+    public int xpBonusCap              = 3;  // max total bonus (base 1 pickup -> 4 XP)
 
     // Percent step, shared across all stats. 0.1 = +10% (mult factor = 1 + step).
     public float levelUpPercentStep = 0.2f;
@@ -134,6 +248,7 @@ public class worldState
 
     public int lvlUpXP = 4, currentXP = 0;
     public int level = 1;
+    public float lvlUpCostGrowth = 1.3f;   // each level costs this * previous XP requirement
 
     public int currentHP = 1000;
 
@@ -245,7 +360,7 @@ public class worldState
             currentXP -= lvlUpXP;
             level++;
             currentSpawnInterval = Mathf.Max(minSpawnInterval, currentSpawnInterval - spawnIntervalCoefficient * (1f / level));
-            lvlUpXP = Mathf.RoundToInt(lvlUpXP * 1.3f);   // each level costs more
+            lvlUpXP = Mathf.RoundToInt(lvlUpXP * lvlUpCostGrowth);   // each level costs more
             if (OnLevelUp != null) OnLevelUp();
         }
     }
