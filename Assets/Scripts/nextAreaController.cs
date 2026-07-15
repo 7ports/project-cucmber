@@ -1,35 +1,37 @@
 using UnityEngine;
 
 /// <summary>
-/// Unlocks passage into the next area (region B) once all quest items have been
-/// collected. Subscribes to questManager.OnAllQuestItemsCollected and, on fire,
-/// disables the solid door collider so the player can walk through.
+/// Marks the end of the demo. Once all quest items have been collected, this
+/// controller subscribes to questManager.OnAllQuestItemsCollected and, on fire,
+/// opens a "DEMO OVER" menu panel and pauses the game (Time.timeScale = 0).
 ///
-/// The DEFERRED region-B boss / entry hook can subscribe to OnDoorOpened — this
-/// controller intentionally does NOT spawn the boss or trigger region-B entry.
+/// It intentionally does NOT disable the door collider or advance to a next
+/// level — reaching the door is the demo's end state.
 /// </summary>
 public class nextAreaController : MonoBehaviour
 {
     [SerializeField] private Collider2D _doorCollider;
     [SerializeField] private GameObject _doorVisual;
 
-    /// <summary>Fired once, after the door opens. Clean hook for the deferred
-    /// next-area boss spawn / region-B entry logic.</summary>
+    [SerializeField] private GameObject _demoOverPanel;
+
+    /// <summary>Fired once, when the demo-over menu is shown. Harmless hook
+    /// retained for anything that wants to react to the demo ending.</summary>
     public event System.Action OnDoorOpened;
 
     private bool _opened;
 
     private void OnEnable()
     {
-        questManager.OnAllQuestItemsCollected += OpenDoor;
+        questManager.OnAllQuestItemsCollected += ShowDemoOver;
     }
 
     private void OnDisable()
     {
-        questManager.OnAllQuestItemsCollected -= OpenDoor;
+        questManager.OnAllQuestItemsCollected -= ShowDemoOver;
     }
 
-    private void OpenDoor()
+    private void ShowDemoOver()
     {
         if (_opened)
         {
@@ -37,17 +39,13 @@ public class nextAreaController : MonoBehaviour
         }
         _opened = true;
 
-        if (_doorCollider != null)
+        if (_demoOverPanel != null)
         {
-            _doorCollider.enabled = false;
+            _demoOverPanel.SetActive(true);
         }
 
-        if (_doorVisual != null)
-        {
-            // Placeholder: simply hide the door visual. TODO: swap for an
-            // open-door sprite or play an open animation once art exists.
-            _doorVisual.SetActive(false);
-        }
+        // Pause the game — the demo has ended.
+        Time.timeScale = 0f;
 
         if (OnDoorOpened != null)
         {
