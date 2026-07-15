@@ -117,7 +117,7 @@ public class levelUpManager : MonoBehaviour
             if (_activePanel != null)
                 _activePanel.SetActive(false);
             _activePanel = null;
-            Time.timeScale = 1f;
+            Time.timeScale = timescaleController.RunningTimeScale;
         }
     }
 }

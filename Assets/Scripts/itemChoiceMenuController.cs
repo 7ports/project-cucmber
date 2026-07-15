@@ -156,6 +156,6 @@ public class itemChoiceMenuController : MonoBehaviour
     private void Close()
     {
         if (menuPanel != null) menuPanel.SetActive(false);
-        Time.timeScale = 1f; // resume — mirrors levelUpManager line 88
+        Time.timeScale = timescaleController.RunningTimeScale; // resume — mirrors levelUpManager line 88
     }
 }

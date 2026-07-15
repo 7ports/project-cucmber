@@ -40,7 +40,7 @@ public class pauseMenuController : MonoBehaviour
     {
         isPaused = false;
         if (pauseRoot != null) pauseRoot.SetActive(false);
-        if (!OtherPauseActive()) Time.timeScale = 1f;
+        if (!OtherPauseActive()) Time.timeScale = timescaleController.RunningTimeScale;
     }
 
     public void Quit()
