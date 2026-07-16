@@ -136,6 +136,11 @@ public class enemyHealth : MonoBehaviour
 
     public void takeDamage(int amount, bool isCrit = false)
     {
+        // Frostbite is now a damage-amplifier: a frozen enemy takes 1.5x from ALL
+        // sources (projectiles, burn DoT, contact). Applied once per hit; int-rounded.
+        if (IsFrozen)
+            amount = Mathf.Max(1, Mathf.RoundToInt(amount * 1.5f));
+
         currentHp -= amount;
         runStats.TotalDamage += amount;   // run-scoped telemetry: all damage flows through here
         if (_isBoss && bloodPrefab != null && objectPool.instance != null)   // ADDED: boss-only blood on each hit

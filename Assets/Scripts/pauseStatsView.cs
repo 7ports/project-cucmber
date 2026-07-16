@@ -10,25 +10,32 @@ public class pauseStatsView : MonoBehaviour
         if (statsText != null && worldState.instance != null)
         {
             worldState w = worldState.instance;
-            float fireRate = (1f / w.FireCooldown());
 
-            // Per stat: effective value, then the base value and the percent-upgrade
-            // multiplier (Mult starts at 1.0; flat upgrades grow the base). worldState
-            // base/mult fields are public, so this is an exact breakdown.
+            // Per stat: "<starting> + <gained>", where starting is the base value and
+            // gained (effective - base) is highlighted in yellow rich-text. worldState
+            // base fields are public and every getter is base * mult, so this is an
+            // exact split of what the player started with vs. earned from levels/items.
             string s = "Level: " + w.level + "\n" +
-                       "HP: " + w.currentHP + "/" + w.MaxHP() + "  (base " + w.maxHPBase.ToString("0") + " x" + w.maxHPMult.ToString("0.00") + ")\n" +
-                       "Damage: " + w.AttackDamage().ToString("0.0") + "  (base " + w.attackDamageBase.ToString("0.0") + " x" + w.attackDamageMult.ToString("0.00") + ")\n" +
-                       "Move Speed: " + w.MoveSpeed().ToString("0.0") + "  (base " + w.moveSpeedBase.ToString("0.0") + " x" + w.moveSpeedMult.ToString("0.00") + ")\n" +
-                       "Fire Rate: " + fireRate.ToString("0.0") + "/s  (x" + w.fireRateMult.ToString("0.00") + ")\n" +
-                       "Range: " + w.Range().ToString("0.0") + "  (base " + w.rangeBase.ToString("0.0") + " x" + w.rangeMult.ToString("0.00") + ")\n" +
-                       "Pickup Radius: " + w.PickupRadius().ToString("0.0") + "  (base " + w.pickupRadiusBase.ToString("0.0") + " x" + w.pickupRadiusMult.ToString("0.00") + ")\n" +
-                       "Crit Chance: " + (w.CritChance() * 100f).ToString("0") + "%\n" +
-                       "Crit Damage: x" + w.CritMultiplier().ToString("0.00") + "\n" +
+                       "HP: " + w.currentHP + "/" + Gain(w.maxHPBase, w.MaxHP(), "0") + "\n" +
+                       "Damage: " + Gain(w.attackDamageBase, w.AttackDamage(), "0.0") + "\n" +
+                       "Move Speed: " + Gain(w.moveSpeedBase, w.MoveSpeed(), "0.0") + "\n" +
+                       "Fire Rate: " + Gain(w.fireRateBase, w.FireRate(), "0.0") + "/s\n" +
+                       "Range: " + Gain(w.rangeBase, w.Range(), "0.0") + "\n" +
+                       "Pickup Radius: " + Gain(w.pickupRadiusBase, w.PickupRadius(), "0.0") + "\n" +
+                       "Crit Chance: " + Gain(w.critChanceBase * 100f, w.CritChance() * 100f, "0") + "%\n" +
+                       "Crit Damage: x" + Gain(w.critDamageBase, w.CritMultiplier(), "0.00") + "\n" +
                        "Total Damage: " + runStats.TotalDamage + "\n" +
                        "Average DPS: " + runStats.AvgDps().ToString("0.0") + "\n" +
                        "Enemies Killed: " + runStats.EnemiesKilled;
 
             statsText.text = s;
         }
+    }
+
+    // Formats a stat as "<starting> + <gained>", with the gained portion in yellow.
+    private static string Gain(float start, float effective, string format)
+    {
+        float gained = effective - start;
+        return start.ToString(format) + " + <color=yellow>" + gained.ToString(format) + "</color>";
     }
 }

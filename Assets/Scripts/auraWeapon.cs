@@ -94,8 +94,24 @@ public class auraWeapon : MonoBehaviour
         _auraRing.enabled = _active;
         if (_active && worldState.instance != null)
         {
-            float d = 2f * worldState.instance.AuraRadius();
-            _auraRing.transform.localScale = new Vector3(d, d, 1f);
+            // World-space diameter the ring must visually span.
+            float diameter = 2f * worldState.instance.AuraRadius();
+
+            // Account for the ring sprite's own base size: a sprite whose bounds
+            // are not exactly 1 world-unit across at scale 1 would otherwise draw
+            // the wrong radius. Divide the target diameter by the sprite's
+            // unscaled size so the drawn ring's WORLD radius always equals the
+            // gameplay AuraRadius() used for the damage OverlapCircle above.
+            float spriteBase = 1f;
+            if (_auraRing.sprite != null)
+            {
+                Vector2 baseSize = _auraRing.sprite.bounds.size;
+                spriteBase = Mathf.Max(baseSize.x, baseSize.y);
+            }
+            if (spriteBase <= 0f) spriteBase = 1f;
+
+            float scale = diameter / spriteBase;
+            _auraRing.transform.localScale = new Vector3(scale, scale, 1f);
         }
     }
 }

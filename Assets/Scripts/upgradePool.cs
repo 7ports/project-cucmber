@@ -33,7 +33,6 @@ public static class upgradePool
             StatKind.PickupRadius,
             StatKind.Pierce,
             StatKind.XpGain,
-            StatKind.ProjectileSize,
             StatKind.CritChance,
             StatKind.CritDamage
         };
@@ -56,9 +55,11 @@ public static class upgradePool
             // Flat is always offered.
             pool.Add(new Upgrade { kind = k, mode = Mode.Flat });
 
-            // Pierce and XpGain are flat-only stats — never offer them as a percent.
+            // Pierce, XpGain, and both Crit stats are flat-only — never offer them as a percent.
             if (k == StatKind.Pierce) continue;
             if (k == StatKind.XpGain) continue;
+            if (k == StatKind.CritChance) continue;
+            if (k == StatKind.CritDamage) continue;
 
             // Percent is inert on a 0 base for Defense/Regen — only offer once seeded.
             if (k == StatKind.Defense && !defenseHasBase) continue;
@@ -90,7 +91,6 @@ public static class upgradePool
                 case StatKind.Defense:      return "+" + ws.defenseFlatStep.ToString(ci) + " Defense";
                 case StatKind.Regen:        return "+" + ws.regenFlatStep.ToString(ci) + " HP/s Regen";
                 case StatKind.PickupRadius: return "+" + ws.pickupRadiusFlatStep.ToString(ci) + " Pickup Radius";
-                case StatKind.ProjectileSize: return "+" + ws.projectileSizeFlatStep.ToString(ci) + " Projectile Size";
                 case StatKind.Pierce:       return "+" + ws.pierceFlatStep.ToString(ci) + " Pierce";
                 case StatKind.XpGain:       return "+" + ws.xpBonusStep.ToString(ci) + " XP per Pickup";
                 case StatKind.CritChance:   return "+" + Mathf.RoundToInt(critChanceFlatStep * 100f) + "% Crit Chance";
@@ -111,7 +111,6 @@ public static class upgradePool
             case StatKind.Defense:      return "+" + pct + "% Defense";
             case StatKind.Regen:        return "+" + pct + "% Regen";
             case StatKind.PickupRadius: return "+" + pct + "% Pickup Radius";
-            case StatKind.ProjectileSize: return "+" + pct + "% Projectile Size";
             case StatKind.CritChance:   return "+" + pct + "% Crit Chance";
             case StatKind.CritDamage:   return "+" + pct + "% Crit Damage";
             default: return "";
@@ -154,9 +153,6 @@ public static class upgradePool
                     break;
                 case StatKind.PickupRadius:
                     ws.pickupRadiusBase += ws.pickupRadiusFlatStep;
-                    break;
-                case StatKind.ProjectileSize:
-                    ws.projectileSizeBase += ws.projectileSizeFlatStep;
                     break;
                 case StatKind.Pierce:
                     ws.pierceBase += ws.pierceFlatStep;
@@ -205,15 +201,8 @@ public static class upgradePool
                 case StatKind.PickupRadius:
                     ws.pickupRadiusMult *= p;
                     break;
-                case StatKind.ProjectileSize:
-                    ws.projectileSizeMult *= p;
-                    break;
-                case StatKind.CritChance:
-                    ws.critChanceMult *= p;
-                    break;
-                case StatKind.CritDamage:
-                    ws.critDamageMult *= p;
-                    break;
+                // ProjectileSize and both Crit stats are flat-only and never reach
+                // the Percent branch, so no percent apply cases exist for them.
             }
         }
 

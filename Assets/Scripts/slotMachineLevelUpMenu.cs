@@ -109,6 +109,12 @@ public class slotMachineLevelUpMenu : MonoBehaviour
         StopAllReels();
         StopReveal();
         StopClose();
+
+        // Menu is now fully closed — RELEASE the held splash queue so the yellow "stat up"
+        // texts begin animating only after this menu disappears. Safe even if nothing was
+        // held (Release just clears the flag and drains any pending labels).
+        if (upgradeSplashController.instance != null)
+            upgradeSplashController.instance.Release();
     }
 
     private void Update()
@@ -234,6 +240,12 @@ public class slotMachineLevelUpMenu : MonoBehaviour
     {
         if (_phase != Phase.AwaitConfirm) return;
         _phase = Phase.Stopped;   // terminal — guards against a double-fire
+
+        // HOLD the splash queue so the yellow "stat up" texts enqueue silently while
+        // this menu is still on screen; they're RELEASEd in OnDisable once the menu is
+        // fully closed. Only the slot path holds — the regular level-up menu never does.
+        if (upgradeSplashController.instance != null)
+            upgradeSplashController.instance.Hold();
 
         // Apply the upgrade behind every reel that landed on the pick.
         int matches = 0;

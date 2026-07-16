@@ -18,6 +18,7 @@ public class attackRobot : MonoBehaviour
     [SerializeField] private GameObject _robotPrefab;   // ACTIVATOR mode: prefab to spawn; null => this IS the robot
     [SerializeField] private SpriteRenderer _sprite;    // placeholder visual (robot mode)
     [SerializeField] private string _enemyTag = "Enemy";
+    [SerializeField] private float _leashDistance = 12f; // teleport back to player if farther than this
 
     private bool _active;                                // robot mode: chasing + dealing damage
     private GameObject _spawnedRobot;                    // activator guard: only ever spawn one
@@ -86,6 +87,15 @@ public class attackRobot : MonoBehaviour
     void Update()
     {
         if (!_active || worldState.instance == null) return;
+
+        // Leash: if the robot drifts too far from the player, snap it back.
+        // Reuse the existing player singleton reference (playerInventory sits on the player).
+        Transform player = playerInventory.instance != null ? playerInventory.instance.transform : null;
+        if (player != null &&
+            Vector2.Distance(transform.position, player.position) > _leashDistance)
+        {
+            transform.position = player.position;
+        }
 
         Transform target = FindNearestEnemy();
         if (target == null) return;

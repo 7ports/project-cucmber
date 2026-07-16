@@ -47,5 +47,14 @@ public static class itemManager
         string chosen = candidates[Random.Range(0, candidates.Count)];
         inv.Add(chosen);
         Debug.Log("[itemManager] Granted '" + chosen + "'. Inventory size: " + inv.items.Count);
+
+        // Cone tradeoff: firing in a spread cuts overall attack damage to 2/3 (a one-third
+        // reduction). Applied exactly once here at acquisition — GrantRandomItem grants
+        // random-without-duplicates, so Cone can only be granted a single time.
+        if (chosen == ItemId.Cone && worldState.instance != null)
+        {
+            worldState.instance.attackDamageMult *= (2f / 3f);
+            Debug.Log("[itemManager] Cone acquired — attack damage reduced to 2/3.");
+        }
     }
 }
