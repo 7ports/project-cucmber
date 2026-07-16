@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
-// Spawns a configurable number of starter powerup pickups at random points
-// within a play-area when the run begins. One-shot spawn on Start() — no pooling.
+// Spawns a configurable number of starter powerup pickups on random floor tiles
+// anywhere on the map (like quest items) the moment XP-doubling activates.
+// One-shot spawn — no pooling. Guarded by _spawned so it only ever fires once.
 public class startPickupSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _vacuumPickupPrefab;
@@ -10,36 +12,30 @@ public class startPickupSpawner : MonoBehaviour
     [SerializeField] private int _vacuumCount = 3;
     [SerializeField] private int _itemCount = 1;
 
-    [SerializeField] private Vector2 _areaCenter = Vector2.zero;
-    [SerializeField] private Vector2 _areaSize = new Vector2(30f, 20f);
+    // Wired to the SAME ground tilemap questManager uses.
+    [SerializeField] private Tilemap _groundTilemap;
 
-    // Starter powerups are delayed until the player's FIRST level-up ('xp scale up')
-    // rather than spawned at run start. Guarded one-shot via _spawned.
+    // Bounded retries to find a floored cell before giving up on a single pickup.
+    private const int _maxPlacementAttempts = 64;
+
     private bool _spawned;
 
-    private void OnEnable()
-    {
-        worldState.OnLevelUp += HandleFirstLevelUp;
-    }
-
-    private void OnDisable()
-    {
-        worldState.OnLevelUp -= HandleFirstLevelUp;
-    }
-
-    private void HandleFirstLevelUp()
+    private void Update()
     {
         if (_spawned)
         {
             return;
         }
-        _spawned = true;
 
-        // Only ever fires once — unsubscribe immediately so the handler never leaks.
-        worldState.OnLevelUp -= HandleFirstLevelUp;
-
-        SpawnPickups(_vacuumPickupPrefab, _vacuumCount, "vacuum");
-        SpawnPickups(_itemPickupPrefab, _itemCount, "item");
+        // Fire once the moment XP-doubling activates (time threshold, not an event).
+        if (worldState.instance != null
+            && worldState.instance.xpDoubleThreshold > 0f
+            && Time.timeSinceLevelLoad >= worldState.instance.xpDoubleThreshold)
+        {
+            _spawned = true;
+            SpawnPickups(_vacuumPickupPrefab, _vacuumCount, "vacuum");
+            SpawnPickups(_itemPickupPrefab, _itemCount, "item");
+        }
     }
 
     private void SpawnPickups(GameObject prefab, int count, string label)
@@ -50,18 +46,45 @@ public class startPickupSpawner : MonoBehaviour
             return;
         }
 
+        if (_groundTilemap == null)
+        {
+            Debug.LogWarning($"[startPickupSpawner] _groundTilemap is not assigned — skipping {count} {label} spawn(s).");
+            return;
+        }
+
         for (int i = 0; i < count; i++)
         {
-            Vector2 pos = RandomPointInArea();
-            Instantiate(prefab, pos, Quaternion.identity);
+            if (TryGetRandomFloorPosition(out Vector3 pos))
+            {
+                Instantiate(prefab, pos, Quaternion.identity);
+            }
+            else
+            {
+                Debug.LogWarning($"[startPickupSpawner] no floor tile found for {label} pickup after {_maxPlacementAttempts} attempts — skipping.");
+            }
         }
     }
 
-    private Vector2 RandomPointInArea()
+    // Picks a random cell within the ground tilemap bounds that HasTile(...),
+    // mirroring questManager's floor-tile scatter. Returns the cell center in world space.
+    private bool TryGetRandomFloorPosition(out Vector3 world)
     {
-        Vector2 extents = _areaSize * 0.5f;
-        float x = _areaCenter.x + Random.Range(-extents.x, extents.x);
-        float y = _areaCenter.y + Random.Range(-extents.y, extents.y);
-        return new Vector2(x, y);
+        BoundsInt bounds = _groundTilemap.cellBounds;
+
+        for (int attempt = 0; attempt < _maxPlacementAttempts; attempt++)
+        {
+            int x = Random.Range(bounds.xMin, bounds.xMax);
+            int y = Random.Range(bounds.yMin, bounds.yMax);
+            Vector3Int cell = new Vector3Int(x, y, 0);
+
+            if (_groundTilemap.HasTile(cell))
+            {
+                world = _groundTilemap.GetCellCenterWorld(cell);
+                return true;
+            }
+        }
+
+        world = Vector3.zero;
+        return false;
     }
 }
