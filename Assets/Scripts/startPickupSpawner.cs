@@ -13,8 +13,31 @@ public class startPickupSpawner : MonoBehaviour
     [SerializeField] private Vector2 _areaCenter = Vector2.zero;
     [SerializeField] private Vector2 _areaSize = new Vector2(30f, 20f);
 
-    private void Start()
+    // Starter powerups are delayed until the player's FIRST level-up ('xp scale up')
+    // rather than spawned at run start. Guarded one-shot via _spawned.
+    private bool _spawned;
+
+    private void OnEnable()
     {
+        worldState.OnLevelUp += HandleFirstLevelUp;
+    }
+
+    private void OnDisable()
+    {
+        worldState.OnLevelUp -= HandleFirstLevelUp;
+    }
+
+    private void HandleFirstLevelUp()
+    {
+        if (_spawned)
+        {
+            return;
+        }
+        _spawned = true;
+
+        // Only ever fires once — unsubscribe immediately so the handler never leaks.
+        worldState.OnLevelUp -= HandleFirstLevelUp;
+
         SpawnPickups(_vacuumPickupPrefab, _vacuumCount, "vacuum");
         SpawnPickups(_itemPickupPrefab, _itemCount, "item");
     }

@@ -69,7 +69,14 @@ public class attackRobot : MonoBehaviour
         if (_robotPrefab != null)
         {
             if (_spawnedRobot == null)
-                _spawnedRobot = Instantiate(_robotPrefab, transform.position, Quaternion.identity);
+            {
+                // Spawn AT THE PLAYER, not at the activator's own transform (which may be
+                // anywhere). Fall back to this transform only if the singleton is missing.
+                Vector3 spawnPos = playerInventory.instance != null
+                    ? playerInventory.instance.transform.position
+                    : transform.position;
+                _spawnedRobot = Instantiate(_robotPrefab, spawnPos, Quaternion.identity);
+            }
             return;
         }
 
@@ -86,9 +93,12 @@ public class attackRobot : MonoBehaviour
 
     void Update()
     {
-        if (!_active || worldState.instance == null) return;
+        if (!_active) return;
 
-        // Leash: if the robot drifts too far from the player, snap it back.
+        // Leash FIRST — this must run every frame the robot is active, BEFORE any early
+        // return for "no enemy" or a missing worldState. Previously it sat behind the
+        // worldState-null guard and ahead of the chase flow, so on any frame that bailed
+        // early the snap-back never executed and the robot drifted forever chasing enemies.
         // Reuse the existing player singleton reference (playerInventory sits on the player).
         Transform player = playerInventory.instance != null ? playerInventory.instance.transform : null;
         if (player != null &&
@@ -96,6 +106,8 @@ public class attackRobot : MonoBehaviour
         {
             transform.position = player.position;
         }
+
+        if (worldState.instance == null) return;
 
         Transform target = FindNearestEnemy();
         if (target == null) return;
