@@ -36,4 +36,32 @@ public static class explosionUtil
             eh.takeDamage(dmg, crit);
         }
     }
+
+    /// <summary>
+    /// Player-targeting variant of Detonate: same size-scaled VFX, but the AoE damages the
+    /// PLAYER instead of enemies. Used by enemy-thrown grenades. Damage is a flat value passed
+    /// in by the thrower (no worldState.GrenadeDamage scaling — that scales with the player's
+    /// own attack). The player is only hit when within the blast radius.
+    /// </summary>
+    public static void DetonateOnPlayer(Vector2 pos, float radius, int damage)
+    {
+        if (damage <= 0) return;
+
+        if (ExplosionBurstPrefab != null && objectPool.instance != null)
+        {
+            GameObject fx = objectPool.instance.get(ExplosionBurstPrefab, pos, Quaternion.identity);
+            fx.transform.localScale = Vector3.one * radius;
+        }
+
+        Collider2D[] near = Physics2D.OverlapCircleAll(pos, radius);
+        foreach (Collider2D c in near)
+        {
+            if (c == null || !c.CompareTag("Player")) continue;
+            playerHealth ph = c.GetComponentInChildren<playerHealth>();
+            if (ph == null) ph = c.GetComponentInParent<playerHealth>();
+            if (ph == null) continue;
+            ph.TakeHit(damage);
+            return; // player is a single target — stop after the first hit
+        }
+    }
 }

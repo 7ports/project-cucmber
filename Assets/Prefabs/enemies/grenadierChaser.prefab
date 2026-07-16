@@ -90,11 +90,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8971424190427120489, guid: a3f0c52240fc14f4fbcb9e1d3c7451b1, type: 3}
       propertyPath: m_Color.b
-      value: 0.4
+      value: 0.925365
       objectReference: {fileID: 0}
     - target: {fileID: 8971424190427120489, guid: a3f0c52240fc14f4fbcb9e1d3c7451b1, type: 3}
       propertyPath: m_Color.g
-      value: 0.55
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8971424190427120489, guid: a3f0c52240fc14f4fbcb9e1d3c7451b1, type: 3}
+      propertyPath: m_Color.r
+      value: 0.39999998
       objectReference: {fileID: 0}
     - target: {fileID: 8971424190427120489, guid: a3f0c52240fc14f4fbcb9e1d3c7451b1, type: 3}
       propertyPath: m_SortingOrder
@@ -167,6 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3816932431a46bdbd289c68946007f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::grenadierEnemy
-  _grenadeProjectilePrefab: {fileID: 4269008661058560719, guid: d1ac67a88fc96eb4699e187478c80430, type: 3}
+  _grenadeProjectilePrefab: {fileID: 4269008661058560719, guid: c152707068843b44ab24bebbe211ef92, type: 3}
   _redCircleTelegraphPrefab: {fileID: 3209158616127659448, guid: afbd0c46db023744a96dae12d31fefbf, type: 3}
   _telegraphDuration: 0.6
