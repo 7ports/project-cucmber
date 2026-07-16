@@ -32,6 +32,8 @@ public class slotMachineLevelUpMenu : MonoBehaviour
 
     [Header("Optional labels")]
     [SerializeField] private Text[] _reelLabels;           // optional per-reel upgrade labels
+    [SerializeField] private Text _subtitle;               // "pick a symbol" subtitle, shown while the menu is open
+    [SerializeField] private Text _spinHint;               // "press space to stop" hint, shown only while spinning
 
     [Header("Tuning")]
     [SerializeField] private float _spinFrameInterval = 0.07f;
@@ -46,6 +48,8 @@ public class slotMachineLevelUpMenu : MonoBehaviour
     private SlotSymbol[] _reelSymbols;
     private Coroutine[] _spinCoroutines;
     private Coroutine _revealCoroutine;
+    private Coroutine _closeCoroutine;
+    private bool _advanced;
     private int _activeReelCount;
 
     private void OnEnable()
@@ -53,6 +57,8 @@ public class slotMachineLevelUpMenu : MonoBehaviour
         // Reset all state for a fresh presentation.
         StopAllReels();
         StopReveal();
+        StopClose();
+        _advanced = false;
         ResetReelColors();
         _phase = Phase.AwaitPick;
 
@@ -88,6 +94,12 @@ public class slotMachineLevelUpMenu : MonoBehaviour
             }
         }
 
+        if (_spinHint != null) _spinHint.gameObject.SetActive(false);
+        if (_subtitle != null)
+        {
+            _subtitle.text = "Pick a symbol!";
+            _subtitle.gameObject.SetActive(true);
+        }
         ShowSymbolButtons(true);
     }
 
@@ -96,6 +108,7 @@ public class slotMachineLevelUpMenu : MonoBehaviour
         // Coroutine-stop discipline: never let a reel spin (or a reveal run) on a disabled object.
         StopAllReels();
         StopReveal();
+        StopClose();
     }
 
     private void Update()
@@ -103,30 +116,16 @@ public class slotMachineLevelUpMenu : MonoBehaviour
         if (_phase == Phase.Spinning)
         {
             // First press: stop the reels and begin the staged reveal. Do NOT resolve here.
-            if (Input.GetAxisRaw("Horizontal") != 0f ||
-                Input.GetAxisRaw("Vertical") != 0f ||
-                Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 _phase = Phase.Revealing;
+                if (_spinHint != null) _spinHint.gameObject.SetActive(false);
                 StopReveal();
                 _revealCoroutine = StartCoroutine(RevealSequence());
             }
             return;
         }
 
-        if (_phase == Phase.AwaitConfirm)
-        {
-            // A FRESH key-down commits the result. GetKeyDown (not GetAxisRaw) so a still-held
-            // stop key can't bleed straight through; the reveal delay separates them too.
-            if (Input.GetKeyDown(KeyCode.Space) ||
-                Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) ||
-                Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) ||
-                Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) ||
-                Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                Confirm();
-            }
-        }
     }
 
     // Wired to each symbol button's onClick in ShowSymbolButtons().
@@ -137,6 +136,13 @@ public class slotMachineLevelUpMenu : MonoBehaviour
         _picked = s;
         ShowSymbolButtons(false);
         _phase = Phase.Spinning;
+
+        if (_subtitle != null) _subtitle.gameObject.SetActive(false);
+        if (_spinHint != null)
+        {
+            _spinHint.text = "press space to stop";
+            _spinHint.gameObject.SetActive(true);
+        }
 
         if (_reels == null) return;
         for (int i = 0; i < _reels.Length; i++)
@@ -220,6 +226,7 @@ public class slotMachineLevelUpMenu : MonoBehaviour
 
         _revealCoroutine = null;
         _phase = Phase.AwaitConfirm;
+        Confirm();
     }
 
     // Phase 2 of the resolve: commit the revealed result exactly once.
@@ -246,9 +253,30 @@ public class slotMachineLevelUpMenu : MonoBehaviour
             else if (matches >= 2) worldState.instance.slotPityPending = false;
         }
 
-        // Advance EXACTLY ONCE after all winners are applied.
+        // Winners applied and splashes fired; close the menu after a short realtime beat.
+        StopClose();
+        _closeCoroutine = StartCoroutine(AutoCloseSequence());
+    }
+
+    // Auto-close: upgrades/splashes already fired in Confirm(); after a short realtime beat,
+    // advance the level-up flow EXACTLY ONCE to close the menu. Guarded so it can't fire twice.
+    private IEnumerator AutoCloseSequence()
+    {
+        yield return new WaitForSecondsRealtime(1.75f);
+        _closeCoroutine = null;
+        if (_advanced) yield break;
+        _advanced = true;
         if (levelUpManager.instance != null)
             levelUpManager.instance.ApplyChoiceAndAdvance();
+    }
+
+    private void StopClose()
+    {
+        if (_closeCoroutine != null)
+        {
+            StopCoroutine(_closeCoroutine);
+            _closeCoroutine = null;
+        }
     }
 
     private void SnapReelSprite(int index, SlotSymbol symbol)
