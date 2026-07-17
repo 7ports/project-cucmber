@@ -20,7 +20,7 @@ public static class explosionUtil
         if (ExplosionBurstPrefab != null && objectPool.instance != null)
         {
             GameObject fx = objectPool.instance.get(ExplosionBurstPrefab, pos, Quaternion.identity);
-            fx.transform.localScale = Vector3.one * radius;
+            fx.transform.localScale = Vector3.one;
         }
 
         Collider2D[] near = Physics2D.OverlapCircleAll(pos, radius);
@@ -50,18 +50,22 @@ public static class explosionUtil
         if (ExplosionBurstPrefab != null && objectPool.instance != null)
         {
             GameObject fx = objectPool.instance.get(ExplosionBurstPrefab, pos, Quaternion.identity);
-            fx.transform.localScale = Vector3.one * radius;
+            fx.transform.localScale = Vector3.one;
         }
 
-        Collider2D[] near = Physics2D.OverlapCircleAll(pos, radius);
-        foreach (Collider2D c in near)
-        {
-            if (c == null || !c.CompareTag("Player")) continue;
-            playerHealth ph = c.GetComponentInChildren<playerHealth>();
-            if (ph == null) ph = c.GetComponentInParent<playerHealth>();
-            if (ph == null) continue;
-            ph.TakeHit(damage);
-            return; // player is a single target — stop after the first hit
-        }
+        // Locate the player by the game's canonical reference rather than a collider tag.
+        // Tag-based OverlapCircle filtering was unreliable (the player collider may not carry
+        // the exact "Player" tag, or the tag may live on a different object in the hierarchy),
+        // so grenades never damaged the player. Mirror enemyProjectile's robust seam: check the
+        // worldState player transform directly and only hit when inside the blast radius.
+        if (worldState.instance == null || worldState.instance.player == null) return;
+
+        if (Vector2.Distance(pos, worldState.instance.player.position) > radius) return;
+
+        playerHealth ph = worldState.instance.player.GetComponentInChildren<playerHealth>();
+        if (ph == null) ph = worldState.instance.player.GetComponentInParent<playerHealth>();
+        if (ph == null) return;
+
+        ph.TakeHit(damage);
     }
 }
