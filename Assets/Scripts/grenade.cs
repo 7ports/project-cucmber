@@ -14,14 +14,6 @@ public class grenade : MonoBehaviour
     [SerializeField] private float _fuse = 0.6f;         // hard cap; detonate even if flight stalls
     [SerializeField] private float _arcHeight = 0.5f;    // visual pop height along the toss
 
-    [Header("Enemy-thrown variant")]
-    // Opt-in: when true this grenade damages the PLAYER on detonation instead of enemies.
-    // Defaults false so the player's own grenade weapon is completely unaffected.
-    [SerializeField] private bool _damagesPlayer = false;
-    // Flat damage dealt to the player when _damagesPlayer is true. Deliberately NOT routed
-    // through worldState.GrenadeDamage() (which scales with the PLAYER's attack stat).
-    [SerializeField] private int _playerDamage = 15;
-
     private Coroutine _routine;
     private bool _detonated;
 
@@ -78,19 +70,11 @@ public class grenade : MonoBehaviour
 
         float radius = worldState.instance != null ? worldState.instance.GrenadeRadius() : 1.5f;
 
-        if (_damagesPlayer)
-        {
-            // Enemy-thrown grenade: flat damage to the player if within the blast radius.
-            explosionUtil.DetonateOnPlayer(transform.position, radius, _playerDamage);
-        }
-        else
-        {
-            // Player's own grenade — unchanged: scales with the player's attack, hits enemies.
-            int damage = worldState.instance != null
-                ? Mathf.FloorToInt(worldState.instance.GrenadeDamage())
-                : 0;
-            explosionUtil.Detonate(transform.position, radius, damage);
-        }
+        // Player's own grenade: scales with the player's attack, hits enemies.
+        int damage = worldState.instance != null
+            ? Mathf.FloorToInt(worldState.instance.GrenadeDamage())
+            : 0;
+        explosionUtil.Detonate(transform.position, radius, damage);
 
         if (objectPool.instance != null) objectPool.instance.ret(gameObject);
         else gameObject.SetActive(false);

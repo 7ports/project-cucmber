@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6946427664066421693}
   - component: {fileID: 5861180015992318100}
-  - component: {fileID: 7223187133318533276}
+  - component: {fileID: 5050110234302505806}
   m_Layer: 0
   m_Name: enemyGrenade
   m_TagString: Untagged
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &7223187133318533276
+--- !u!114 &5050110234302505806
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,11 +101,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4269008661058560719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd9448dbadc1a9748a1e858abc3755f0, type: 3}
+  m_Script: {fileID: 11500000, guid: e7a3c1f94b2d8e5460af13c7d29b8a06, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::grenade
+  m_EditorClassIdentifier: Assembly-CSharp::enemyGrenade
+  _blastRadius: 1.5
+  _playerDamage: 15
+  _telegraphPrefab: {fileID: 3209158616127659448, guid: afbd0c46db023744a96dae12d31fefbf, type: 3}
   _flightTime: 0.5
   _fuse: 0.6
   _arcHeight: 0.5
-  _damagesPlayer: 1
-  _playerDamage: 15

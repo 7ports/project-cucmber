@@ -171,6 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3816932431a46bdbd289c68946007f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::grenadierEnemy
-  _grenadeProjectilePrefab: {fileID: 4269008661058560719, guid: c152707068843b44ab24bebbe211ef92, type: 3}
-  _redCircleTelegraphPrefab: {fileID: 3209158616127659448, guid: afbd0c46db023744a96dae12d31fefbf, type: 3}
-  _telegraphDuration: 0.6
+  _enemyGrenadePrefab: {fileID: 4269008661058560719, guid: c152707068843b44ab24bebbe211ef92, type: 3}
