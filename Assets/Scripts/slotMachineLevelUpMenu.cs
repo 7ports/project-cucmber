@@ -35,6 +35,9 @@ public class slotMachineLevelUpMenu : MonoBehaviour
     [SerializeField] private Text _subtitle;               // "pick a symbol" subtitle, shown while the menu is open
     [SerializeField] private Text _spinHint;               // "press space to stop" hint, shown only while spinning
 
+    [Header("Outcome FX")]
+    [SerializeField] private ParticleSystem[] _outcomeFX;  // index by match count 0..5 (index 0 may be null = dud)
+
     [Header("Tuning")]
     [SerializeField] private float _spinFrameInterval = 0.07f;
     [SerializeField] private float _reelStopInterval = 0.18f;   // stagger between reel stops (left->right)
@@ -258,6 +261,8 @@ public class slotMachineLevelUpMenu : MonoBehaviour
             }
         }
 
+        PlayOutcomeFX(matches);
+
         // Pity update: arm on a lone/no match, clear once the player lands a real payout.
         if (worldState.instance != null)
         {
@@ -364,5 +369,15 @@ public class slotMachineLevelUpMenu : MonoBehaviour
             for (int i = 0; i < _reelLabels.Length; i++)
                 if (_reelLabels[i] != null) _reelLabels[i].color = Color.white;
         }
+    }
+
+    private void PlayOutcomeFX(int matches)
+    {
+        if (_outcomeFX == null || _outcomeFX.Length == 0) return;
+        int i = Mathf.Clamp(matches, 0, _outcomeFX.Length - 1);
+        ParticleSystem fx = _outcomeFX[i];
+        if (fx == null) return;
+        fx.Clear(true);
+        fx.Play(true);
     }
 }

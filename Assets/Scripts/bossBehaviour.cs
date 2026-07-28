@@ -5,8 +5,10 @@ public class bossBehaviour : MonoBehaviour
     [SerializeField] private float chaseSpeed = 0.7f;        // ~0.7x the chaser's real speed of 1.0
     [SerializeField] private float leashDistance = 14f;      // world units
     [SerializeField] private float leashOffscreenPad = 1f;   // units past the visible edge
+    [SerializeField] private float interceptCooldown = 1.5f; // cooldown between aggressive intercept teleports
     private enemyHealth _health;                 // ADDED
     private Rigidbody2D _rb;   // ADD
+    private float _interceptTimer;
 
     void Awake()
     {
@@ -22,7 +24,19 @@ public class bossBehaviour : MonoBehaviour
 
         if (((Vector3)_rb.position - target).sqrMagnitude > leashDistance * leashDistance)
         {
-            _rb.position = ComputeOffscreenPoint(target);  // CHANGED: teleport, not a swept move
+            if (worldState.instance != null && worldState.instance.aggressiveBlocking)
+            {
+                _interceptTimer += Time.fixedDeltaTime;
+                if (_interceptTimer >= interceptCooldown)
+                {
+                    _rb.position = EnemyPathing.ComputeInterceptPoint(_rb.position, target, worldState.instance.playerVelocity, Camera.main, leashOffscreenPad, 0.5f);
+                    _interceptTimer = 0f;
+                }
+            }
+            else
+            {
+                _rb.position = ComputeOffscreenPoint(target);  // CHANGED: teleport, not a swept move
+            }
             return;                                        // leash OR chase, never both (preserved)
         }
 

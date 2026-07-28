@@ -47,6 +47,7 @@ public class playerMovement : MonoBehaviour
                             * Time.fixedDeltaTime * worldState.instance.MoveSpeed();
             _rb.MovePosition(_rb.position + delta);  // CHANGED from transform.Translate(...)
         }
-        
+
+        if (worldState.instance != null) worldState.instance.playerVelocity = _rb.linearVelocity;
     }
 }
