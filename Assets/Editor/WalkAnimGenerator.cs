@@ -15,8 +15,8 @@ using UnityEngine;
 public static class WalkAnimGenerator
 {
     // Row index → compass direction. One array, one place: if the order is wrong, a quick fix.
-    // Hypothesis to verify in the Editor (design §1 + §6 Task 3).
-    static readonly string[] DefaultRowToDir = { "down", "down-left", "left", "up-left", "up", "up-right", "right", "down-right" };
+    // Row order derived from the direction-correct run-*.anim clips (same character creator).
+    static readonly string[] DefaultRowToDir = { "up-right", "up", "up-left", "left", "down-left", "down", "down-right", "right" };
 
     // Assets/Generate Walk Animations — context menu for right-clicking a Walk*.png (or its folder).
     [MenuItem("Assets/Generate Walk Animations", false, 2000)]
