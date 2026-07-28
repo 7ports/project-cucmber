@@ -219,6 +219,10 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: 0.008386493
       objectReference: {fileID: 0}
+    - target: {fileID: 4935009949413222213, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 708e9d5dfdd23f84295804a6f8ea6dcf, type: 2}
     - target: {fileID: 9198072831249636405, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
       propertyPath: m_Name
       value: shooter
@@ -261,6 +265,9 @@ MonoBehaviour:
   telegraph: {fileID: 8871245060133545424}
   lineColor: {r: 1, g: 0.2, b: 0.2, a: 0.8}
   lineWidth: 0.06
+  leashDistance: 14
+  stuckSeconds: 1.5
+  leashOffscreenPad: 1
 --- !u!4 &8988134321081828100 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4158945752031968793, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}

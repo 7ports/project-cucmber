@@ -80,9 +80,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 4e33d0afbd2da7948a2b235cc52ab4ed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5c4128643a1e9564a8583e738080f73a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,6 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9448dbadc1a9748a1e858abc3755f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::grenade
-  _flightTime: 0.5
-  _fuse: 0.6
+  _flightTime: 1
+  _fuse: 1.5
   _arcHeight: 0.5
+  _damagesPlayer: 0
+  _playerDamage: 15

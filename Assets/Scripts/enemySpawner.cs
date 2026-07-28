@@ -10,7 +10,24 @@ public class enemySpawner : MonoBehaviour
         public float weight;           // relative base weight; <= 0 is treated as 1
     }
 
+    // A customizable spawn batch: N copies of one enemy prefab, spawned as a group.
+    // Prefab identity matches SpawnEntry.prefab (same objectPool.get path).
+    [System.Serializable]
+    private struct SpawnBatch
+    {
+        public GameObject prefab;   // enemy prefab to spawn as a group
+        public int count;           // how many to instantiate per batch (min 1)
+    }
+
     [SerializeField] private SpawnEntry[] spawnTable;
+
+    [Header("Batch spawning (active from the Nth boss)")]
+    // Once worldState.bossSpawnCount >= _batchBossThreshold, each spawn tick emits one of
+    // these batches (picked at random) as a group instead of a single enemy. Empty list ->
+    // batching never engages (single spawns preserved). Fully inspector-customizable.
+    [SerializeField] private SpawnBatch[] spawnBatches;
+    // Boss count at/after which batching begins. Default 2 -> batches start after the 2nd boss.
+    [SerializeField] private int _batchBossThreshold = 2;
     // Rebuilt every spawn: eligible prefabs + their computed (ramped) weights, index-aligned.
     private readonly System.Collections.Generic.List<GameObject> eligible = new System.Collections.Generic.List<GameObject>();
     private readonly System.Collections.Generic.List<float> eligibleWeights = new System.Collections.Generic.List<float>();
@@ -144,7 +161,22 @@ public class enemySpawner : MonoBehaviour
             Vector3 point = cam.ViewportToWorldPoint(vp);
             point.z = 0f;
 
-            objectPool.instance.get(prefab, point, Quaternion.identity);
+            // After the batch gate (default: 2nd boss), spawn a customizable batch as a group;
+            // otherwise the original single spawn. Batches reuse this same spawn point/path.
+            if (worldState.instance != null
+                && worldState.instance.bossSpawnCount >= _batchBossThreshold
+                && spawnBatches != null && spawnBatches.Length > 0)
+            {
+                SpawnBatch batch = spawnBatches[Random.Range(0, spawnBatches.Length)];
+                GameObject batchPrefab = batch.prefab != null ? batch.prefab : prefab;
+                int count = Mathf.Max(1, batch.count);
+                for (int n = 0; n < count; n++)
+                    objectPool.instance.get(batchPrefab, point, Quaternion.identity);
+            }
+            else
+            {
+                objectPool.instance.get(prefab, point, Quaternion.identity);
+            }
         }
     }
 }

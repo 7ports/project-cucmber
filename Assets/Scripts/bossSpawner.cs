@@ -57,6 +57,8 @@ public class bossSpawner : MonoBehaviour
         activeBoss = Instantiate(chosen, point, Quaternion.identity);
         bossShooter shooter = activeBoss.GetComponent<bossShooter>();
         if (shooter != null) shooter.RandomizePattern();
+        // Track boss spawns: feeds enemy-HP acceleration + the enemySpawner batch-spawn gate.
+        worldState.instance.bossSpawnCount++;
         return true;
     }
 }

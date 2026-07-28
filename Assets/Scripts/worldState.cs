@@ -109,6 +109,7 @@ public class worldState
         // Enemy HP scaling over time
         if (tuningTable.TryGetFloat("hpScaleInterval", out v)) hpScaleInterval = v;
         if (tuningTable.TryGetFloat("hpScalePerTier", out v)) hpScalePerTier = v;
+        if (tuningTable.TryGetFloat("bossHpAccelPerBoss", out v)) bossHpAccelPerBoss = v;
 
         // Time-based XP doubling
         if (tuningTable.TryGetFloat("xpDoubleThreshold", out v)) xpDoubleThreshold = v;
@@ -164,7 +165,7 @@ public class worldState
 
     // --- Phase 2 item weapon stats (base+mult, mirroring existing style). Registered but inert until their components exist. ---
     // Damage Aura: constant DPS in a radius around the player.
-    public float auraDpsFactor = 0.1f;   // aura DPS = attackDamageBase * this
+    public float auraDpsFactor = 0.25f;   // aura DPS = attackDamageBase * this
     public float auraDpsBase()        => attackDamageBase * auraDpsFactor;
     public float auraDpsMult         = 1f;
     public float auraRadiusBase     = 1.5f;
@@ -175,12 +176,12 @@ public class worldState
     public float robotSpeedFactor    = 1f;     // bot move/orbit speed multiplier
     public float robotHitInterval    = 0.5f;   // seconds between bot hits
     // Searing Trail: damaging trail segments left behind the player.
-    public float trailDpsFactor = 0.05f;   // trail DPS = attackDamageBase * this
+    public float trailDpsFactor = 0.5f;   // trail DPS = attackDamageBase * this
     public float trailDpsBase()        => attackDamageBase * trailDpsFactor;
     public float trailDpsMult         = 1f;
     public float trailSegmentLifetime = 2f;    // seconds a trail segment persists
     public float trailEmitDistance    = 0.5f;  // player travel distance between emitted segments
-    public float trailTickInterval    = 0.1f; // seconds between trail damage ticks
+    public float trailTickInterval    = 0.2f; // seconds between trail damage ticks
     // Grenadier: periodically lobs a grenade that explodes for AoE damage.
     public float grenadeInterval     = 2f;     // seconds between grenade throws
     public float grenadeDamageFactor = 2f;   // grenade damage = attackDamageBase * this
@@ -214,7 +215,17 @@ public class worldState
     // Percent step, shared across all stats. 0.1 = +10% (mult factor = 1 + step).
     public float levelUpPercentStep = 0.2f;
 
-    public float AttackDamage() => attackDamageBase * attackDamageMult;
+    // --- Global outgoing-damage modifier ---
+    // Single multiplier applied to ALL player damage output via AttackDamage(),
+    // so every weapon/attack that reads AttackDamage() is affected uniformly.
+    // Default 1.0 = no change. Items trade raw damage for utility by setting this
+    // (e.g. Cone Shot -> 2/3, a 1/3 reduction). Set-based (idempotent) so an item
+    // that re-applies its value never stacks the reduction. Not CSV-overlaid.
+    public float damageModifier = 1f;
+    public float DamageModifier() => damageModifier;
+    public void SetDamageModifier(float value) => damageModifier = value;
+
+    public float AttackDamage() => attackDamageBase * attackDamageMult * damageModifier;
     public float MoveSpeed() => moveSpeedBase * moveSpeedMult;
     public float FireRate() => fireRateBase * fireRateMult;
     public float FireCooldown() => 1f / FireRate();
@@ -281,22 +292,42 @@ public class worldState
     public float bossFirstTime = 200f;   // first boss at 5:00
     public float bossInterval  = 200f;   // then every 5:00
 
+    // Count of bosses actually spawned this run. Incremented by bossSpawner at each
+    // successful spawn; drives the per-boss acceleration term in EnemyHpTimeMultiplier()
+    // and the batch-spawn gate in enemySpawner. Run-scoped: worldState is re-created each
+    // run -> auto-resets to 0.
+    public int bossSpawnCount = 0;
+
     // --- Time-based ENEMY HP scaling (seconds of elapsed run time) ---
     // Every hpScaleInterval seconds, NEWLY-spawned enemies (and bosses) get
     // +hpScalePerTier of their BASE hp. ADDITIVE: mult = 1 + perTier * tier.
     public float hpScaleInterval = 300f;   // 7 minutes per tier
     public float hpScalePerTier  = 1f;   // +50% of base per tier
 
+    // Per-boss HP acceleration. Each boss that spawns (bossSpawnCount) adds this fraction
+    // of base HP ON TOP of the time-based tier scaling, so the enemy-HP curve steepens after
+    // every boss instead of staying linear over time. Additive: extra mult += this * count.
+    // 0 -> time-only scaling (behavior unchanged). Balance-later tunable (CSV-overlaid below).
+    public float bossHpAccelPerBoss = 0.25f;
+
     // Multiplier for HP applied AT SPAWN, from elapsed run time.
     // Uses Time.timeSinceLevelLoad — the run-time source already adopted by
     // enemySpawner/bossSpawner — so all time-based systems agree.
     public float EnemyHpTimeMultiplier()
     {
-        if (hpScaleInterval <= 0f) return 1f;   // guard: no divide-by-zero / disable
-        int tier = Mathf.FloorToInt(Time.timeSinceLevelLoad / hpScaleInterval);
-        if (tier < 0) tier = 0;
-        return 1f + hpScalePerTier * tier;
-        // COMPOUNDING alternative (retune): return Mathf.Pow(1f + hpScalePerTier, tier);
+        // Base: time-based tier scaling (existing behavior; guarded against divide-by-zero).
+        float mult = 1f;
+        if (hpScaleInterval > 0f)
+        {
+            int tier = Mathf.FloorToInt(Time.timeSinceLevelLoad / hpScaleInterval);
+            if (tier < 0) tier = 0;
+            mult += hpScalePerTier * tier;
+        }
+        // Accelerator: each boss spawned steepens the ramp on top of the time base.
+        if (bossSpawnCount > 0)
+            mult += bossHpAccelPerBoss * bossSpawnCount;
+        return mult;
+        // COMPOUNDING alternative (retune): Mathf.Pow(1f + hpScalePerTier, tier) then * (1 + accel*count);
     }
 
     // --- Time-based XP doubling (seconds of elapsed run time) ---

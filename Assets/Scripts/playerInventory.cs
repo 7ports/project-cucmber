@@ -17,6 +17,13 @@ public class playerInventory : MonoBehaviour
     public void Add(string item)
     {
         items.Add(item);
+
+        // Cone Shot tradeoff: fires a 3-shot spread but reduces ALL outgoing player
+        // damage by 1/3 via the global damage modifier (2/3 output). Set-based +
+        // guarded on this single grant chokepoint, so it can never double-apply.
+        if (item == ItemId.Cone && worldState.instance != null)
+            worldState.instance.SetDamageModifier(1f / 3f);
+
         OnItemAdded?.Invoke(item);
     }
 

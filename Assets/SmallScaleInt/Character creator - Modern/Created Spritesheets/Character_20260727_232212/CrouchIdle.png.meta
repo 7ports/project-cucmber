@@ -1,0 +1,3370 @@
+fileFormatVersion: 2
+guid: 3ff956160b301f1418f4d2e14d1790fb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2330147259476030876
+    second: CrouchIdle_0
+  - first:
+      213: 1221216068662974698
+    second: CrouchIdle_1
+  - first:
+      213: -414445035469035489
+    second: CrouchIdle_2
+  - first:
+      213: -684758876726743674
+    second: CrouchIdle_3
+  - first:
+      213: 1861482574544531030
+    second: CrouchIdle_4
+  - first:
+      213: 2783315565001520216
+    second: CrouchIdle_5
+  - first:
+      213: -5591913812495262757
+    second: CrouchIdle_6
+  - first:
+      213: -2794861236529485109
+    second: CrouchIdle_7
+  - first:
+      213: 2747523022682542692
+    second: CrouchIdle_8
+  - first:
+      213: -2476038760093927311
+    second: CrouchIdle_9
+  - first:
+      213: 2371390347071756584
+    second: CrouchIdle_10
+  - first:
+      213: -7991390999379203998
+    second: CrouchIdle_11
+  - first:
+      213: 6728402942346673103
+    second: CrouchIdle_12
+  - first:
+      213: -5052913808067584555
+    second: CrouchIdle_13
+  - first:
+      213: -4047812512271616806
+    second: CrouchIdle_14
+  - first:
+      213: 2111964624343258432
+    second: CrouchIdle_15
+  - first:
+      213: 8669271390535201553
+    second: CrouchIdle_16
+  - first:
+      213: 4754665438551967072
+    second: CrouchIdle_17
+  - first:
+      213: 8678574219922706608
+    second: CrouchIdle_18
+  - first:
+      213: 6294059129325489771
+    second: CrouchIdle_19
+  - first:
+      213: -7482718242218417577
+    second: CrouchIdle_20
+  - first:
+      213: -1061689744753439102
+    second: CrouchIdle_21
+  - first:
+      213: -7051732807259085673
+    second: CrouchIdle_22
+  - first:
+      213: 5822961093464419562
+    second: CrouchIdle_23
+  - first:
+      213: 7065845523379993617
+    second: CrouchIdle_24
+  - first:
+      213: 3508644703116268761
+    second: CrouchIdle_25
+  - first:
+      213: 7579856746295558643
+    second: CrouchIdle_26
+  - first:
+      213: 4505056094838767306
+    second: CrouchIdle_27
+  - first:
+      213: 6215350071190543815
+    second: CrouchIdle_28
+  - first:
+      213: 5168585182786229477
+    second: CrouchIdle_29
+  - first:
+      213: -8348883514237993691
+    second: CrouchIdle_30
+  - first:
+      213: -3286258210044298263
+    second: CrouchIdle_31
+  - first:
+      213: -8139431096590069218
+    second: CrouchIdle_32
+  - first:
+      213: 1672718950018037240
+    second: CrouchIdle_33
+  - first:
+      213: -3066768889506157187
+    second: CrouchIdle_34
+  - first:
+      213: 3987714563391819325
+    second: CrouchIdle_35
+  - first:
+      213: -4769665885825950584
+    second: CrouchIdle_36
+  - first:
+      213: 4518610719692562783
+    second: CrouchIdle_37
+  - first:
+      213: -6957438768996869171
+    second: CrouchIdle_38
+  - first:
+      213: 8677252118888642294
+    second: CrouchIdle_39
+  - first:
+      213: 6799634988956833379
+    second: CrouchIdle_40
+  - first:
+      213: -3389131174698169302
+    second: CrouchIdle_41
+  - first:
+      213: -8642941893120552040
+    second: CrouchIdle_42
+  - first:
+      213: 8312012295064962445
+    second: CrouchIdle_43
+  - first:
+      213: -8976003435137645971
+    second: CrouchIdle_44
+  - first:
+      213: -1103788104493900826
+    second: CrouchIdle_45
+  - first:
+      213: -6827421719349919380
+    second: CrouchIdle_46
+  - first:
+      213: -1370571827982695729
+    second: CrouchIdle_47
+  - first:
+      213: -6360236780941677869
+    second: CrouchIdle_48
+  - first:
+      213: 4027623289112218160
+    second: CrouchIdle_49
+  - first:
+      213: -5932340413075255329
+    second: CrouchIdle_50
+  - first:
+      213: -7252480120353628553
+    second: CrouchIdle_51
+  - first:
+      213: -8379414402151194558
+    second: CrouchIdle_52
+  - first:
+      213: 5729481641801553291
+    second: CrouchIdle_53
+  - first:
+      213: 6967841268495501151
+    second: CrouchIdle_54
+  - first:
+      213: -2417761586035536685
+    second: CrouchIdle_55
+  - first:
+      213: -2897680816698996860
+    second: CrouchIdle_56
+  - first:
+      213: 1058609164631432139
+    second: CrouchIdle_57
+  - first:
+      213: 8490122324123296399
+    second: CrouchIdle_58
+  - first:
+      213: 3315718341235813482
+    second: CrouchIdle_59
+  - first:
+      213: -9016253870545330843
+    second: CrouchIdle_60
+  - first:
+      213: 8720259839188712989
+    second: CrouchIdle_61
+  - first:
+      213: -5873792648428295540
+    second: CrouchIdle_62
+  - first:
+      213: -3389694381826549166
+    second: CrouchIdle_63
+  - first:
+      213: 1512561566753332223
+    second: CrouchIdle_64
+  - first:
+      213: -8534727558762564845
+    second: CrouchIdle_65
+  - first:
+      213: 3423223730283680319
+    second: CrouchIdle_66
+  - first:
+      213: 430976948742209362
+    second: CrouchIdle_67
+  - first:
+      213: 6761598701836663951
+    second: CrouchIdle_68
+  - first:
+      213: -2212914687152039219
+    second: CrouchIdle_69
+  - first:
+      213: 2368422022682121831
+    second: CrouchIdle_70
+  - first:
+      213: -1287605952246916826
+    second: CrouchIdle_71
+  - first:
+      213: 8992689630414171050
+    second: CrouchIdle_72
+  - first:
+      213: 1343733950477349662
+    second: CrouchIdle_73
+  - first:
+      213: 877777863497080908
+    second: CrouchIdle_74
+  - first:
+      213: -2472400150143651315
+    second: CrouchIdle_75
+  - first:
+      213: -211696973728722962
+    second: CrouchIdle_76
+  - first:
+      213: 2412013365493127120
+    second: CrouchIdle_77
+  - first:
+      213: 1440830922619206527
+    second: CrouchIdle_78
+  - first:
+      213: 4445757376092912671
+    second: CrouchIdle_79
+  - first:
+      213: 6642425036650594847
+    second: CrouchIdle_80
+  - first:
+      213: -811885827967135567
+    second: CrouchIdle_81
+  - first:
+      213: -6461737091755120733
+    second: CrouchIdle_82
+  - first:
+      213: 1050310688556802966
+    second: CrouchIdle_83
+  - first:
+      213: 7416016406101079752
+    second: CrouchIdle_84
+  - first:
+      213: 6076098267628538250
+    second: CrouchIdle_85
+  - first:
+      213: 6285276325030976403
+    second: CrouchIdle_86
+  - first:
+      213: 2472823473156550483
+    second: CrouchIdle_87
+  - first:
+      213: -819373589527916859
+    second: CrouchIdle_88
+  - first:
+      213: 1492940095573713739
+    second: CrouchIdle_89
+  - first:
+      213: -1947008637002333068
+    second: CrouchIdle_90
+  - first:
+      213: -1609005971495520255
+    second: CrouchIdle_91
+  - first:
+      213: 5534103420007295808
+    second: CrouchIdle_92
+  - first:
+      213: 9060612318364783591
+    second: CrouchIdle_93
+  - first:
+      213: -1995608957254647121
+    second: CrouchIdle_94
+  - first:
+      213: -177170593993529398
+    second: CrouchIdle_95
+  - first:
+      213: 4549447429683621311
+    second: CrouchIdle_96
+  - first:
+      213: -1921601938903046200
+    second: CrouchIdle_97
+  - first:
+      213: 6676774370798441776
+    second: CrouchIdle_98
+  - first:
+      213: -4766162256438987597
+    second: CrouchIdle_99
+  - first:
+      213: -5824688121397093713
+    second: CrouchIdle_100
+  - first:
+      213: -4462509949301914973
+    second: CrouchIdle_101
+  - first:
+      213: 1132552609975734426
+    second: CrouchIdle_102
+  - first:
+      213: -8604633449183428930
+    second: CrouchIdle_103
+  - first:
+      213: 3817803691153506451
+    second: CrouchIdle_104
+  - first:
+      213: -4108567638892918936
+    second: CrouchIdle_105
+  - first:
+      213: 7538575193827271488
+    second: CrouchIdle_106
+  - first:
+      213: 209742627788053577
+    second: CrouchIdle_107
+  - first:
+      213: 7424322427272295606
+    second: CrouchIdle_108
+  - first:
+      213: 910390259315850250
+    second: CrouchIdle_109
+  - first:
+      213: -6924947639703430309
+    second: CrouchIdle_110
+  - first:
+      213: -5195452366878876780
+    second: CrouchIdle_111
+  - first:
+      213: -2712542073384658325
+    second: CrouchIdle_112
+  - first:
+      213: -1035244938097621404
+    second: CrouchIdle_113
+  - first:
+      213: -3055665798339679039
+    second: CrouchIdle_114
+  - first:
+      213: -8585895917846462658
+    second: CrouchIdle_115
+  - first:
+      213: -1822419096597541294
+    second: CrouchIdle_116
+  - first:
+      213: 3698989827110283975
+    second: CrouchIdle_117
+  - first:
+      213: 5002143410372903843
+    second: CrouchIdle_118
+  - first:
+      213: 5376858112429219551
+    second: CrouchIdle_119
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CrouchIdle_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecba81690787d564f9b217e2901a35c8
+      internalID: 1909735700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_0_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7511bc1de0cc04647a635a33f03b7812
+      internalID: -1243099967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_0_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd1f235886f8f9049a68a19c531a22bc
+      internalID: -178725361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_0_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62d10a69c1adb68418150ab916123c84
+      internalID: 240095918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_0_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd0cb54b6485b6740a13941d52dac57b
+      internalID: -402221569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_0_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5eb0bcde0e757a64c9c66ab0f6dabae0
+      internalID: 391711090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_0_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a50c8959d58dfa4ba91bfb2de48c549
+      internalID: 517010189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_0_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a02f424eaebb0f14b9df935163bb9ad4
+      internalID: -1903604223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_0_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75e1b0d416e95fa4d8910e92a89e916d
+      internalID: -810742967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_0_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2dcc1344d8b67d43a5a231e8b065c73
+      internalID: -1568653737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_0_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 354be39680af9d7468082f185b193f12
+      internalID: -291750140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_0_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9798e24d2bfee7e498e5f8ff5d947b60
+      internalID: -1504512657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_0_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c9831d2cead7694bb289719f25128e6
+      internalID: 1990311305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_0_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7aa94f9b61f40544bb4e7048483e5c59
+      internalID: -1173255154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_0_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d643520248aa4b14784232d25cc104d3
+      internalID: -1230350189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1460d6df730866540a17f163e6706068
+      internalID: -268803964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_1_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c097b3f1203f68b49b62ef1d49d8537e
+      internalID: 500573863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_1_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e3c073515fa90f41a24efd6862513f5
+      internalID: 604964879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_1_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28bbfb84ebdc05a4198fd36429ff1f2a
+      internalID: -1191144301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_1_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d54fa71fa37238449390cc4fc321a01
+      internalID: -694886182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_1_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b405ec65cf49d54590bc528ea74be4c
+      internalID: -1376263376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_1_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08f0565ceb114ad46a43836a7ba3702a
+      internalID: 956217399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_1_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8846182eff88eef4b9fbd53707ac757d
+      internalID: 1794986496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_1_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1af7c76e50d77cf4caa0d0411bf1b508
+      internalID: 757971301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_1_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4262ae3b098de8f47a7f736d326a3d6e
+      internalID: -1054286316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_1_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cf2c87dce9402c43b36adcc640b1e2f
+      internalID: -2016278080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_1_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d02d30c59f7b665428bf6d3cea0327cd
+      internalID: -2035988668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_1_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92e9a542b442b16478a6a25459bdffc7
+      internalID: -1797630504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_1_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5e22e58b035fd1469f90600e82c8d99
+      internalID: 1821134265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_1_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3d4afb6668654241bbf41e223724cab
+      internalID: -707479293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b934d6009144474c83397d0a06011c4
+      internalID: -1385919541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_2_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89d847a611ac80849807e0ec79bbd6bc
+      internalID: 1991689851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_2_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b3ec86a548eff44d8d7ddfb1d40eccb
+      internalID: 792833070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_2_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d181966932564741a1aa152ecc2c9b6
+      internalID: -642284353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_2_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96cb115b87c785f469edfe07cf2d4abf
+      internalID: 804254511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_2_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 504a5f3eaacce7740a83b696417e1346
+      internalID: -65690217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_2_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2206640d9164c4e4685475d968366a5a
+      internalID: 1700497483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_2_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8227b505b16857f4cbf73beb885518c8
+      internalID: -1787157689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_2_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b265325adb8c6864b8026fb6a2d42dec
+      internalID: 1756049479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_2_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd465d75adda63a48be7ba741fa29fbd
+      internalID: 513739074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_2_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6df8db42f1a81214d9a2a44e8ca37ff9
+      internalID: 272763224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_2_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 462e7c1ed556d574580f724e557c5052
+      internalID: 947841701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_2_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e92b90d1f733adc4d9a598dbd17e9ee3
+      internalID: 725178565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_2_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5efe0c4150f62544dad55fe0c94d9d00
+      internalID: 1602980921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_2_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dccb0df57604134cb8175896048857d
+      internalID: -130597391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ff247359c0baa944980f3af398b5b08
+      internalID: 2052035705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_3_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f66f526dc59aef34e84d71baa1fe1fd4
+      internalID: -705389629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_3_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b23eee36414d9d4ca12a16ac65dfbda
+      internalID: 435902428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_3_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cca548c048360984baf6b39913d54aa6
+      internalID: 1028343174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_3_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d09d24db747f6440bab7e7380742e60
+      internalID: -299526609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_3_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3306607be57af7a4cb538e3fffe312b9
+      internalID: 229797514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_3_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc1bf908e5579dc43b03e9b95369d0d9
+      internalID: -261014877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_3_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04f54424c32390144a88a1ada45d93b5
+      internalID: -856365438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_3_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af4269e935fce2d408adefabeb4c9291
+      internalID: -2045387849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_3_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7a03fcfe00df9943a17c8f75317cb9e
+      internalID: 1983554138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_3_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaff2ef8f898dfc45a3675eb17f29fec
+      internalID: -795757299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_3_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 417dee166b82c4e42a61af67b2abda84
+      internalID: 21481123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_3_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd35138afb3738047ac247451818dafb
+      internalID: 1928805722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_3_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 101f6e2e858b3c345a3108e904f81564
+      internalID: -1310030300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_3_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7f1a5401faa5c64ba67e91d87a77282
+      internalID: -734078350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1847a0e7fc30d147b8e030ee3d1604d
+      internalID: 504839158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_4_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce9efe49a2934db44b1139bf74fa2343
+      internalID: -493114331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_4_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45b5005cc53990f4a890d0b7d12e7666
+      internalID: -1913036777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_4_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a43a28584aee84b4e8e75e2e456c8b19
+      internalID: 1142244724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_4_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 746b3a6d8b4807e40b6d943cac9d7598
+      internalID: 188791617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_4_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb36690c13479a8488b3fec975d1ff51
+      internalID: 71187005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_4_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5211d064032502348bfd54bdba8f4d85
+      internalID: 2089613258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_4_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bee3c7d4ef8a3c48ae86410457ab5b8
+      internalID: 1205859099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_4_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4c9a6dca08bed241a59b0357825684b
+      internalID: -644471641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_4_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b3c0c1ae97658740ac73239d10213e6
+      internalID: -402867253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_4_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 177718999c0e78a41879b4495d00ec3c
+      internalID: -187415820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_4_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20bca33c421818b45a2609bdea106adc
+      internalID: -739361399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_4_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e429f4bff310d5d4b80a158803f16780
+      internalID: 424376598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_4_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ed992b0626b6394aa2decafa34db161
+      internalID: -1029519178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_4_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b937edd5308dc6a40a200f51b798db49
+      internalID: 2121519335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4406c0b2a66160469b38daf6d5cb008
+      internalID: -849511044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_5_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77c060aa95f1dfa4c817bdf121a169b7
+      internalID: -1706868228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_5_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84d33b0b8fb55f74ca43d7e2d058d6c9
+      internalID: 1555135361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_5_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d89c7fe1cd09d534e91426039131d6b5
+      internalID: 133493946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_5_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 141cd4bb9f04f3946b47c2acb0edba84
+      internalID: -811917599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_5_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57815dc6a3b428a42a5bec648cf7b8e0
+      internalID: 675030337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_5_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eff47c1dd5cc8454c91cb72f3dc5452e
+      internalID: 282355028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_5_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dede319a01c21594184ae60d6aa6cda2
+      internalID: -928339374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_5_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b8772d9cc3e3ff4e829066f030fb77c
+      internalID: 963754471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_5_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 474dfe9b25f9d6846aa1eee276290e09
+      internalID: 738202079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_5_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efdca26ed9f5b954ca65a0965eda20cb
+      internalID: 227317650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_5_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae85503ea863baa408227de1961f3534
+      internalID: 1762631745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_5_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ca6781d5ed57b44796607a8c5e6446b
+      internalID: 297825160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_5_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be152f53c4583874b903bb816357d54f
+      internalID: 476330522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_5_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 551d07656a702da48a3d1d561fa5905c
+      internalID: 725372086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e466099c6d55ba742aa1a01e6f604ff3
+      internalID: 943713260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_6_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e25bfabe552fca40a87d3de55c08acf
+      internalID: 1612594904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_6_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2ba12eae37c6d045903b0233e7ece57
+      internalID: -2087957670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_6_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bc489d3cfe4b2e4c9e39906ec3ef1c0
+      internalID: -1967955291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_6_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cf1625e34db3494382ff893a2cccec9
+      internalID: -51198827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_6_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 540cc2bc91f23d54dbbc574cb77c2c40
+      internalID: 1853882170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_6_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b96261b0b3ff6e49a27f7a97ae0d897
+      internalID: -1625373767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_6_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2f56df949934d04e9b64c6be5a63f7c
+      internalID: 1480245939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_6_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b657fb4f8e63fe446a21190bf24c9c1a
+      internalID: -553787914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_6_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a8b9d81bfc1a5b4d8e3de107394380f
+      internalID: 416559581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_6_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e27507f92bdc56042aba75ce7d2272e6
+      internalID: 613770345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_6_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd6258aef345c3140a279a7f4bba4239
+      internalID: -561664460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_6_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f576e0bfd69f7147a790e36491b6863
+      internalID: 752713120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_6_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0ac92a3c834a8b469ffc2b982fb60ae
+      internalID: -514877099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_6_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00fcc00ff1a230b478976e323b2bbc8c
+      internalID: 1767949111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7813c0bf2ce3b5429a43123a3bff719
+      internalID: -1478135637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_7_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94f712823c7bffb4a86404cb79968279
+      internalID: 1700638195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_7_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4cc4ac87311eaf419a9db392a83bbfc
+      internalID: -491978940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_7_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e1c31d79ff081942994fcebae6b74cb
+      internalID: 1219881551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_7_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 093a625ee3c14ff44a3e083077f31808
+      internalID: -953221123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_7_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 115e6571e4b43a34986d363006d3b83a
+      internalID: 1049908614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_7_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5360f15ca2d9d24459e611f27fba1eb7
+      internalID: 640451893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_7_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b6f77d9b4c587245a422e02ad406b71
+      internalID: -896785233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_7_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d2c8c50359df9b4ca0ca60b9f44cede
+      internalID: -1293196638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_7_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d264148f23679dd468dd96209e3efbc4
+      internalID: 1328872972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_7_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc9da72d902b9be44a19271e8d947727
+      internalID: 321146281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_7_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eba88333a7bbe4b4bbb073126e55ac00
+      internalID: -161853235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_7_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2b3488ce1fb39345b2b0d8122cd7c10
+      internalID: -1643428665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_7_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d358c0614da42440a906ea1f03d58e9
+      internalID: -833807090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchIdle_7_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cbde4dc201d82946bc5e38a84f1e223
+      internalID: -1251964769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 2547078ab6a353f449b259420dda5027
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CrouchIdle_0: 2330147259476030876
+      CrouchIdle_0_0: 1909735700
+      CrouchIdle_0_1: -1243099967
+      CrouchIdle_0_10: -291750140
+      CrouchIdle_0_11: -1504512657
+      CrouchIdle_0_12: 1990311305
+      CrouchIdle_0_13: -1173255154
+      CrouchIdle_0_14: -1230350189
+      CrouchIdle_0_2: -178725361
+      CrouchIdle_0_3: 240095918
+      CrouchIdle_0_4: -402221569
+      CrouchIdle_0_5: 391711090
+      CrouchIdle_0_6: 517010189
+      CrouchIdle_0_7: -1903604223
+      CrouchIdle_0_8: -810742967
+      CrouchIdle_0_9: -1568653737
+      CrouchIdle_1: 1221216068662974698
+      CrouchIdle_10: 2371390347071756584
+      CrouchIdle_100: -5824688121397093713
+      CrouchIdle_101: -4462509949301914973
+      CrouchIdle_102: 1132552609975734426
+      CrouchIdle_103: -8604633449183428930
+      CrouchIdle_104: 3817803691153506451
+      CrouchIdle_105: -4108567638892918936
+      CrouchIdle_106: 7538575193827271488
+      CrouchIdle_107: 209742627788053577
+      CrouchIdle_108: 7424322427272295606
+      CrouchIdle_109: 910390259315850250
+      CrouchIdle_11: -7991390999379203998
+      CrouchIdle_110: -6924947639703430309
+      CrouchIdle_111: -5195452366878876780
+      CrouchIdle_112: -2712542073384658325
+      CrouchIdle_113: -1035244938097621404
+      CrouchIdle_114: -3055665798339679039
+      CrouchIdle_115: -8585895917846462658
+      CrouchIdle_116: -1822419096597541294
+      CrouchIdle_117: 3698989827110283975
+      CrouchIdle_118: 5002143410372903843
+      CrouchIdle_119: 5376858112429219551
+      CrouchIdle_12: 6728402942346673103
+      CrouchIdle_13: -5052913808067584555
+      CrouchIdle_14: -4047812512271616806
+      CrouchIdle_15: 2111964624343258432
+      CrouchIdle_16: 8669271390535201553
+      CrouchIdle_17: 4754665438551967072
+      CrouchIdle_18: 8678574219922706608
+      CrouchIdle_19: 6294059129325489771
+      CrouchIdle_1_0: -268803964
+      CrouchIdle_1_1: 500573863
+      CrouchIdle_1_10: -2016278080
+      CrouchIdle_1_11: -2035988668
+      CrouchIdle_1_12: -1797630504
+      CrouchIdle_1_13: 1821134265
+      CrouchIdle_1_14: -707479293
+      CrouchIdle_1_2: 604964879
+      CrouchIdle_1_3: -1191144301
+      CrouchIdle_1_4: -694886182
+      CrouchIdle_1_5: -1376263376
+      CrouchIdle_1_6: 956217399
+      CrouchIdle_1_7: 1794986496
+      CrouchIdle_1_8: 757971301
+      CrouchIdle_1_9: -1054286316
+      CrouchIdle_2: -414445035469035489
+      CrouchIdle_20: -7482718242218417577
+      CrouchIdle_21: -1061689744753439102
+      CrouchIdle_22: -7051732807259085673
+      CrouchIdle_23: 5822961093464419562
+      CrouchIdle_24: 7065845523379993617
+      CrouchIdle_25: 3508644703116268761
+      CrouchIdle_26: 7579856746295558643
+      CrouchIdle_27: 4505056094838767306
+      CrouchIdle_28: 6215350071190543815
+      CrouchIdle_29: 5168585182786229477
+      CrouchIdle_2_0: -1385919541
+      CrouchIdle_2_1: 1991689851
+      CrouchIdle_2_10: 272763224
+      CrouchIdle_2_11: 947841701
+      CrouchIdle_2_12: 725178565
+      CrouchIdle_2_13: 1602980921
+      CrouchIdle_2_14: -130597391
+      CrouchIdle_2_2: 792833070
+      CrouchIdle_2_3: -642284353
+      CrouchIdle_2_4: 804254511
+      CrouchIdle_2_5: -65690217
+      CrouchIdle_2_6: 1700497483
+      CrouchIdle_2_7: -1787157689
+      CrouchIdle_2_8: 1756049479
+      CrouchIdle_2_9: 513739074
+      CrouchIdle_3: -684758876726743674
+      CrouchIdle_30: -8348883514237993691
+      CrouchIdle_31: -3286258210044298263
+      CrouchIdle_32: -8139431096590069218
+      CrouchIdle_33: 1672718950018037240
+      CrouchIdle_34: -3066768889506157187
+      CrouchIdle_35: 3987714563391819325
+      CrouchIdle_36: -4769665885825950584
+      CrouchIdle_37: 4518610719692562783
+      CrouchIdle_38: -6957438768996869171
+      CrouchIdle_39: 8677252118888642294
+      CrouchIdle_3_0: 2052035705
+      CrouchIdle_3_1: -705389629
+      CrouchIdle_3_10: -795757299
+      CrouchIdle_3_11: 21481123
+      CrouchIdle_3_12: 1928805722
+      CrouchIdle_3_13: -1310030300
+      CrouchIdle_3_14: -734078350
+      CrouchIdle_3_2: 435902428
+      CrouchIdle_3_3: 1028343174
+      CrouchIdle_3_4: -299526609
+      CrouchIdle_3_5: 229797514
+      CrouchIdle_3_6: -261014877
+      CrouchIdle_3_7: -856365438
+      CrouchIdle_3_8: -2045387849
+      CrouchIdle_3_9: 1983554138
+      CrouchIdle_4: 1861482574544531030
+      CrouchIdle_40: 6799634988956833379
+      CrouchIdle_41: -3389131174698169302
+      CrouchIdle_42: -8642941893120552040
+      CrouchIdle_43: 8312012295064962445
+      CrouchIdle_44: -8976003435137645971
+      CrouchIdle_45: -1103788104493900826
+      CrouchIdle_46: -6827421719349919380
+      CrouchIdle_47: -1370571827982695729
+      CrouchIdle_48: -6360236780941677869
+      CrouchIdle_49: 4027623289112218160
+      CrouchIdle_4_0: 504839158
+      CrouchIdle_4_1: -493114331
+      CrouchIdle_4_10: -187415820
+      CrouchIdle_4_11: -739361399
+      CrouchIdle_4_12: 424376598
+      CrouchIdle_4_13: -1029519178
+      CrouchIdle_4_14: 2121519335
+      CrouchIdle_4_2: -1913036777
+      CrouchIdle_4_3: 1142244724
+      CrouchIdle_4_4: 188791617
+      CrouchIdle_4_5: 71187005
+      CrouchIdle_4_6: 2089613258
+      CrouchIdle_4_7: 1205859099
+      CrouchIdle_4_8: -644471641
+      CrouchIdle_4_9: -402867253
+      CrouchIdle_5: 2783315565001520216
+      CrouchIdle_50: -5932340413075255329
+      CrouchIdle_51: -7252480120353628553
+      CrouchIdle_52: -8379414402151194558
+      CrouchIdle_53: 5729481641801553291
+      CrouchIdle_54: 6967841268495501151
+      CrouchIdle_55: -2417761586035536685
+      CrouchIdle_56: -2897680816698996860
+      CrouchIdle_57: 1058609164631432139
+      CrouchIdle_58: 8490122324123296399
+      CrouchIdle_59: 3315718341235813482
+      CrouchIdle_5_0: -849511044
+      CrouchIdle_5_1: -1706868228
+      CrouchIdle_5_10: 227317650
+      CrouchIdle_5_11: 1762631745
+      CrouchIdle_5_12: 297825160
+      CrouchIdle_5_13: 476330522
+      CrouchIdle_5_14: 725372086
+      CrouchIdle_5_2: 1555135361
+      CrouchIdle_5_3: 133493946
+      CrouchIdle_5_4: -811917599
+      CrouchIdle_5_5: 675030337
+      CrouchIdle_5_6: 282355028
+      CrouchIdle_5_7: -928339374
+      CrouchIdle_5_8: 963754471
+      CrouchIdle_5_9: 738202079
+      CrouchIdle_6: -5591913812495262757
+      CrouchIdle_60: -9016253870545330843
+      CrouchIdle_61: 8720259839188712989
+      CrouchIdle_62: -5873792648428295540
+      CrouchIdle_63: -3389694381826549166
+      CrouchIdle_64: 1512561566753332223
+      CrouchIdle_65: -8534727558762564845
+      CrouchIdle_66: 3423223730283680319
+      CrouchIdle_67: 430976948742209362
+      CrouchIdle_68: 6761598701836663951
+      CrouchIdle_69: -2212914687152039219
+      CrouchIdle_6_0: 943713260
+      CrouchIdle_6_1: 1612594904
+      CrouchIdle_6_10: 613770345
+      CrouchIdle_6_11: -561664460
+      CrouchIdle_6_12: 752713120
+      CrouchIdle_6_13: -514877099
+      CrouchIdle_6_14: 1767949111
+      CrouchIdle_6_2: -2087957670
+      CrouchIdle_6_3: -1967955291
+      CrouchIdle_6_4: -51198827
+      CrouchIdle_6_5: 1853882170
+      CrouchIdle_6_6: -1625373767
+      CrouchIdle_6_7: 1480245939
+      CrouchIdle_6_8: -553787914
+      CrouchIdle_6_9: 416559581
+      CrouchIdle_7: -2794861236529485109
+      CrouchIdle_70: 2368422022682121831
+      CrouchIdle_71: -1287605952246916826
+      CrouchIdle_72: 8992689630414171050
+      CrouchIdle_73: 1343733950477349662
+      CrouchIdle_74: 877777863497080908
+      CrouchIdle_75: -2472400150143651315
+      CrouchIdle_76: -211696973728722962
+      CrouchIdle_77: 2412013365493127120
+      CrouchIdle_78: 1440830922619206527
+      CrouchIdle_79: 4445757376092912671
+      CrouchIdle_7_0: -1478135637
+      CrouchIdle_7_1: 1700638195
+      CrouchIdle_7_10: 321146281
+      CrouchIdle_7_11: -161853235
+      CrouchIdle_7_12: -1643428665
+      CrouchIdle_7_13: -833807090
+      CrouchIdle_7_14: -1251964769
+      CrouchIdle_7_2: -491978940
+      CrouchIdle_7_3: 1219881551
+      CrouchIdle_7_4: -953221123
+      CrouchIdle_7_5: 1049908614
+      CrouchIdle_7_6: 640451893
+      CrouchIdle_7_7: -896785233
+      CrouchIdle_7_8: -1293196638
+      CrouchIdle_7_9: 1328872972
+      CrouchIdle_8: 2747523022682542692
+      CrouchIdle_80: 6642425036650594847
+      CrouchIdle_81: -811885827967135567
+      CrouchIdle_82: -6461737091755120733
+      CrouchIdle_83: 1050310688556802966
+      CrouchIdle_84: 7416016406101079752
+      CrouchIdle_85: 6076098267628538250
+      CrouchIdle_86: 6285276325030976403
+      CrouchIdle_87: 2472823473156550483
+      CrouchIdle_88: -819373589527916859
+      CrouchIdle_89: 1492940095573713739
+      CrouchIdle_9: -2476038760093927311
+      CrouchIdle_90: -1947008637002333068
+      CrouchIdle_91: -1609005971495520255
+      CrouchIdle_92: 5534103420007295808
+      CrouchIdle_93: 9060612318364783591
+      CrouchIdle_94: -1995608957254647121
+      CrouchIdle_95: -177170593993529398
+      CrouchIdle_96: 4549447429683621311
+      CrouchIdle_97: -1921601938903046200
+      CrouchIdle_98: 6676774370798441776
+      CrouchIdle_99: -4766162256438987597
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 1117861472601631733, guid: a3f0c52240fc14f4fbcb9e1d3c7451b1, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: 708e9d5dfdd23f84295804a6f8ea6dcf, type: 2}
+      objectReference: {fileID: 22100000, guid: bf188763858a3874881c4abe5e9b0be9, type: 2}
     - target: {fileID: 3772260505247715461, guid: a3f0c52240fc14f4fbcb9e1d3c7451b1, type: 3}
       propertyPath: m_Name
       value: chaser
@@ -127,6 +127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::chaserBehaviour
   chaseSpeed: 1
+  leashDistance: 14
+  stuckSeconds: 1.5
+  leashOffscreenPad: 1
 --- !u!114 &1708943581274702837
 MonoBehaviour:
   m_ObjectHideFlags: 0

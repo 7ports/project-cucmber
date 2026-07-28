@@ -72,8 +72,8 @@ public class attackRobot : MonoBehaviour
             {
                 // Spawn AT THE PLAYER, not at the activator's own transform (which may be
                 // anywhere). Fall back to this transform only if the singleton is missing.
-                Vector3 spawnPos = playerInventory.instance != null
-                    ? playerInventory.instance.transform.position
+                Vector3 spawnPos = worldState.instance != null
+                    ? worldState.instance.player.position
                     : transform.position;
                 _spawnedRobot = Instantiate(_robotPrefab, spawnPos, Quaternion.identity);
             }
@@ -100,7 +100,7 @@ public class attackRobot : MonoBehaviour
         // worldState-null guard and ahead of the chase flow, so on any frame that bailed
         // early the snap-back never executed and the robot drifted forever chasing enemies.
         // Reuse the existing player singleton reference (playerInventory sits on the player).
-        Transform player = playerInventory.instance != null ? playerInventory.instance.transform : null;
+        Transform player = worldState.instance != null ? worldState.instance.player : null;
         if (player != null &&
             Vector2.Distance(transform.position, player.position) > _leashDistance)
         {
