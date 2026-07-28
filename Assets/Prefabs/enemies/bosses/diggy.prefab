@@ -298,6 +298,10 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: 0.0022097896
       objectReference: {fileID: 0}
+    - target: {fileID: 8464270446456873450, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8993517367165848743, guid: ac858a605179fdc44bd51edb0da4b967, type: 3}
       propertyPath: maxHp
       value: 12500
@@ -358,6 +362,7 @@ MonoBehaviour:
   chaseSpeed: 0.7
   leashDistance: 14
   leashOffscreenPad: 1
+  interceptCooldown: 1.5
 --- !u!114 &1067411776363260878
 MonoBehaviour:
   m_ObjectHideFlags: 0
