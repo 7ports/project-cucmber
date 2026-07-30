@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class playerHealthUI : MonoBehaviour
 {
     [SerializeField] private Image hpBar;
-    [SerializeField] private Text hpLabel;
+    [SerializeField] private TMP_Text hpLabel;
 
     void Update()
     {

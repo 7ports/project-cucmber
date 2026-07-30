@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class questIndicator : MonoBehaviour
 {
     [SerializeField] private RectTransform[] indicators;
     [SerializeField] private Image[] arrowImages;
     [SerializeField] private Image[] iconImages;
-    [SerializeField] private Text[] distanceLabels;
+    [SerializeField] private TMP_Text[] distanceLabels;
     [SerializeField] private float edgeInset = 50f;
 
     private void LateUpdate()

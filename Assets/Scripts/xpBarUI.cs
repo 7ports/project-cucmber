@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class xpBarUI : MonoBehaviour
 {
     [SerializeField] private Image xpBar;   // Image Type = Filled
-    [SerializeField] private Text xpLabel;
+    [SerializeField] private TMP_Text xpLabel;
 
     void Update()
     {

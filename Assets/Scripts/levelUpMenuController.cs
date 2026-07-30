@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class levelUpMenuController : MonoBehaviour
 {
     private const int OfferCount = 5;
 
     [SerializeField] private Button[] buttons; // 3
-    [SerializeField] private Text[] labels;    // 3, one per button
+    [SerializeField] private TMP_Text[] labels;    // 3, one per button
 
     private readonly Upgrade[] rolled = new Upgrade[OfferCount];
 

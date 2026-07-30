@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class pauseItemsView : MonoBehaviour
 {
-    [SerializeField] private Text itemsText;
+    [SerializeField] private TMP_Text itemsText;
 
     void OnEnable()
     {

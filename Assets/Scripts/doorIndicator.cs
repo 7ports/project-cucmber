@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class doorIndicator : MonoBehaviour
 {
     [SerializeField] private RectTransform _indicator;
     [SerializeField] private Image _arrow;
-    [SerializeField] private Text _distanceLabel;
+    [SerializeField] private TMP_Text _distanceLabel;
     [SerializeField] private Transform _doorTarget;
     [SerializeField] private float _edgeInset = 50f;
 

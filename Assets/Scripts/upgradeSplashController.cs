@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 // Shows a yellow floating splash of each selected upgrade's name over the player's
 // head, reusing the pooled floatingText animation used by the "LEVEL UP!" text.
@@ -80,7 +81,7 @@ public class upgradeSplashController : MonoBehaviour
             Quaternion.identity);
         if (go == null) return;
 
-        Text text = go.GetComponentInChildren<Text>();
+        TMP_Text text = go.GetComponentInChildren<TMP_Text>();
         if (text != null)
         {
             text.text = label;

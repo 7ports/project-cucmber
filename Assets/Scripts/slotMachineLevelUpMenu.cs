@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 // Slot-machine level-up menu — BLIND PICK-BEFORE-SPIN with 5 reels.
 //
@@ -31,9 +32,9 @@ public class slotMachineLevelUpMenu : MonoBehaviour
     [SerializeField] private Button[] _symbolButtons;      // 3 buttons: Circle / Triangle / Square
 
     [Header("Optional labels")]
-    [SerializeField] private Text[] _reelLabels;           // optional per-reel upgrade labels
-    [SerializeField] private Text _subtitle;               // "pick a symbol" subtitle, shown while the menu is open
-    [SerializeField] private Text _spinHint;               // "press space to stop" hint, shown only while spinning
+    [SerializeField] private TMP_Text[] _reelLabels;           // optional per-reel upgrade labels
+    [SerializeField] private TMP_Text _subtitle;               // "pick a symbol" subtitle, shown while the menu is open
+    [SerializeField] private TMP_Text _spinHint;               // "press space to stop" hint, shown only while spinning
 
     [Header("Outcome FX")]
     [SerializeField] private ParticleSystem[] _outcomeFX;  // index by match count 0..5 (index 0 may be null = dud)

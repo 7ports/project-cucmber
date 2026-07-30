@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// Boss-drop item choice menu. On pickup, offers up to 3 random not-yet-owned
@@ -16,7 +17,7 @@ public class itemChoiceMenuController : MonoBehaviour
 
     [SerializeField] private GameObject menuPanel; // separate panel, starts INACTIVE
     [SerializeField] private Button[] buttons;     // 3, wired in Editor
-    [SerializeField] private Text[] labels;        // 3, one per button (child of each button)
+    [SerializeField] private TMP_Text[] labels;    // 3, one per button (child of each button)
 
     private readonly string[] offered = new string[3];
     private int offeredCount;

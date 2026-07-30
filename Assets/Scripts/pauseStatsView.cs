@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class pauseStatsView : MonoBehaviour
 {
-    [SerializeField] private Text statsText;
+    [SerializeField] private TMP_Text statsText;
 
     void OnEnable()
     {
