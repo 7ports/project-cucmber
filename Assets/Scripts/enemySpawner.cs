@@ -47,6 +47,10 @@ public class enemySpawner : MonoBehaviour
     // Minimum per-frame position delta to treat the player as moving (below = idle).
     [SerializeField] private float _moveEpsilon = 0.0001f;
 
+    [Header("Boss random-replace")]
+    // Probability (0..1) an off-screen boss replaces a heading-edge enemy spawn.
+    [SerializeField] private float _bossHijackChance = 0.15f;
+
     private Vector3 _lastPlayerPos;
     private bool _hasLastPos;
     private Vector2 _headingDir;      // running-average heading (unit) while moving one way
@@ -215,24 +219,65 @@ public class enemySpawner : MonoBehaviour
                 && worldState.instance.bossSpawnCount >= _batchBossThreshold
                 && spawnBatches != null && spawnBatches.Length > 0)
             {
-                SpawnBatch batch = spawnBatches[Random.Range(0, spawnBatches.Length)];
-                GameObject batchPrefab = batch.prefab != null ? batch.prefab : prefab;
-                int count = Mathf.Max(1, batch.count);
-                for (int n = 0; n < count; n++)
+                // Boss random-replace: if conditions are met, hijack this heading-edge tick for the boss.
+                if (headingSpawn
+                    && worldState.instance.activeBoss != null
+                    && IsOffscreen(worldState.instance.activeBoss.position, cam)
+                    && Random.value < _bossHijackChance)
                 {
-                    if (headingSpawn && TryReuseLaggard(batchPrefab, point, _headingDir, cam))
+                    Transform boss = worldState.instance.activeBoss;
+                    Rigidbody2D brb = boss.GetComponent<Rigidbody2D>();
+                    if (brb != null)
                     {
-                        // recycled an existing laggard
+                        brb.position = point;
+                        brb.linearVelocity = Vector2.zero;
                     }
                     else
                     {
-                        objectPool.instance.get(batchPrefab, point, Quaternion.identity);
+                        boss.position = point;
+                    }
+                    // Batch spawn tick consumed by boss hijack; no enemy spawn.
+                }
+                else
+                {
+                    SpawnBatch batch = spawnBatches[Random.Range(0, spawnBatches.Length)];
+                    GameObject batchPrefab = batch.prefab != null ? batch.prefab : prefab;
+                    int count = Mathf.Max(1, batch.count);
+                    for (int n = 0; n < count; n++)
+                    {
+                        if (headingSpawn && TryReuseLaggard(batchPrefab, point, _headingDir, cam))
+                        {
+                            // recycled an existing laggard
+                        }
+                        else
+                        {
+                            objectPool.instance.get(batchPrefab, point, Quaternion.identity);
+                        }
                     }
                 }
             }
             else
             {
-                if (headingSpawn && TryReuseLaggard(prefab, point, _headingDir, cam))
+                // Boss random-replace: if conditions are met, hijack this heading-edge tick for the boss.
+                if (headingSpawn
+                    && worldState.instance.activeBoss != null
+                    && IsOffscreen(worldState.instance.activeBoss.position, cam)
+                    && Random.value < _bossHijackChance)
+                {
+                    Transform boss = worldState.instance.activeBoss;
+                    Rigidbody2D brb = boss.GetComponent<Rigidbody2D>();
+                    if (brb != null)
+                    {
+                        brb.position = point;
+                        brb.linearVelocity = Vector2.zero;
+                    }
+                    else
+                    {
+                        boss.position = point;
+                    }
+                    // Single spawn tick consumed by boss hijack; no enemy spawn.
+                }
+                else if (headingSpawn && TryReuseLaggard(prefab, point, _headingDir, cam))
                 {
                     // recycled an existing laggard
                 }
