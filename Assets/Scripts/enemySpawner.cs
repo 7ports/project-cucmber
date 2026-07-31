@@ -53,6 +53,51 @@ public class enemySpawner : MonoBehaviour
     private bool _hasHeading;
     private float _sameDirTimer;      // time spent continuously moving within tolerance of _headingDir
 
+    private bool IsOffscreen(Vector3 pos, Camera cam)
+    {
+        if (cam == null) return true;
+        Vector3 vp = cam.WorldToViewportPoint(pos);
+        return vp.x < -edgeMargin || vp.x > 1f + edgeMargin
+            || vp.y < -edgeMargin || vp.y > 1f + edgeMargin;
+    }
+
+    private bool TryReuseLaggard(GameObject prefab, Vector3 point, Vector2 heading, Camera cam)
+    {
+        if (worldState.instance == null || worldState.instance.player == null || prefab == null) return false;
+
+        Vector2 playerPos = worldState.instance.player.position;
+        Transform bestLaggard = null;
+        float bestDot = float.PositiveInfinity;
+
+        foreach (Transform t in EnemyRegistry.OfType(prefab))
+        {
+            if (!IsOffscreen(t.position, cam)) continue;
+
+            Vector2 toEnemy = (Vector2)t.position - playerPos;
+            float dot = Vector2.Dot(toEnemy, heading);
+            if (dot < 0f && dot < bestDot)
+            {
+                bestDot = dot;
+                bestLaggard = t;
+            }
+        }
+
+        if (bestLaggard == null) return false;
+
+        Rigidbody2D rb = bestLaggard.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.position = point;
+            rb.linearVelocity = Vector2.zero;
+        }
+        else
+        {
+            bestLaggard.position = point;
+        }
+
+        return true;
+    }
+
     void Update()
     {
         if (worldState.instance == null || worldState.instance.player == null) return;
@@ -134,10 +179,12 @@ public class enemySpawner : MonoBehaviour
             GameObject prefab = eligible[pick];
 
             Vector3 vp;
+            bool headingSpawn = false;
             // When the player has held one heading past the threshold, throw most spawns into a cone
             // pointing the way they're going (edge ahead of them); otherwise keep the even 4-side spread.
             if (_hasHeading && _sameDirTimer > _sameDirThreshold && Random.value < _biasStrength)
             {
+                headingSpawn = true;
                 float headingAngle = Mathf.Atan2(_headingDir.y, _headingDir.x);
                 float coneRad = _biasConeDegrees * Mathf.Deg2Rad;
                 float a = headingAngle + Random.Range(-coneRad, coneRad);
@@ -151,6 +198,7 @@ public class enemySpawner : MonoBehaviour
             }
             else
             {
+                headingSpawn = false;
                 int side = Random.Range(0, 4);
                 if (side == 0)      vp = new Vector3(-edgeMargin, Random.value, 0f);       // left
                 else if (side == 1) vp = new Vector3(1f + edgeMargin, Random.value, 0f);   // right
@@ -171,11 +219,27 @@ public class enemySpawner : MonoBehaviour
                 GameObject batchPrefab = batch.prefab != null ? batch.prefab : prefab;
                 int count = Mathf.Max(1, batch.count);
                 for (int n = 0; n < count; n++)
-                    objectPool.instance.get(batchPrefab, point, Quaternion.identity);
+                {
+                    if (headingSpawn && TryReuseLaggard(batchPrefab, point, _headingDir, cam))
+                    {
+                        // recycled an existing laggard
+                    }
+                    else
+                    {
+                        objectPool.instance.get(batchPrefab, point, Quaternion.identity);
+                    }
+                }
             }
             else
             {
-                objectPool.instance.get(prefab, point, Quaternion.identity);
+                if (headingSpawn && TryReuseLaggard(prefab, point, _headingDir, cam))
+                {
+                    // recycled an existing laggard
+                }
+                else
+                {
+                    objectPool.instance.get(prefab, point, Quaternion.identity);
+                }
             }
         }
     }

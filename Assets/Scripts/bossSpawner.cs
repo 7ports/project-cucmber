@@ -32,6 +32,14 @@ public class bossSpawner : MonoBehaviour
     bool SpawnBoss()
     {
         if (activeBoss != null && activeBoss.activeInHierarchy) return false;   // one boss at a time
+
+        // Clear worldState reference when boss dies
+        if (activeBoss != null && !activeBoss.activeInHierarchy)
+        {
+            if (worldState.instance != null)
+                worldState.instance.activeBoss = null;
+        }
+
         if (worldState.instance == null || worldState.instance.player == null) return false;
 
         // Fail safe: no bosses configured -> do nothing (no null-ref spam).
@@ -55,6 +63,8 @@ public class bossSpawner : MonoBehaviour
         point.z = 0f;
 
         activeBoss = Instantiate(chosen, point, Quaternion.identity);
+        if (worldState.instance != null)
+            worldState.instance.activeBoss = activeBoss.transform;
         bossShooter shooter = activeBoss.GetComponent<bossShooter>();
         if (shooter != null) shooter.RandomizePattern();
         // Track boss spawns: feeds enemy-HP acceleration + the enemySpawner batch-spawn gate.
