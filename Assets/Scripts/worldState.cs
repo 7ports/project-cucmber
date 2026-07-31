@@ -163,20 +163,20 @@ public class worldState
     // --- Item projectile/weapon mods (Cone / Bounce / Explode / Freeze) ---
     public float coneHalfAngleDeg      => Range() * 5f;                         // PLACEHOLDER formula — tune by hand
     public float bounceSearchRadius    => Range() * 2f;                         // PLACEHOLDER formula — tune by hand
-    public float explosionRadiusFactor => ProjectileSize() * 0.5f;             // PLACEHOLDER formula — tune by hand
+    public float explosionRadiusFactor => Range() * 0.5f;             // PLACEHOLDER formula — tune by hand
     public float freezeChance          => Mathf.Clamp01(CritChance() * 2f);     // PLACEHOLDER formula — tune by hand
     public float freezeItemDuration    => Range() * 2f / 3f;                    // PLACEHOLDER formula — tune by hand
 
     // --- Damage Aura: constant DPS in a radius around the player. ---
     public float auraDpsBase()   => attackDamageBase * auraDpsFactor;           // scales with attack damage via factor field
     public float auraDpsMult      = 1f;
-    public float auraRadiusBase  => PickupRadius();                            // PLACEHOLDER formula — tune by hand
+    public float auraRadiusBase  => Range();                            // PLACEHOLDER formula — tune by hand
     public float auraRadiusMult   = 1f;
     public float auraTickInterval => FireCooldown() * 0.12f;                   // PLACEHOLDER formula — tune by hand
 
     // --- Attack Bot: a bot dealing a fraction of attack damage on an interval. ---
     public float robotDamageFactor => CritMultiplier() * 0.25f;               // PLACEHOLDER formula — tune by hand
-    public float robotSpeedFactor  => ProjectileSize();                       // PLACEHOLDER formula — tune by hand
+    public float robotSpeedFactor  => MoveSpeed();                       // PLACEHOLDER formula — tune by hand
     public float robotHitInterval  => FireCooldown() * 0.6f;                  // PLACEHOLDER formula — tune by hand
 
     // --- Searing Trail: damaging trail segments left behind the player. ---
