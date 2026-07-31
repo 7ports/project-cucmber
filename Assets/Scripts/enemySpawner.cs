@@ -102,15 +102,12 @@ public class enemySpawner : MonoBehaviour
         return true;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (worldState.instance == null || worldState.instance.player == null) return;
-        if (objectPool.instance == null || spawnTable == null || spawnTable.Length == 0) return;
-
-        Camera cam = Camera.main;
-        if (cam == null) return;
 
         // --- Track heading: accumulate _sameDirTimer while the player keeps one general direction. ---
+        // Sampled per physics step to avoid aliasing with frame-rate-independent timing.
         Vector3 playerPos = worldState.instance.player.transform.position;
         if (_hasLastPos)
         {
@@ -121,7 +118,7 @@ public class enemySpawner : MonoBehaviour
                 Vector2 moveDir = delta / dist;
                 if (_hasHeading && Vector2.Dot(moveDir, _headingDir) > _directionTolerance)
                 {
-                    _sameDirTimer += Time.deltaTime;
+                    _sameDirTimer += Time.fixedDeltaTime;
                     // Ease the running average toward the current move dir so slow curves don't reset instantly.
                     _headingDir = Vector2.Lerp(_headingDir, moveDir, 0.1f).normalized;
                 }
@@ -139,6 +136,15 @@ public class enemySpawner : MonoBehaviour
         }
         _lastPlayerPos = playerPos;
         _hasLastPos = true;
+    }
+
+    void Update()
+    {
+        if (worldState.instance == null || worldState.instance.player == null) return;
+        if (objectPool.instance == null || spawnTable == null || spawnTable.Length == 0) return;
+
+        Camera cam = Camera.main;
+        if (cam == null) return;
 
         spawnTimer += Time.deltaTime;
         float interval = (worldState.instance != null)
