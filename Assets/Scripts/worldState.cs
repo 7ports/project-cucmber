@@ -4,7 +4,6 @@ public class worldState
 {
     public static worldState instance;
     public Transform player;
-    public bool aggressiveBlocking;     // global toggle for enemy/boss block-the-player behaviour; default false
     public Vector2 playerVelocity;      // player heading, exported by playerMovement each FixedUpdate
 
     // --- CSV tuning overlay (Assets/StreamingAssets/tuning.csv) ---------------

@@ -5,7 +5,6 @@ public class bossBehaviour : MonoBehaviour
     [SerializeField] private float chaseSpeed = 0.7f;        // ~0.7x the chaser's real speed of 1.0
     [SerializeField] private float leashDistance = 14f;      // world units
     [SerializeField] private float leashOffscreenPad = 1f;   // units past the visible edge
-    [SerializeField] private float interceptChance = 0.35f;  // probability of teleporting to intercept point vs catch-up point
     private enemyHealth _health;                 // ADDED
     private Rigidbody2D _rb;   // ADD
 
@@ -23,17 +22,7 @@ public class bossBehaviour : MonoBehaviour
 
         if (((Vector3)_rb.position - target).sqrMagnitude > leashDistance * leashDistance)
         {
-            if (worldState.instance != null && worldState.instance.aggressiveBlocking)
-            {
-                if (Random.value < interceptChance)
-                    _rb.position = EnemyPathing.ComputeInterceptPoint(_rb.position, target, worldState.instance.playerVelocity, Camera.main, leashOffscreenPad, 0.5f);
-                else
-                    _rb.position = ComputeOffscreenPoint(target);
-            }
-            else
-            {
-                _rb.position = ComputeOffscreenPoint(target);  // CHANGED: teleport, not a swept move
-            }
+            _rb.position = ComputeOffscreenPoint(target);
             return;                                        // leash OR chase, never both (preserved)
         }
 
